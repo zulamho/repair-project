@@ -10,7 +10,6 @@ const serviceSchema = mongoose.Schema(
     number: Number,
     pathImages: String,
     description: String,
-
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
