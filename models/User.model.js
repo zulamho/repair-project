@@ -10,8 +10,18 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    basket: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
     login: String,
     password: String,
+    ConfirmPassword: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
