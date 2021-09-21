@@ -48,6 +48,7 @@ function SignUpPage() {
 
   return (
     <>
+    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -149,8 +150,8 @@ function SignUpPage() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/signin" variant="body2">
+                  У вас уже есть аккаунт?  <b>Войти</b> 
                 </Link>
               </Grid>
             </Grid>
