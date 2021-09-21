@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createUser } from "../../../redux/features/application";
 
-function SigninUpPage() {
+function SignUpPage() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -77,4 +77,4 @@ function SigninUpPage() {
   );
 }
 
-export default SigninUpPage;
+export default SignUpPage;
