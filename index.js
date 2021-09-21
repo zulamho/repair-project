@@ -13,6 +13,7 @@ app.use(cors());
 app.use("/image", express.static(path.resolve(__dirname, "image")));
 app.use(require("./routes/index"));
 
+console.log("Подкление к базе данных");
 mongoose
   .connect("mongodb+srv://admin06:admin06@cluster0.zvgtk.mongodb.net/repair", {
     useNewUrlParser: true,
@@ -20,7 +21,7 @@ mongoose
   })
   .then(() => {
     app.listen(4000, () => {
-      console.log("Подключение к серверу...");
+      console.log("Сервер успешно запущен!");
     });
     console.log("Сервер успешно запущен!");
   });
