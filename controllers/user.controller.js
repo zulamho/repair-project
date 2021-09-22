@@ -5,8 +5,15 @@ const jwt = require("jsonwebtoken");
 module.exports.userController = {
   registerUser: async (req, res) => {
     try {
-      const { name, email, login, password, ConfirmPassword, basket } =
-        req.body;
+      const {
+        name,
+        lastName,
+        email,
+        login,
+        password,
+        ConfirmPassword,
+        workingUser,
+      } = req.body;
 
       const candidate = await User.findOne({ login });
 
@@ -22,11 +29,12 @@ module.exports.userController = {
       );
       const user = await User.create({
         name,
+        lastName,
+        workingUser,
         email,
         login: login,
         password: hash,
         ConfirmPassword,
-        basket,
       });
       res.json(user);
     } catch (error) {
