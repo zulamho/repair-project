@@ -65,7 +65,8 @@ export const createUser = (
   email,
   login,
   password,
-  ConfirmPassword
+  ConfirmPassword,
+  image
 ) => {
   return async (dispatch) => {
     dispatch({ type: "application/signup/pending" });
@@ -80,6 +81,7 @@ export const createUser = (
         login,
         password,
         ConfirmPassword,
+        image,
       }),
       headers: {
         "Content-type": "application/json",

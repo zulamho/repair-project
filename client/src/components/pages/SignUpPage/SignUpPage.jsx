@@ -18,7 +18,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function SignUpPage() {
   const dispatch = useDispatch();
-
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [workingUser, setWorkingUser] = useState("");
@@ -29,6 +29,12 @@ function SignUpPage() {
 
   const signingUp = useSelector((state) => state.application.signingUp);
   const error = useSelector((state) => state.application.error);
+
+  
+
+  const handleChangeImage = (e) => {
+    setImage(e.target.value);
+  };
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -64,7 +70,8 @@ function SignUpPage() {
         email,
         login,
         password,
-        ConfirmPassword
+        ConfirmPassword,
+        image
       )
     );
   };
@@ -101,7 +108,8 @@ function SignUpPage() {
               id="contained-button-file"
               multiple
               type="file"
-              onChange={handleAddAvatar}
+              onChange={handleChangeImage}
+              value={image}
             />
           </Button>
 
