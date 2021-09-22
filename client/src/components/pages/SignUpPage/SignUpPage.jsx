@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { createUser } from "../../../redux/features/application";
+import { createUser, addAvatar } from "../../../redux/features/application";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -18,37 +18,70 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function SignUpPage() {
   const dispatch = useDispatch();
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [workingUser, setWorkingUser] = useState("");
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
 
   const signingUp = useSelector((state) => state.application.signingUp);
   const error = useSelector((state) => state.application.error);
 
+  
+
+  const handleChangeImage = (e) => {
+    setImage(e.target.value);
+  };
+
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
+  const handleChangeLastName = (e) => {
+    setLastName(e.target.value);
+  };
+  const handleChangeWorkingUser = (e) => {
+    setWorkingUser(e.target.value);
+  };
+
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
   const handleChangeLogin = (e) => {
     setLogin(e.target.value);
   };
+
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
-  const handleChangeconfirmPassword = (e) => {
+
+  const handleChangeConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
+
   const handleTransfer = () => {
-    dispatch(createUser(name, email, login, password, confirmPassword));
+    dispatch(
+      createUser(
+        name,
+        lastName,
+        workingUser,
+        email,
+        login,
+        password,
+        ConfirmPassword,
+        image
+      )
+    );
+  };
+
+  const handleAddAvatar = async (e) => {
+    await dispatch(addAvatar(e));
   };
 
   return (
     <>
-    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -65,10 +98,25 @@ function SignUpPage() {
           <Typography component="h1" variant="h5">
             Регистрация
           </Typography>
+          <Button
+            //className={classes.input}
+            onChange={handleAddAvatar}
+            variant="contained"
+          >
+            <input
+              accept="image/*"
+              id="contained-button-file"
+              multiple
+              type="file"
+              onChange={handleChangeImage}
+              value={image}
+            />
+          </Button>
+
           <Box
             component="form"
             noValidate
-            //onSubmit={handleSubmit}
+            onSubmit={handleTransfer}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
@@ -87,11 +135,25 @@ function SignUpPage() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  defaultValue={lastName}
+                  onChange={handleChangeLastName}
                   required
                   fullWidth
                   id="lastName"
                   label="Введите фамилию"
                   name="lastName"
+                  autoComplete="lname"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  defaultValue={workingUser}
+                  onChange={handleChangeWorkingUser}
+                  required
+                  fullWidth
+                  id="WorkingUser"
+                  label="Выбрать роль"
+                  name="WorkingUser"
                   autoComplete="lname"
                 />
               </Grid>
@@ -121,6 +183,8 @@ function SignUpPage() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  defaultValue={password}
+                  onChange={handleChangePassword}
                   required
                   fullWidth
                   name="password"
@@ -151,7 +215,7 @@ function SignUpPage() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/signin" variant="body2">
-                  У вас уже есть аккаунт?  <b>Войти</b> 
+                  У вас уже есть аккаунт? <b>Войти</b>
                 </Link>
               </Grid>
             </Grid>
