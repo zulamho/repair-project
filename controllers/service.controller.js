@@ -17,7 +17,7 @@ module.exports.serviceController = {
       });
       res.json(service);
     } catch (e) {
-      res.status(401).json("Неверный токен");
+      res.status(401).json("Ошибка при добавлении");
     }
   },
 
