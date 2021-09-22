@@ -25,6 +25,18 @@ export default function service(state = initialState, action) {
         loading: false,
         service: action.error,
       };
+      case "service/post/pending":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "service/post/fulfilled":
+      return {
+        ...state,
+        loading: false,
+        product: action.payload,
+      };
+
     default:
       return state;
   }
@@ -57,5 +69,39 @@ export const fetchService = () => {
         error: e.toString(),
       });
     }
+  };
+};
+
+export const addProduct = (
+  name,
+  price,
+  description,
+  number
+) => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "service/post/pending" });
+
+    const state = getState();
+
+    const response = await fetch("http://localhost:4000/service", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        price,
+        number,
+        description,
+      }),
+    });
+
+    const json = await response.json();
+
+    dispatch({
+      type: "product/post/fulfilled",
+      payload: json,
+    });
   };
 };
