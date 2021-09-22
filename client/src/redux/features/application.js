@@ -3,7 +3,7 @@ const initialState = {
   signingIn: false,
   error: null,
   token: localStorage.getItem("token"),
-  basket: [],
+  avatar: [],
 };
 
 export default function application(state = initialState, action) {
@@ -47,10 +47,10 @@ export default function application(state = initialState, action) {
         signingIn: false,
         error: action.error,
       };
-    case "basket":
+    case "user/avatar/fulfilled":
       return {
         ...state,
-        basket: [...state.basket, action.payload],
+        avatar: action.payload,
       };
 
     default:
@@ -156,5 +156,27 @@ export const fetchProductsBasket = (id) => {
         error: e.toString(),
       });
     }
+  };
+};
+
+export const addAvatar = (e) => {
+  return async (dispatch) => {
+    dispatch({ type: "user/avater/pending" });
+
+    const { files } = e.target;
+    const data = new FormData();
+    data.append("image", files[0]);
+
+    const response = await fetch("http://localhost:4000/user/upload", {
+      method: "POST",
+      body: data,
+    });
+
+    const json = await response.json();
+
+    dispatch({
+      type: "user/avatar/fulfilled",
+      payload: json,
+    });
   };
 };

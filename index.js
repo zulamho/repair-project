@@ -11,6 +11,8 @@ app.use(fileUpload());
 app.use(express.json());
 app.use(cors());
 app.use("/image", express.static(path.resolve(__dirname, "image")));
+app.use("/avatar", express.static(path.resolve(__dirname, "avatar")));
+
 app.use(require("./routes/index"));
 
 console.log("Подключение к базе данных");

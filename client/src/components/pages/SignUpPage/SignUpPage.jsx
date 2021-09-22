@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { createUser } from "../../../redux/features/application";
+import { createUser, addAvatar } from "../../../redux/features/application";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -69,6 +69,10 @@ function SignUpPage() {
     );
   };
 
+  const handleAddAvatar = async (e) => {
+    await dispatch(addAvatar(e));
+  };
+
   return (
     <>
       <Container component="main" maxWidth="xs">
@@ -87,6 +91,20 @@ function SignUpPage() {
           <Typography component="h1" variant="h5">
             Регистрация
           </Typography>
+          <Button
+            //className={classes.input}
+            onChange={handleAddAvatar}
+            variant="contained"
+          >
+            <input
+              accept="image/*"
+              id="contained-button-file"
+              multiple
+              type="file"
+              onChange={handleAddAvatar}
+            />
+          </Button>
+
           <Box
             component="form"
             noValidate

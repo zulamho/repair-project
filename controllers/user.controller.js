@@ -1,11 +1,13 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 
 module.exports.userController = {
   registerUser: async (req, res) => {
     try {
       const {
+        image,
         name,
         lastName,
         email,
@@ -28,6 +30,7 @@ module.exports.userController = {
         Number(process.env.BCRYPT_ROUNDS)
       );
       const user = await User.create({
+        pathImages: image,
         name,
         lastName,
         workingUser,
@@ -101,6 +104,28 @@ module.exports.userController = {
       res.json("Пользователь удален");
     } catch (err) {
       res.json(err);
+    }
+  },
+
+  addAvatar: async (req, res) => {
+    try {
+      const img = req.files.image;
+      const newFileName = `./avatar/${
+        Math.random() * 10000000000000000
+      }${path.extname(img.name)}`;
+
+      img.mv(newFileName, async (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json({
+            success: "file uploaded",
+            image: newFileName,
+          });
+        }
+      });
+    } catch (e) {
+      res.json(e);
     }
   },
 
