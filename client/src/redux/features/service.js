@@ -8,23 +8,23 @@ const initialState = {
 export default function service(state = initialState, action) {
   switch (action.type) {
     case "service/fetch-service/pending":
-        return {
-          ...state,
-          loading: true,
-        };
-      case "service/fetch-service/fulfilled":
-        return {
-          ...state,
-          loading: false,
-          service: action.payload,
-          error: action.error,
-        };
-      case "service/fetch-service/rejected":
-        return {
-          ...state,
-          loading: false,
-          service: action.error,
-        };
+      return {
+        ...state,
+        loading: true,
+      };
+    case "service/fetch-service/fulfilled":
+      return {
+        ...state,
+        loading: false,
+        service: action.payload,
+        error: action.error,
+      };
+    case "service/fetch-service/rejected":
+      return {
+        ...state,
+        loading: false,
+        service: action.error,
+      };
     default:
       return state;
   }
