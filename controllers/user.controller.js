@@ -128,6 +128,14 @@ module.exports.userController = {
       res.json(e);
     }
   },
+  getUsers: async (req, res) => {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (error) {
+      res.json(error);
+    }
+  },
 
   //     addProductBasket: async (req, res) => {
   //       try {
