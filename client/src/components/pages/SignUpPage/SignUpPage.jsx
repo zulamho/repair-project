@@ -15,6 +15,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Stack from "@mui/material/Stack";
 
 function SignUpPage() {
   const dispatch = useDispatch();
@@ -29,8 +30,6 @@ function SignUpPage() {
 
   const signingUp = useSelector((state) => state.application.signingUp);
   const error = useSelector((state) => state.application.error);
-
-  
 
   const handleChangeImage = (e) => {
     setImage(e.target.value);
@@ -98,6 +97,7 @@ function SignUpPage() {
           <Typography component="h1" variant="h5">
             Регистрация
           </Typography>
+        
           <Button
             //className={classes.input}
             onChange={handleAddAvatar}
@@ -111,6 +111,13 @@ function SignUpPage() {
               onChange={handleChangeImage}
               value={image}
             />
+              <Stack direction="row" spacing={2} sx={{ width: 80, height: 80 }}>
+            <Avatar
+              sx={{ width: 80, height: 80 }}
+              alt="Remy Sharp"
+              src="https://ukranews.com/upload/news/2020/07/28/5f208e749f631-----------_1200.jpg"
+            />
+          </Stack>
           </Button>
 
           <Box

@@ -3,6 +3,7 @@ const initialState = {
   signingIn: false,
   error: null,
   token: localStorage.getItem("token"),
+  users: [],
   avatar: [],
 };
 
@@ -121,45 +122,6 @@ export const auth = (login, password) => {
     }
   };
 };
-export const userBasket = (id) => {
-  return {
-    type: "basket",
-    payload: id,
-  };
-};
-
-export const fetchProductsBasket = (id) => {
-  return async (dispatch, getState) => {
-    const state = getState();
-    dispatch({ type: "product/basket/pending" });
-    try {
-      const response = await fetch(
-        "http://localhost:4000/cart/6141c3a0a38940a0244174e9",
-        {
-          headers: {
-            Authorization: `Bearer ${state.application.token}`,
-          },
-        }
-      );
-
-      const json = await response.json();
-
-      if (json.error) {
-        dispatch({
-          type: "product/basket-server/rejected",
-          error: "При запросе на сервер произошла ошибка",
-        });
-      } else {
-        dispatch({ type: "product/basket/fulfilled", payload: json });
-      }
-    } catch (e) {
-      dispatch({
-        type: "product/basket-server/rejected",
-        error: e.toString(),
-      });
-    }
-  };
-};
 
 export const addAvatar = (e) => {
   return async (dispatch) => {
@@ -180,5 +142,30 @@ export const addAvatar = (e) => {
       type: "user/avatar/fulfilled",
       payload: json,
     });
+  };
+};
+
+export const fetchUsers = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    try {
+      const response = await fetch("http://localhost:4000/users", {});
+
+      const json = await response.json();
+
+      if (json.error) {
+        dispatch({
+          type: "users/fetch/error",
+          error: "При запросе на сервер произошла ошибка",
+        });
+      } else {
+        dispatch({ type: "users/fetch/fulfilled", payload: json });
+      }
+    } catch (e) {
+      dispatch({
+        type: "users/fetch/rejected",
+        error: e.toString(),
+      });
+    }
   };
 };

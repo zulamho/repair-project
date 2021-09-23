@@ -3,7 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import SigninPage from "./pages/SigninPage/SigninPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import Home from "../components/pages/HomePage/index";
-import Services from "../components/pages/ProfilePage/services";
+import ProfilePages from "../components/pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -15,11 +15,11 @@ function App() {
         <Route path="/signUp">
           <SignUpPage />
         </Route>
-        <Route path="/service">
-          <Services />
-        </Route>
         <Route path="/">
           <Home />
+        </Route>
+        <Route path="/profilePage" exact>
+          <ProfilePages />
         </Route>
       </Switch>
     </BrowserRouter>

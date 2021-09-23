@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import  { fetchService } from "../../../redux/features/service";
+import { fetchService } from "../../../redux/features/service";
 import Main from "./Main";
+import Header from "./Header";
 
 function Home() {
   const dispatch = useDispatch();
@@ -14,13 +15,13 @@ function Home() {
   if (loading) {
     return <div>loading...</div>;
   }
-  
 
   if (error) {
     return <div>{error}</div>;
   }
   return (
     <>
+      <Header />
       <Main />
     </>
   );
