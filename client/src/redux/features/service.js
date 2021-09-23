@@ -2,7 +2,6 @@ const initialState = {
   loading: true,
   service: [],
   error: null,
-  image: [],
 };
 
 export default function service(state = initialState, action) {
@@ -35,6 +34,17 @@ export default function service(state = initialState, action) {
         ...state,
         loading: false,
         product: action.payload,
+      };
+      case "service/image/pending":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "service/image/fulfilled":
+      return {
+        ...state,
+        loading: false,
+        image: action.payload.image,
       };
 
     default:
@@ -75,6 +85,7 @@ export const fetchService = () => {
 export const addProduct = (
   name,
   price,
+  image,
   description,
   number
 ) => {
@@ -92,6 +103,7 @@ export const addProduct = (
       body: JSON.stringify({
         name,
         price,
+        image: state.service.image,
         number,
         description,
       }),
@@ -101,6 +113,28 @@ export const addProduct = (
 
     dispatch({
       type: "product/post/fulfilled",
+      payload: json,
+    });
+  };
+};
+
+export const addImage = (e) => {
+  return async (dispatch) => {
+    dispatch({ type: "service/image/pending" });
+
+    const { files } = e.target;
+    const data = new FormData();
+    data.append("image", files[0]);
+
+    const response = await fetch("http://localhost:4000/service/upload", {
+      method: "POST",
+      body: data,
+    });
+
+    const json = await response.json();
+
+    dispatch({
+      type: "service/image/fulfilled",
       payload: json,
     });
   };
