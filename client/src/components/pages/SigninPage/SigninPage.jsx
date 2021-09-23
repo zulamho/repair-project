@@ -16,8 +16,24 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles((theme) => ({
+  container:{
+  backgroundImage:`url(${'https://stroiidea.ru/assets/images/staty/instrumenty-dlya-remonta-kvartiry.jpg'})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: '100%',
+  margin:'-63px',
+  padding:'40px 0'
+  },
+  main:{
+    borderRadius:10,
+    backgroundColor:'white'
+  }
+}))
 
 function SigninPage() {
+  const classes = useStyles()
   const dispatch = useDispatch();
 
   const [login, setLogin] = useState("");
@@ -45,8 +61,8 @@ function SigninPage() {
   // }
 
   return (
-    <>
-      <Container component="main" maxWidth="xs">
+    <Grid className = {classes.container}>
+      <Container component="main" maxWidth="xs" className = {classes.main}>
         <CssBaseline />
         <Box
           sx={{
@@ -120,7 +136,7 @@ function SigninPage() {
           </Box>
         </Box>
       </Container>
-    </>
+    </Grid>
   );
 }
 
