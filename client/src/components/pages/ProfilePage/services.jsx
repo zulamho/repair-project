@@ -2,13 +2,15 @@ import {
   Button,
   createStyles,
   Grid,
+  IconButton,
   makeStyles,
   TextField,
 } from "@material-ui/core";
+import { PhotoCamera } from "@material-ui/icons";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../../redux/features/service";
+import { addImage, addProduct } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -47,9 +49,9 @@ function Services() {
     setNumber(e.target.value);
   };
 
-  // const handleAddImage = async (e) => {
-  //   await dispatch(addImage(e));
-  // };
+  const handleAddImage = async (e) => {
+    await dispatch(addImage(e));
+  };
   const handleAddProduct = () => {
     dispatch(addProduct( name, price, description, number ));
   };
@@ -60,7 +62,7 @@ function Services() {
   return (
     <Grid>
       <Grid className={classes.content}>
-        <Grid className={classes.rightbox}>aaa</Grid>
+        <Grid className={classes.rightbox}></Grid>
         <Grid className={classes.leftbox}>
           <h2>Добавление товара</h2>
           <Box>
@@ -69,7 +71,7 @@ function Services() {
                 className={classes.input}
                 mr={2}
                 id="outlined-multiline-static"
-                label="Название товара"
+                label="Название услуги"
                 multiline
                 rows={1}
                 value={name}
@@ -80,7 +82,7 @@ function Services() {
                 className={classes.priceinp}
                 mr={2}
                 id="outlined-multiline-static"
-                label="Введите стоимость"
+                label="Введите смету"
                 multiline
                 rows={1}
                 value={price}
@@ -109,38 +111,15 @@ function Services() {
                 onChange={handleAddDescription}
                 variant="outlined"
               />
-              {/* <Grid className={classes.root}>
-                <input
-                  accept="image/*"
-                  className={classes.inputs}
-                  id="contained-button-file"
-                  type="file"
-                />
-                <label
-                  htmlFor="contained-button-file"
-                  
-                >
-                  <Button color="primary" component="span">
-                    ЗАГРУЗИТЬ ФОТОГРАФИЮ
-                  </Button>
-                </label>
+              <Grid className={classes.root}> 
                 <input
                   accept="image/*"
                   className={classes.inputs}
                   id="icon-button-file"
                   type="file"
                   onChange={handleAddImage}
-                />
-                <label htmlFor="icon-button-file">
-                  <IconButton
-                    color="primary"
-                    aria-label="upload picture"
-                    component="span"
-                  >
-                    <PhotoCamera />
-                  </IconButton>
-                </label>
-              </Grid> */}
+                /> 
+              </Grid>
             </Box>
           </Box>
           <Button
