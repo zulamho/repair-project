@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     img: {
       width: "300px",
+      height: "300px"
     }}))
 
 
@@ -29,7 +30,7 @@ function Main() {
         <Card>
             <CardMedia
               className={classes.img}
-              image={`/${item.pathImages}`}
+              image={`http://localhost:4000${item.pathImages}`}
             />
             </Card>
             </Grid>
