@@ -126,7 +126,7 @@ export const addImage = (e) => {
     const data = new FormData();
     data.append("image", files[0]);
 
-    const response = await fetch("http://localhost:4000/service/upload", {
+    const response = await fetch("http://localhost:4000/image", {
       method: "POST",
       body: data,
     });
