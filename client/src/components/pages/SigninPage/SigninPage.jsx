@@ -108,7 +108,7 @@ function SigninPage() {
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Забыли пароль?
                 </Link>
               </Grid>
               <Grid item>
