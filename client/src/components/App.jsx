@@ -4,6 +4,7 @@ import SigninPage from "./pages/SigninPage/SigninPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import Home from "../components/pages/HomePage/index";
 import ProfilePages from "../components/pages/ProfilePage/ProfilePage";
+import Services from "./pages/ProfilePage/services";
 
 function App() {
   return (
@@ -15,11 +16,14 @@ function App() {
         <Route path="/signUp">
           <SignUpPage />
         </Route>
-        <Route path="/">
-          <Home />
+        <Route path="/service">
+          <Services />
         </Route>
-        <Route path="/profilePage" exact>
+        <Route path="/profilePage">
           <ProfilePages />
+        </Route>
+        <Route path="/"  exact>
+          <Home />
         </Route>
       </Switch>
     </BrowserRouter>
