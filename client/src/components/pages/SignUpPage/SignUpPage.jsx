@@ -16,24 +16,33 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 function SignUpPage() {
   const dispatch = useDispatch();
-  const [image, setImage] = useState("");
+  //const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [workingUser, setWorkingUser] = useState("");
+  const [workingUser, setWorkingUser] = useState("Рабочий");
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
+  
+  console.log(workingUser)
 
   const signingUp = useSelector((state) => state.application.signingUp);
   const error = useSelector((state) => state.application.error);
+  const avatar = useSelector((state)=> state.application.avatar)
+  console.log(avatar.image)
 
-  const handleChangeImage = (e) => {
-    setImage(e.target.value);
-  };
+  // const handleChangeImage = (e) => {
+  //   setImage(e.target.value);
+  // };
 
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -42,7 +51,7 @@ function SignUpPage() {
     setLastName(e.target.value);
   };
   const handleChangeWorkingUser = (e) => {
-    setWorkingUser(e.target.value);
+    setWorkingUser(e.target.value );
   };
 
   const handleChangeEmail = (e) => {
@@ -60,6 +69,10 @@ function SignUpPage() {
     setConfirmPassword(e.target.value);
   };
 
+  const handleAddAvatar = async (e) => {
+    await dispatch(addAvatar(e));
+  };
+
   const handleTransfer = () => {
     dispatch(
       createUser(
@@ -69,14 +82,9 @@ function SignUpPage() {
         email,
         login,
         password,
-        ConfirmPassword,
-        image
+        ConfirmPassword
       )
     );
-  };
-
-  const handleAddAvatar = async (e) => {
-    await dispatch(addAvatar(e));
   };
 
   return (
@@ -97,28 +105,21 @@ function SignUpPage() {
           <Typography component="h1" variant="h5">
             Регистрация
           </Typography>
-        
-          <Button
-            //className={classes.input}
-            onChange={handleAddAvatar}
-            variant="contained"
-          >
-            <input
-              accept="image/*"
-              id="contained-button-file"
-              multiple
-              type="file"
-              onChange={handleChangeImage}
-              value={image}
-            />
-              <Stack direction="row" spacing={2} sx={{ width: 80, height: 80 }}>
+
+       
+          <Stack direction="row" spacing={2} sx={{ width: 80, height: 80 }}>
             <Avatar
               sx={{ width: 80, height: 80 }}
-              alt="Remy Sharp"
-              src="https://ukranews.com/upload/news/2020/07/28/5f208e749f631-----------_1200.jpg"
+              
+              src={`http://localhost:4000/${avatar.image}`}
             />
           </Stack>
-          </Button>
+          <input
+            accept="image/*"
+            id="contained-button-file"
+            type="file"
+            onChange={handleAddAvatar}
+          />
 
           <Box
             component="form"
@@ -152,17 +153,29 @@ function SignUpPage() {
                   autoComplete="lname"
                 />
               </Grid>
+
               <Grid item xs={12}>
-                <TextField
-                  defaultValue={workingUser}
-                  onChange={handleChangeWorkingUser}
-                  required
-                  fullWidth
-                  id="WorkingUser"
-                  label="Выбрать роль"
-                  name="WorkingUser"
-                  autoComplete="lname"
-                />
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Выберите роль</FormLabel>
+                  <RadioGroup
+                    row
+                    aria-label="gender"
+                    name="row-radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="Пользователь"
+                      control={<Radio />}
+                      label="Пользователь"
+                      
+                    />
+                    <FormControlLabel
+                      value={workingUser }
+                      control={<Radio />}
+                      label="Рабочий"
+                      onChange={handleChangeWorkingUser}
+                    />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -202,16 +215,15 @@ function SignUpPage() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
+                {/* <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+                /> */}
               </Grid>
             </Grid>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

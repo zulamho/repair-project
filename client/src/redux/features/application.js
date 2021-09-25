@@ -4,7 +4,7 @@ const initialState = {
   error: null,
   token: localStorage.getItem("token"),
   users: [],
-  avatar: [],
+  avatar: []
 };
 
 export default function application(state = initialState, action) {
@@ -67,10 +67,11 @@ export const createUser = (
   login,
   password,
   ConfirmPassword,
-  image
 ) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     dispatch({ type: "application/signup/pending" });
+
+    const {application} = getState();
 
     const response = await fetch("http://localhost:4000/user", {
       method: "POST",
@@ -82,7 +83,7 @@ export const createUser = (
         login,
         password,
         ConfirmPassword,
-        image,
+        image: application.avatar.image,
       }),
       headers: {
         "Content-type": "application/json",
@@ -125,7 +126,7 @@ export const auth = (login, password) => {
 
 export const addAvatar = (e) => {
   return async (dispatch) => {
-    dispatch({ type: "user/avater/pending" });
+    dispatch({ type: "user/avatar/pending" });
 
     const { files } = e.target;
     const data = new FormData();
@@ -133,6 +134,7 @@ export const addAvatar = (e) => {
 
     const response = await fetch("http://localhost:4000/user/upload", {
       method: "POST",
+
       body: data,
     });
 
