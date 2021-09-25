@@ -31,10 +31,12 @@ function Main() {
       <Grid className={classes.content}>
         {item.name}
         <Card>
+        <NavLink to={`/service/${item._id}`}> 
           <CardMedia
             className={classes.img}
-            image={`http://localhost:4000${item.pathImages}`}
+            image={`http://localhost:4000/${item.pathImages}`}
           />
+          </NavLink>
         </Card>
       </Grid>
     );
