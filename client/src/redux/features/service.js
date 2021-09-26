@@ -24,7 +24,7 @@ export default function service(state = initialState, action) {
         loading: false,
         service: action.error,
       };
-      case "service/post/pending":
+    case "service/post/pending":
       return {
         ...state,
         loading: true,
@@ -35,7 +35,7 @@ export default function service(state = initialState, action) {
         loading: false,
         product: action.payload,
       };
-      case "service/image/pending":
+    case "service/image/pending":
       return {
         ...state,
         loading: true,
@@ -57,7 +57,7 @@ export const fetchService = () => {
     const state = getState();
     dispatch({ type: "service/fetch-service/pending" });
     try {
-      const response = await fetch("http://localhost:4000/service", {
+      const response = await fetch("http://localhost:4000/users", {
         headers: {
           Authorization: `Bearer ${state.application.token}`,
         },
@@ -82,13 +82,7 @@ export const fetchService = () => {
   };
 };
 
-export const addProduct = (
-  name,
-  price,
-  image,
-  description,
-  number
-) => {
+export const addProduct = (name, price, image, description, number) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/post/pending" });
 
