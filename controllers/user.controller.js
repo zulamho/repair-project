@@ -111,7 +111,7 @@ module.exports.userController = {
     try {
       const img = req.files.image;
       const newFileName = `./avatar/${
-        Math.random() * 10000000000000000
+        Math.random() * 100000000000000000
       }${path.extname(img.name)}`;
 
       img.mv(newFileName, async (err) => {
