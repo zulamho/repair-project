@@ -57,7 +57,7 @@ export const fetchService = () => {
     const state = getState();
     dispatch({ type: "service/fetch-service/pending" });
     try {
-      const response = await fetch("http://localhost:4000/users", {
+      const response = await fetch("http://localhost:4000/service", {
         headers: {
           Authorization: `Bearer ${state.application.token}`,
         },
@@ -88,7 +88,7 @@ export const addProduct = (name, price, image, description, number) => {
 
     const state = getState();
 
-    const response = await fetch("http://localhost:4000/service", {
+    const response = await fetch("http://localhost:4000/service/upload", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${state.application.token}`,
@@ -120,7 +120,7 @@ export const addImage = (e) => {
     const data = new FormData();
     data.append("image", files[0]);
 
-    const response = await fetch("http://localhost:4000/image", {
+    const response = await fetch("http://localhost:4000/service/upload", {
       method: "POST",
       body: data,
     });
