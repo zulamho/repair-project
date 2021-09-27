@@ -18,7 +18,7 @@ app.use(require("./routes/index"));
 console.log("Подключение к базе данных");
 mongoose
   .connect(
-    "mongodb+srv://admin06:admin06@cluster0.zvgtk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://admin06:admin06@cluster0.zvgtk.mongodb.net/repair",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

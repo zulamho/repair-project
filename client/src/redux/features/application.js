@@ -67,6 +67,7 @@ export const createUser = (
   login,
   password,
   ConfirmPassword,
+  telephone
 ) => {
   return async (dispatch, getState) => {
     dispatch({ type: "application/signup/pending" });
@@ -83,6 +84,7 @@ export const createUser = (
         login,
         password,
         ConfirmPassword,
+        telephone,
         image: application.avatar.image,
       }),
       headers: {
