@@ -67,7 +67,7 @@ module.exports.serviceController = {
   addImage: async (req, res) => {
     try {
       const img = req.files.image;
-      const newFileName = `./image/${
+      const newFileName = `/image/${
         Math.random() * 10000000000000000
       }${path.extname(img.name)}`;
 
