@@ -13,9 +13,9 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import BuildIcon from "@mui/icons-material/Build";
 import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import LocalSeeIcon from "@mui/icons-material/LocalSee";
-import HandymanIcon from '@mui/icons-material/Handyman';
-import EditIcon from '@mui/icons-material/Edit';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import HandymanIcon from "@mui/icons-material/Handyman";
+import EditIcon from "@mui/icons-material/Edit";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -74,7 +74,7 @@ function ProfilePage() {
             </Typography>
             <hr />
             <Typography gutterBottom variant="h5" component="div">
-              Телефон: <LocalPhoneIcon color="green" /> +7(928)747 43 54
+              Телефон: <LocalPhoneIcon color="green" /> {user.telephone}
             </Typography>
             <hr />
             <Typography variant="body2" color="text.secondary">
@@ -93,7 +93,7 @@ function ProfilePage() {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-          <EditIcon/> Редактировать
+            <EditIcon /> Редактировать
           </Button>
         </CardActions>
       </Card>

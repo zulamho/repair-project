@@ -15,6 +15,7 @@ module.exports.userController = {
         password,
         ConfirmPassword,
         workingUser,
+        telephone
       } = req.body;
 
       const candidate = await User.findOne({ login });
@@ -38,6 +39,8 @@ module.exports.userController = {
         login: login,
         password: hash,
         ConfirmPassword,
+        telephone,
+        descriptionService
       });
       res.json(user);
     } catch (error) {
