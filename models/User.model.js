@@ -18,6 +18,11 @@ const userSchema = mongoose.Schema(
     },
     workingUser: String,
 
+    telephone: {
+      type: String,
+      required: true,
+    },
+    descriptionService: String,
     login: String,
     password: String,
     ConfirmPassword: String,

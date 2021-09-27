@@ -18,13 +18,22 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import MuiPhoneNumber from "material-ui-phone-number";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    telephone: {
+      width: "396px",
+    },
+  })
+);
 
 function SignUpPage() {
   const dispatch = useDispatch();
-  //const [image, setImage] = useState("");
+  const classes = useStyles();
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [workingUser, setWorkingUser] = useState("Рабочий");
@@ -32,13 +41,17 @@ function SignUpPage() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
-  
-  console.log(workingUser)
+  const [telephone, setTelephone] = useState("");
+  const [descriptionService, setDescriptionService] = useState("");
+
+  const [telep, setTelep] = useState("");
+
+  console.log(telephone);
 
   const signingUp = useSelector((state) => state.application.signingUp);
   const error = useSelector((state) => state.application.error);
-  const avatar = useSelector((state)=> state.application.avatar)
-  console.log(avatar.image)
+  const avatar = useSelector((state) => state.application.avatar);
+  console.log(avatar.image);
 
   // const handleChangeImage = (e) => {
   //   setImage(e.target.value);
@@ -51,7 +64,7 @@ function SignUpPage() {
     setLastName(e.target.value);
   };
   const handleChangeWorkingUser = (e) => {
-    setWorkingUser(e.target.value );
+    setWorkingUser(e.target.value);
   };
 
   const handleChangeEmail = (e) => {
@@ -68,6 +81,38 @@ function SignUpPage() {
   const handleChangeConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
+  const handleChangeTelephone = (value) => {
+    setTelephone(value);
+  };
+
+  const handleCreateDescriptionService = (e) => {
+    setDescriptionService(e.target.value);
+  };
+
+  const handleDeleteDescriptionService = (e) => {
+    setDescriptionService(e.target.value);
+  };
+
+  const handleDeleteDescrip = () => {
+    setTelep("");
+  };
+
+  const handleCreateDescrip = () => {
+    return setTelep(
+      <Grid item xs={12} sm={12}>
+        <TextField
+          defaultValue={descriptionService}
+          onChange={handleCreateDescriptionService}
+          required
+          fullWidth
+          id="lastName"
+          label="Описание услуги"
+          name="lastName"
+          autoComplete="lname"
+        />
+      </Grid>
+    );
+  };
 
   const handleAddAvatar = async (e) => {
     await dispatch(addAvatar(e));
@@ -82,7 +127,8 @@ function SignUpPage() {
         email,
         login,
         password,
-        ConfirmPassword
+        ConfirmPassword,
+        telephone
       )
     );
   };
@@ -106,11 +152,9 @@ function SignUpPage() {
             Регистрация
           </Typography>
 
-       
           <Stack direction="row" spacing={2} sx={{ width: 80, height: 80 }}>
             <Avatar
               sx={{ width: 80, height: 80 }}
-              
               src={`http://localhost:4000/${avatar.image}`}
             />
           </Stack>
@@ -166,17 +210,18 @@ function SignUpPage() {
                       value="Пользователь"
                       control={<Radio />}
                       label="Пользователь"
-                      
+                      onClick={handleDeleteDescrip}
                     />
                     <FormControlLabel
-                      value={workingUser }
+                      value={workingUser}
                       control={<Radio />}
                       label="Рабочий"
-                      onChange={handleChangeWorkingUser}
+                      onClick={handleCreateDescrip}
                     />
                   </RadioGroup>
                 </FormControl>
               </Grid>
+              {telep}
               <Grid item xs={12}>
                 <TextField
                   defaultValue={email}
@@ -189,6 +234,20 @@ function SignUpPage() {
                   autoComplete="email"
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <MuiPhoneNumber
+                  defaultValue={telephone}
+                  preferredCountries={["ru"]}
+                  disableAreaCodes={true}
+                  defaultCountry={"ru"}
+                  variant="outlined"
+                  type="tel"
+                  onChange={handleChangeTelephone}
+                  className={classes.telephone}
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   defaultValue={login}
