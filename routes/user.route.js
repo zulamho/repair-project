@@ -6,7 +6,7 @@ const router = Router();
 
 router.post("/user", userController.registerUser);
 router.post("/login", userController.login);
-router.get("/user/:id", userController.getUser);
+router.get("/user", authMiddleware,userController.getUser);
 router.get("/users", userController.getUsers);
 router.patch("/userr/:id", userController.editUser);
 //router.post("/cart/:id", authMiddleware, userController.addProductBasket);
