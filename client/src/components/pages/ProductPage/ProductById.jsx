@@ -1,11 +1,23 @@
 import { Grid, Typography } from "@material-ui/core";
+import { CardMedia } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchService } from "../../../redux/features/service";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    img: {
+      width: "300px",
+      height: "300px",
+    },
+  })
+);
 
 function ProductById() {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const { id } = useParams();
 
   const service = useSelector((state) => {
@@ -24,7 +36,10 @@ function ProductById() {
             <Grid>
               <Grid>
                 <Grid>
-                  <img src={`/${item.pathImages}`} alt="" />
+                  <CardMedia
+                    className={classes.img}
+                    image={`http://localhost:4000/${item.pathImages}`}
+                  />
                 </Grid>
                 <Grid>
                   <Typography gutterBottom variant="h5" component="h2">

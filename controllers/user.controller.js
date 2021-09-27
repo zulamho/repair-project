@@ -13,9 +13,9 @@ module.exports.userController = {
         email,
         login,
         password,
-        ConfirmPassword,
         workingUser,
-        telephone
+        telephone,
+        descriptionService,
       } = req.body;
 
       const candidate = await User.findOne({ login });
@@ -38,9 +38,8 @@ module.exports.userController = {
         email,
         login: login,
         password: hash,
-        ConfirmPassword,
         telephone,
-        descriptionService
+        descriptionService,
       });
       res.json(user);
     } catch (error) {
@@ -76,14 +75,7 @@ module.exports.userController = {
     });
     res.json({ token });
   },
-  // getUserBasket: async (req, res) => {
-  //   try {
-  //     const product = await Product.find({ basket: req.params.id });
-  //     res.json(product);
-  //   } catch (e) {
-  //     res.json("Ошибка");
-  //   }
-  // },
+
   getUser: async (req, res) => {
     try {
       const user = await User.findById(req.user.id);
@@ -139,23 +131,4 @@ module.exports.userController = {
       res.json(error);
     }
   },
-
-  //     addProductBasket: async (req, res) => {
-  //       try {
-  //         const { id } = req.params;
-
-  //         const user = await User.findByIdAndUpdate(
-  //           req.user.id,
-  //           { $addToSet: { basket: id } },
-  //           { new: true }
-  //         );
-
-  //         const basket = await User.findById(req.user.id).populate("basket");
-
-  //         res.status(200).json(basket.basket);
-  //       } catch (e) {
-  //         console.log(e);
-  //         res.status(401).json("Ошибка при добавлении в корзину пользователя");
-  //       }
-  //     },
 };

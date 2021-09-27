@@ -15,7 +15,6 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function SigninPage() {
   const dispatch = useDispatch();
@@ -24,9 +23,6 @@ function SigninPage() {
   const [password, setPassword] = useState("");
 
   const token = useSelector((state) => state.application.token);
-
-  const signingIn = useSelector((state) => state.application.signingIn);
-  const error = useSelector((state) => state.application.error);
 
   const handleChangeLogin = (e) => {
     setLogin(e.target.value);
@@ -39,10 +35,10 @@ function SigninPage() {
   const handleTransfer = () => {
     dispatch(auth(login, password));
   };
-  //const classes = useStyles();
-  // if (token) {
-  //   return <Redirect to="/" />;
-  // }
+
+  if (token) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>
@@ -98,7 +94,6 @@ function SigninPage() {
             />
             <Button
               onClick={handleTransfer}
-              
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

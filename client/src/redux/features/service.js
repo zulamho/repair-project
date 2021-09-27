@@ -88,7 +88,7 @@ export const addProduct = (name, price, image, description, number) => {
 
     const state = getState();
 
-    const response = await fetch("http://localhost:4000/service/upload", {
+    const response = await fetch("http://localhost:4000/service", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${state.application.token}`,
