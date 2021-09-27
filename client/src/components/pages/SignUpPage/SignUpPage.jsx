@@ -302,6 +302,7 @@ function SignUpPage() {
       </Container>
     </>
   );
+  
 }
 
 export default SignUpPage;

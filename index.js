@@ -18,11 +18,7 @@ app.use(require("./routes/index"));
 console.log("Подключение к базе данных");
 mongoose
   .connect(
-<<<<<<< HEAD
     "mongodb+srv://admin06:admin06@cluster0.zvgtk.mongodb.net/repair",
-=======
-    "mongodb+srv://admin06:admin06@cluster0.zvgtk.mongodb.net/repair?retryWrites=true&w=majority",
->>>>>>> 37dbe0f8055c546781a23d771ec70182fa24ac8a
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
