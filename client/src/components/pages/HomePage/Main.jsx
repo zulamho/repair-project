@@ -9,10 +9,6 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     img: {
       width: "300px",
-      height: "300px",
-    },
-    content: {
-      width: "300px",
     },
   })
 );
@@ -28,19 +24,14 @@ function Main() {
 
   return service?.map((item) => {
     return (
-      <Grid className={classes.content}>
+      <Grid>
         {item.name}
         <Card>
-        <NavLink to={`/service/${item._id}`}> 
-          <CardMedia
-            className={classes.img}
-            image={`http://localhost:4000/${item.pathImages}`}
-          />
-          </NavLink>
+          <CardMedia className={classes.img} image={`/${item.pathImages}`} />
         </Card>
       </Grid>
     );
   });
 }
-//
+
 export default Main;

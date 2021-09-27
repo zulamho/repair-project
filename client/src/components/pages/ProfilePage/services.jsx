@@ -2,9 +2,11 @@ import {
   Button,
   createStyles,
   Grid,
+  IconButton,
   makeStyles,
   TextField,
 } from "@material-ui/core";
+import { PhotoCamera } from "@material-ui/icons";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,6 +56,9 @@ function Services() {
     dispatch(addProduct( name, price, description, number ));
   };
 
+  // useEffect(() => {
+  //   dispatch(loadCategories());
+  // }, [dispatch]);
   return (
     <Grid>
       <Grid className={classes.content}>
