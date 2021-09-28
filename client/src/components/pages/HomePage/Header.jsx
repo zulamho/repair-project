@@ -6,12 +6,6 @@ import logo from "../../logo.png";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    // header: {
-    //   backgroundImage: `url("https://raw.githubusercontent.com/thebestdevelopering/repairProject/main/image/bg-applicant-supernova-1__min_.jpg")`,
-    //   backgroundRepeat: "no-repeat",
-    //   backgroundSize: "100% 700px",
-    //   height: "612px",
-    // },
     content: {
       width: "300px",
       maxWidth: "300px",
@@ -64,7 +58,9 @@ function Header() {
     <Grid className={classes.header}>
       <Grid className={classes.content}>
         <Grid className={classes.logo}>
-          <CardMedia className={classes.img} image={`${logo}`} />
+          <NavLink to="/">
+            <CardMedia className={classes.img} image={`${logo}`} />
+          </NavLink>
         </Grid>
         <Grid className={classes.navbar}>
           <NavLink to="/signin" className={classes.link}>

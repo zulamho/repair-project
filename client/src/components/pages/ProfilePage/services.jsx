@@ -2,11 +2,9 @@ import {
   Button,
   createStyles,
   Grid,
-  IconButton,
   makeStyles,
   TextField,
 } from "@material-ui/core";
-import { PhotoCamera } from "@material-ui/icons";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,7 +51,7 @@ function Services() {
     await dispatch(addImage(e));
   };
   const handleAddProduct = () => {
-    dispatch(addProduct( name, price, description, number ));
+    dispatch(addProduct(name, price, description, number));
   };
 
   // useEffect(() => {
@@ -64,7 +62,7 @@ function Services() {
       <Grid className={classes.content}>
         <Grid className={classes.rightbox}></Grid>
         <Grid className={classes.leftbox}>
-          <h2>Добавление товара</h2>
+          <h2>Добавить новое объявление</h2>
           <Box>
             <Box className={classes.margin}>
               <TextField
@@ -111,14 +109,14 @@ function Services() {
                 onChange={handleAddDescription}
                 variant="outlined"
               />
-              <Grid className={classes.root}> 
+              <Grid className={classes.root}>
                 <input
                   accept="image/*"
                   className={classes.inputs}
                   id="icon-button-file"
                   type="file"
                   onChange={handleAddImage}
-                /> 
+                />
               </Grid>
             </Box>
           </Box>

@@ -26,10 +26,13 @@ const useStyles = makeStyles((theme) =>
     content: {
       width: "100%",
     },
-    main: {},
+    main: {
+      marginBottom: "20px",
+    },
     root: {
       display: "flex",
       justifyContent: "space-around",
+      flexWrap: "wrap",
     },
   })
 );
@@ -53,10 +56,12 @@ function Main() {
             <Grid className={classes.main}>
               <Grid className={classes.product}>
                 <Card>
-                  <CardMedia
-                    className={classes.img}
-                    image={`http://localhost:4000${item.pathImages}`}
-                  />
+                  <NavLink to={`/service/${item._id}`}>
+                    <CardMedia
+                      className={classes.img}
+                      image={`http://localhost:4000/${item.pathImages}`}
+                    />
+                  </NavLink>
                   {item.name}
                 </Card>
               </Grid>
