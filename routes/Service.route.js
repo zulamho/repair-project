@@ -11,5 +11,6 @@ router.delete("/service/:id", authMiddleware, serviceController.deleteService);
 router.get("/service/:id", serviceController.getServiceOne);
 router.post("/service/upload", serviceController.addImage);
 router.get("/service/category/:id", serviceController.getServicesCategory);
+router.get("/admin", authMiddleware, serviceController.getUserService);
 
 module.exports = router;
