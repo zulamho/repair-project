@@ -141,6 +141,7 @@ export const addAvatar = (e) => {
     });
     window.location.reload();
   };
+
 };
 
 export const loadUserService = () => {
@@ -162,3 +163,4 @@ export const loadUserService = () => {
     });
   };
 };
+

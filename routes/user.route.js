@@ -8,10 +8,8 @@ router.post("/user", userController.registerUser);
 router.post("/login", userController.login);
 router.get("/user", authMiddleware, userController.getUser);
 router.get("/users", userController.getUsers);
-router.patch("/userr/:id", userController.editUser);
-//router.post("/cart/:id", authMiddleware, userController.addProductBasket);
+router.patch("/user", authMiddleware, userController.editUser);
 router.delete("/user/:id", userController.deleteUser);
 router.post("/user/upload", userController.addAvatar);
-//router.get("/user/basket/:id", userController.getUserBasket);
 
 module.exports = router;

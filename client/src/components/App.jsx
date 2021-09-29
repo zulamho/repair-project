@@ -6,6 +6,7 @@ import Home from "../components/pages/HomePage/index";
 import Services from "./pages/ProfilePage/Services";
 import Profile from "./pages/ProfilePage";
 import Product from "./pages/ProductPage";
+import EditProfilePage from "./pages/ProfilePage/EditProfilePage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signin">
           <SigninPage />
         </Route>
+
         <Route path="/signUp">
           <SignUpPage />
         </Route>
@@ -28,6 +30,9 @@ function App() {
         </Route>
         <Route path="/service/:id" exact>
           <Product />
+        </Route>
+        <Route path="/editProfilePage" exact>
+          <EditProfilePage />
         </Route>
       </Switch>
     </BrowserRouter>

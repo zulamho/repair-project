@@ -67,7 +67,8 @@ export const createUser = (
   login,
   password,
   ConfirmPassword,
-  telephone
+  telephone,
+  descriptionService
 ) => {
   return async (dispatch, getState) => {
     dispatch({ type: "application/signup/pending" });
@@ -86,10 +87,60 @@ export const createUser = (
         ConfirmPassword,
         telephone,
         image: application.avatar.image,
+        descriptionService
       }),
       headers: {
         "Content-type": "application/json",
       },
+    });
+
+    const json = await response.json();
+
+    if (json.error) {
+      dispatch({ type: "application/signup/rejected", error: json.error });
+    } else {
+      dispatch({ type: "application/signin/fulfilled", payload: json });
+    }
+  };
+};
+
+
+
+export const changeUser = (
+  name,
+  lastName,
+  workingUser,
+  email,
+  login,
+  password,
+  ConfirmPassword,
+  telephone,
+  descriptionService
+) => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "application/signup/pending" });
+    const {application} = getState();
+    const state = getState();
+
+    const response = await fetch("http://localhost:4000/user", {
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify({
+        name,
+        lastName,
+        workingUser,
+        email,
+        login,
+        password,
+        ConfirmPassword,
+        telephone,
+        pathImages: application.avatar.image,
+        descriptionService
+      }),
+     
     });
 
     const json = await response.json();
@@ -133,6 +184,30 @@ export const addAvatar = (e) => {
     const { files } = e.target;
     const data = new FormData();
     data.append("image", files[0]);
+
+    const response = await fetch("http://localhost:4000/user/upload", {
+      method: "POST",
+
+      body: data,
+    });
+
+    const json = await response.json();
+
+    dispatch({
+      type: "user/avatar/fulfilled",
+      payload: json,
+    });
+  };
+};
+
+export const changeAvatar = (e) => {
+  return async (dispatch,getState) => {
+    dispatch({ type: "user/avatar/pending" });
+
+    const { files } = e.target;
+    const data = new FormData();
+    data.append("image", files[0]);
+    const state = getState()
 
     const response = await fetch("http://localhost:4000/user/upload", {
       method: "POST",
