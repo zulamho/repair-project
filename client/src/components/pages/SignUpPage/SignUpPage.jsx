@@ -22,12 +22,21 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import PersonIcon from "@mui/icons-material/Person";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     telephone: {
       width: "396px",
     },
+    container:{
+      backgroundImage:'url(`${https://moiinstrumentu.ru/wp-content/uploads/2019/04/instrumenty-dlja-doma-i-remonta.png}`)',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '100%',
+      margin:'-63px',
+      padding:'40px 0'
+      },
   })
 );
 
@@ -96,6 +105,9 @@ function SignUpPage() {
   const handleDeleteDescrip = () => {
     setTelep("");
   };
+  const handleAddAvatar = async (e) => {
+    await dispatch(addAvatar(e));
+  };
 
   const handleCreateDescrip = () => {
     return setTelep(
@@ -114,10 +126,6 @@ function SignUpPage() {
     );
   };
 
-  const handleAddAvatar = async (e) => {
-    await dispatch(addAvatar(e));
-  };
-
   const handleTransfer = () => {
     dispatch(
       createUser(
@@ -128,7 +136,8 @@ function SignUpPage() {
         login,
         password,
         ConfirmPassword,
-        telephone
+        telephone,
+        descriptionService
       )
     );
   };
@@ -200,24 +209,32 @@ function SignUpPage() {
 
               <Grid item xs={12}>
                 <FormControl component="fieldset">
-                  <FormLabel component="legend">Выберите роль</FormLabel>
+                  <FormLabel component="legend" alignItems="center">
+                    Выберите роль
+                  </FormLabel>
+
                   <RadioGroup
                     row
                     aria-label="gender"
                     name="row-radio-buttons-group"
                   >
                     <FormControlLabel
-                      value="Пользователь"
                       control={<Radio />}
+                      value="Пользователь"
                       label="Пользователь"
                       onClick={handleDeleteDescrip}
+                      labelPlacement="top"
                     />
+                    <PersonIcon color="green" />
+
                     <FormControlLabel
                       value={workingUser}
                       control={<Radio />}
                       label="Рабочий"
                       onClick={handleCreateDescrip}
+                      labelPlacement="top"
                     />
+                    <HandymanIcon color="green" />
                   </RadioGroup>
                 </FormControl>
               </Grid>
@@ -302,7 +319,6 @@ function SignUpPage() {
       </Container>
     </>
   );
-  
 }
 
 export default SignUpPage;

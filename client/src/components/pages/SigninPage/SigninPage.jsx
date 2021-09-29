@@ -23,6 +23,7 @@ function SigninPage() {
   const [password, setPassword] = useState("");
 
   const token = useSelector((state) => state.application.token);
+  const error = useSelector((state) => state.application.error);
 
   const handleChangeLogin = (e) => {
     setLogin(e.target.value);
@@ -58,12 +59,9 @@ function SigninPage() {
           <Typography component="h1" variant="h5">
             Вход
           </Typography>
-          <Box
-            component="form"
-            //  onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+
+          <Typography color="red">{error}</Typography>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               type="text"
               onChange={handleChangeLogin}
@@ -71,10 +69,11 @@ function SigninPage() {
               required
               fullWidth
               id="login"
-              label="Введите логин"
+              label="Введите логин!"
               name="login"
               autoComplete="login"
               autoFocus
+              error={error}
             />
             <TextField
               type="password"
@@ -83,10 +82,11 @@ function SigninPage() {
               required
               fullWidth
               name="password"
-              label="Введите пароль"
+              label="Введите пароль!"
               type="password"
               id="password"
               autoComplete="current-password"
+              error={error}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

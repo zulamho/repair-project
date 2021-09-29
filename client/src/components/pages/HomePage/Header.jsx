@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme) =>
       "&:hover": {
         color: "#FA4A0C",
       },
+      navigat: {
+        width: "350px",
+        display: "flex",
+      },
     },
   })
 );
@@ -60,6 +64,17 @@ function Header() {
         <Grid className={classes.logo}>
           <NavLink to="/">
             <CardMedia className={classes.img} image={`${logo}`} />
+          </NavLink>
+        </Grid>
+        <Grid className={classes.navbar}>
+          <NavLink to="/signin" className={classes.link}>
+            Главная
+          </NavLink>
+          <NavLink to="/signUp" className={classes.links}>
+            Виды услуг
+          </NavLink>
+          <NavLink to="/profilePage" className={classes.links}>
+            О нас
           </NavLink>
         </Grid>
         <Grid className={classes.navbar}>

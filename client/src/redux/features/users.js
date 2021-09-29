@@ -85,25 +85,6 @@ const initialState = {
     };
   };
   
-  export const loadUserNotes = () => {
-    return async (dispatch, getState) => {
-      dispatch({
-        type: "noteByUser/load/pending",
-      });
-      const state = getState();
-      const response = await fetch("/notes/admin/", {
-        headers: {
-          Authorization: `Bearer ${state.application.token}`,
-        },
-      });
-      const json = await response.json();
-  
-      dispatch({
-        type: "noteByUser/load/fulfilled",
-        payload: json,
-      });
-    };
-  };
   
   export const addAvatar = (e) => {
     return async (dispatch, getState) => {
@@ -130,3 +111,6 @@ const initialState = {
       window.location.reload()
     };
   };
+
+
+  

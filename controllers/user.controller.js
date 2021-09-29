@@ -57,13 +57,13 @@ module.exports.userController = {
     });
 
     if (!candidate) {
-      return res.status(401).json({ error: "Неверный логин!" });
+      return res.status(401).json({ error: "Неверный логин или пароль!" });
     }
 
     const valid = await bcrypt.compare(password, candidate.password);
 
     if (!valid) {
-      return res.status(401).json({ error: "Неверный пароль!" });
+      return res.status(401).json({ error: "Неверный логин или пароль!" });
     }
 
     const payload = {
@@ -86,8 +86,8 @@ module.exports.userController = {
   },
   editUser: async (req, res) => {
     try {
-      await User.findByIdAndUpdate(req.params.id);
-      res.json("Пользователь изменен");
+      await User.findByIdAndUpdate(req.user.id,req.body);
+      res.json("Данные пользователя изменены");
     } catch (err) {
       res.json(err);
     }
