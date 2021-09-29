@@ -20,14 +20,20 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import Header from "../HomePage/Header";
 import EditProfilePage from "./EditProfilePage";
 import Profile from "./Profile";
+import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     profile: {
       display: "flex",
+      backgroundColor: "#e4eac3",
+      borderRadius: "237px",
+      width: "1380px",
+      marginLeft: "-75px",
     },
     profileCard: {
-      marginLeft: "120px",
+      backgroundColor: "#e4eac3",
+      border: 2,
     },
   })
 );
@@ -49,59 +55,57 @@ function ProfilePage() {
 
   return (
     <>
-      <Grid>
+      <Container>
         <Box className={classes.profile}>
-          <Stack direction="row" spacing={2} sx={{ width: 80, height: 80 }}>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ width: 415, height: 410, marginTop: "5px" }}
+          >
             <Avatar
-              sx={{ width: 180, height: 180 }}
+              sx={{ width: 415, height: 410, border: 2 }}
               src={`http://localhost:4000/${user.pathImages}`}
             />
-            <LocalSeeIcon />
           </Stack>
-
           <Card
             sx={{ maxWidth: 1000, maxHight: 1000 }}
             className={classes.profileCard}
           >
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Имя: {user.name} {user.lastname}
-                </Typography>
-                <hr />
-                <Typography gutterBottom variant="h5" component="div">
-                  Логин: {user.login}
-                </Typography>
-                <hr />
-                <Typography gutterBottom variant="h5" component="div">
-                  Электронная почта: {user.email}
-                </Typography>
-                <hr />
-                <Typography gutterBottom variant="h5" component="div">
-                  Статус: <HandymanIcon color="green" /> {user.workingUser}
-                </Typography>
-                <hr />
-                <Typography gutterBottom variant="h5" component="div">
-                  Телефон: <LocalPhoneIcon color="green" /> {user.telephone}
-                </Typography>
-                <hr />
-                <Typography variant="body2" color="text.secondary">
-                  {" "}
-                  {user.descriptionService}
-                </Typography>
-                <hr />
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Имя: {user.name} {user.lastname}
+              </Typography>
+              <hr />
+              <Typography gutterBottom variant="h5" component="div">
+                Логин: {user.login}
+              </Typography>
+              <hr />
+              <Typography gutterBottom variant="h5" component="div">
+                Электронная почта: {user.email}
+              </Typography>
+              <hr />
+              <Typography gutterBottom variant="h5" component="div">
+                Статус: <HandymanIcon color="green" /> {user.workingUser}
+              </Typography>
+              <hr />
+              <Typography gutterBottom variant="h5" component="div">
+                Телефон: <LocalPhoneIcon color="green" /> {user.telephone}
+              </Typography>
+              <hr />
+              <Typography variant="body2" color="text.secondary">
+                {" "}
+                {user.descriptionService}
+              </Typography>
+              <hr />
               <Link to="/editProfilePage">
                 <Button size="small" color="primary">
                   <EditIcon /> Редактировать
                 </Button>
               </Link>
-            </CardActions>
+            </CardContent>
           </Card>
         </Box>
-      </Grid>
+      </Container>
     </>
   );
 }
