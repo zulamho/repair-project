@@ -4,7 +4,7 @@ const initialState = {
   error: null,
   token: localStorage.getItem("token"),
   users: [],
-  avatar: []
+  avatar: [],
 };
 
 export default function application(state = initialState, action) {
@@ -73,7 +73,7 @@ export const createUser = (
   return async (dispatch, getState) => {
     dispatch({ type: "application/signup/pending" });
 
-    const {application} = getState();
+    const { application } = getState();
 
     const response = await fetch("http://localhost:4000/user", {
       method: "POST",

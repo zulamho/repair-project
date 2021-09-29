@@ -2,6 +2,7 @@ const initialState = {
   loading: true,
   service: [],
   error: null,
+  filter: "",
 };
 
 export default function service(state = initialState, action) {
@@ -45,6 +46,11 @@ export default function service(state = initialState, action) {
         ...state,
         loading: false,
         image: action.payload.image,
+      };
+    case "products/filter/fulfilled":
+      return {
+        ...state,
+        filter: action.payload,
       };
 
     default:
@@ -131,5 +137,12 @@ export const addImage = (e) => {
       type: "service/image/fulfilled",
       payload: json,
     });
+  };
+};
+
+export const setFilterText = (text) => {
+  return {
+    type: "products/filter/fulfilled",
+    payload: text,
   };
 };
