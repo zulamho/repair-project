@@ -1,4 +1,4 @@
-const Service = require("../models/Service.model");
+const Service = require("../models/service.model");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 
@@ -92,6 +92,15 @@ module.exports.serviceController = {
       res.json(service);
     } catch (e) {
       res.json("Ошибка");
+    }
+  },
+  getUserService: async (req, res) => {
+    const { id } = req.user;
+    try {
+      const service = await Service.find({ user: id });
+      res.json(service);
+    } catch (e) {
+      res.json(e);
     }
   },
 };
