@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -24,19 +23,32 @@ import MuiPhoneNumber from "material-ui-phone-number";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import PersonIcon from "@mui/icons-material/Person";
+import { IconButton } from "@material-ui/core";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     telephone: {
       width: "396px",
     },
-    container:{
-      backgroundImage:'url(`${https://moiinstrumentu.ru/wp-content/uploads/2019/04/instrumenty-dlja-doma-i-remonta.png}`)',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: '100%',
-      margin:'-63px',
-      padding:'40px 0'
-      },
+    container: {
+      backgroundImage: `url("https://moiinstrumentu.ru/wp-content/uploads/2019/04/instrumenty-dlja-doma-i-remonta.png")`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "100%",
+      margin: "-63px",
+      padding: "40px 0",
+    },
+    main: {
+      borderRadius: 10,
+      backgroundColor: "white",
+    },
+    inputs: {
+      display: "none",
+    },
+    input: {
+      marginLeft: "50px",
+      marginTop: "-40px",
+    },
   })
 );
 
@@ -143,12 +155,17 @@ function SignUpPage() {
   };
 
   return (
-    <>
-      <Container component="main" maxWidth="xs">
+    <Grid className={classes.container}>
+      <Container
+        component="main"
+        maxWidth="xs"
+        height="300"
+        className={classes.main}
+      >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -169,10 +186,21 @@ function SignUpPage() {
           </Stack>
           <input
             accept="image/*"
-            id="contained-button-file"
+            className={classes.inputs}
+            id="icon-button-file"
             type="file"
             onChange={handleAddAvatar}
           />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              className={classes.input}
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera />
+            </IconButton>
+          </label>
 
           <Box
             component="form"
@@ -207,7 +235,7 @@ function SignUpPage() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={12} sx={{ textAlign: "center" }}>
                 <FormControl component="fieldset">
                   <FormLabel component="legend" alignItems="center">
                     Выберите роль
@@ -317,7 +345,7 @@ function SignUpPage() {
           </Box>
         </Box>
       </Container>
-    </>
+    </Grid>
   );
 }
 
