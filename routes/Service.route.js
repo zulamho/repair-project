@@ -6,6 +6,7 @@ const router = Router();
 
 router.post("/service", authMiddleware, serviceController.addService);
 router.get("/service", serviceController.getServices);
+router.post("/service/adduser/:id", authMiddleware,serviceController.addApplicationUser);
 router.patch("/service/:id", serviceController.editService);
 router.delete("/service/:id", authMiddleware, serviceController.deleteService);
 router.get("/service/:id", serviceController.getServiceOne);

@@ -1,10 +1,11 @@
 import { Grid, Typography } from "@material-ui/core";
-import { CardMedia } from "@mui/material";
-import { useEffect } from "react";
+import { Button, CardMedia } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { fetchService } from "../../../redux/features/service";
+import { addApplication, fetchService } from "../../../redux/features/service";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import Application from "./Application";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,6 +20,7 @@ function ProductById() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { id } = useParams();
+  console.log(id);
 
   const service = useSelector((state) => {
     return state.service.service;
@@ -46,6 +48,7 @@ function ProductById() {
                     {item.name}
                   </Typography>
                 </Grid>
+                <Application />
               </Grid>
             </Grid>
           );

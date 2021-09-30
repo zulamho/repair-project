@@ -30,12 +30,18 @@ export default function service(state = initialState, action) {
         ...state,
         loading: true,
       };
-    case "service/post/fulfilled":
+    case "service/post/fulfilled":  
       return {
         ...state,
         loading: false,
-        product: action.payload,
+        service: action.payload,
       };
+      // case "application/post/fulfilled":  
+      // return {
+      //   ...state,
+      //   loading: false,
+      //   service: action.payload,
+      // };
     case "service/image/pending":
       return {
         ...state,
@@ -47,7 +53,7 @@ export default function service(state = initialState, action) {
         loading: false,
         image: action.payload.image,
       };
-    case "products/filter/fulfilled":
+    case "service/filter/fulfilled":
       return {
         ...state,
         filter: action.payload,
@@ -112,7 +118,7 @@ export const addProduct = (name, price, image, description, number) => {
     const json = await response.json();
 
     dispatch({
-      type: "product/post/fulfilled",
+      type: "service/post/fulfilled",
       payload: json,
     });
   };
@@ -142,7 +148,30 @@ export const addImage = (e) => {
 
 export const setFilterText = (text) => {
   return {
-    type: "products/filter/fulfilled",
+    type: "service/filter/fulfilled",
     payload: text,
+  };
+};
+
+export const addApplication = (id) => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "service/post/pending" });
+
+    const state = getState();
+
+    const response = await fetch(`http://localhost:4000/service/adduser/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-type": "application/json",
+      },
+      
+    });
+    const json = await response.json();
+  
+    dispatch({
+      type: "service/post/fulfilled",
+      payload: json,
+    });
   };
 };

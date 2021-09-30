@@ -20,10 +20,25 @@ const serviceSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
+    application:[
+      mongoose.Schema({
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        unique: true
+        },
+        accepted: Boolean
+      },)
+      
+    ],
+    
   },
+  
+
   { timestamps: true }
 );
 
 const Service = mongoose.model("Service", serviceSchema);
+
 
 module.exports = Service;
