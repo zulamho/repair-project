@@ -34,7 +34,7 @@ export default function service(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        product: action.payload,
+        service: action.payload,
       };
     case "service/image/pending":
       return {
@@ -47,10 +47,17 @@ export default function service(state = initialState, action) {
         loading: false,
         image: action.payload.image,
       };
-    case "products/filter/fulfilled":
+    case "service/filter/fulfilled":
       return {
         ...state,
         filter: action.payload,
+      };
+    case "service/delete":
+      return {
+        ...state,
+        service: state.service.filter(
+          (service) => service.id !== action.payload
+        ),
       };
 
     default:
@@ -112,7 +119,7 @@ export const addProduct = (name, price, image, description, number) => {
     const json = await response.json();
 
     dispatch({
-      type: "product/post/fulfilled",
+      type: "service/post/fulfilled",
       payload: json,
     });
   };
@@ -142,7 +149,23 @@ export const addImage = (e) => {
 
 export const setFilterText = (text) => {
   return {
-    type: "products/filter/fulfilled",
+    type: "service/filter/fulfilled",
     payload: text,
+  };
+};
+
+export const removeService = (id) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    fetch(`http://localhost:4000/service/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      dispatch({ type: "service/delete", payload: id });
+    });
+    window.location.reload();
   };
 };

@@ -1,9 +1,11 @@
 import { Card, CardMedia, Grid, Typography } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/styles";
+import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { loadUserService } from "../../../redux/features/users";
+import { removeService } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -34,6 +36,10 @@ function UserService() {
   const classes = useStyles();
   const service = useSelector((state) => state.users.userService);
 
+  const handleDelete = (id) => {
+    dispatch(removeService(id));
+  };
+
   useEffect(() => {
     dispatch(loadUserService());
   }, [dispatch]);
@@ -55,6 +61,19 @@ function UserService() {
                     />
                   </NavLink>
                   {item.name}
+                  <Grid>
+                    <NavLink to={`/service/${item._id}`}></NavLink>
+
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        handleDelete(item._id);
+                      }}
+                    >
+                      Удалить
+                    </Button>
+                  </Grid>
                 </Card>
               </Grid>
             </Grid>
