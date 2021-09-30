@@ -8,9 +8,7 @@ const serviceSchema = mongoose.Schema(
     },
     price: Number,
     number: Number,
-    pathImages: [
-      String
-    ],
+    pathImages: [String],
     description: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
