@@ -58,6 +58,13 @@ export default function service(state = initialState, action) {
         ...state,
         filter: action.payload,
       };
+    case "service/delete":
+      return {
+        ...state,
+        service: state.service.filter(
+          (service) => service.id !== action.payload
+        ),
+      };
 
     default:
       return state;
@@ -150,6 +157,22 @@ export const setFilterText = (text) => {
   return {
     type: "service/filter/fulfilled",
     payload: text,
+  };
+};
+
+export const removeService = (id) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    fetch(`http://localhost:4000/service/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      dispatch({ type: "service/delete", payload: id });
+    });
+    window.location.reload();
   };
 };
 
