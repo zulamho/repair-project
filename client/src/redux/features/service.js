@@ -30,12 +30,18 @@ export default function service(state = initialState, action) {
         ...state,
         loading: true,
       };
-    case "service/post/fulfilled":
+    case "service/post/fulfilled":  
       return {
         ...state,
         loading: false,
         service: action.payload,
       };
+      // case "application/post/fulfilled":  
+      // return {
+      //   ...state,
+      //   loading: false,
+      //   service: action.payload,
+      // };
     case "service/image/pending":
       return {
         ...state,
@@ -167,5 +173,28 @@ export const removeService = (id) => {
       dispatch({ type: "service/delete", payload: id });
     });
     window.location.reload();
+  };
+};
+
+export const addApplication = (id) => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "service/post/pending" });
+
+    const state = getState();
+
+    const response = await fetch(`http://localhost:4000/service/adduser/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-type": "application/json",
+      },
+      
+    });
+    const json = await response.json();
+  
+    dispatch({
+      type: "service/post/fulfilled",
+      payload: json,
+    });
   };
 };
