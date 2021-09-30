@@ -11,6 +11,7 @@ import {
   CardActions,
   ClickAwayListener,
   Grid,
+  IconButton,
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
@@ -38,6 +39,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import PersonIcon from "@mui/icons-material/Person";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -49,12 +51,30 @@ const useStyles = makeStyles((theme) =>
     },
     avatar: {
       width: "1125px",
-      borderRadius: "30px",
-      marginBottom: "30px",
+      height: "600px",
     },
     contain: {
+      width: "1200px",
+      height: "600px",
       display: "flex",
       backgroundColor: "#f8f7f7",
+      marginTop: "30px",
+      height: "700px",
+      paddingLeft: "0px",
+      margin: "auto",
+    },
+    info: {
+      paddingTop: "20px",
+      marginRight: "20px",
+    },
+    IconButton: {
+      width: "900px",
+    },
+    largeIcon: {
+      fontSize: "3em",
+    },
+    inputs: {
+      display: "none",
     },
   })
 );
@@ -172,282 +192,166 @@ function EditProfilePage() {
   return (
     <>
       <Header />
-      <Container>
-        <Container
-          className={classes.contain}
-          component="main"
-          sx={{ display: "flex" }}
-        >
-          {/* <CssBaseline /> */}
-
-          <Grid className={classes.avatar}>
-            <Stack direction="row" spacing={2} sx={{ width: 160, height: 160 }}>
-              <Avatar
-                sx={{ width: 160, height: 160 }}
-                src={`http://localhost:4000/${user.pathImages}`}
-              />
-            </Stack>
+      <Grid className={classes.contain} component="main">
+        <Grid className={classes.avatar}>
+          <Stack
+            direction="row"
+            spacing={6}
+            sx={{ width: 400, height: 400, margin: "auto" }}
+          >
+            <Avatar
+              sx={{
+                width: 400,
+                height: 400,
+                marginTop: "20px",
+                border: 4,
+                borderColor: "primary.main",
+              }}
+              src={`http://localhost:4000/${user.pathImages}`}
+            ></Avatar>
+          </Stack>
+          <label htmlFor="icon-button-file" color="#639fbc">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+              sx={{
+                marginLeft: "360px",
+                marginTop: "-60px",
+              }}
+            >
+              <PhotoCamera className={classes.largeIcon} />
+            </IconButton>
             <input
               accept="image/*"
-              id="contained-button-file"
+              className={classes.inputs}
+              id="icon-button-file"
               type="file"
               onChange={handleAddAvatar}
             />
+            <Grid />
+          </label>
+        </Grid>
+
+        <Grid container spacing={2} className={classes.info}>
+          <Grid item xs={12}>
+            <TextField
+              value={name}
+              autoComplete="fname"
+              name="firstName"
+              required
+              fullWidth
+              id="firstName"
+              label="Имя"
+              autoFocus
+              onChange={handleChangeName}
+            />
           </Grid>
-          <Typography>Имя</Typography>
-
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                value={name}
-                autoComplete="fname"
-                name="firstName"
-                required
-                fullWidth
-                id="firstName"
-                label="Имя"
-                autoFocus
-                onChange={handleChangeName}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                value={lastName}
-                autoComplete="fname"
-                name="firstName"
-                required
-                fullWidth
-                id="firstName"
-                label="Фамилия"
-                autoFocus
-                onChange={handleChangeLastName}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend" alignItems="center">
-                  Выберите роль
-                </FormLabel>
-
-                <RadioGroup
-                  row
-                  aria-label="gender"
-                  name="row-radio-buttons-group"
-                >
-                  <FormControlLabel
-                    control={<Radio />}
-                    value="Пользователь"
-                    label="Пользователь"
-                    onClick={handleDeleteDescrip}
-                    labelPlacement="top"
-                  />
-                  <PersonIcon color="green" />
-
-                  <FormControlLabel
-                    value={workingUser}
-                    control={<Radio />}
-                    label="Рабочий"
-                    onClick={handleCreateDescrip}
-                    labelPlacement="top"
-                  />
-                  <HandymanIcon color="green" />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            {telep}
-            <Grid item xs={12}>
-              <TextField
-                value={email}
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={handleChangeEmail}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <MuiPhoneNumber
-                value={telephone}
-                preferredCountries={["ru"]}
-                disableAreaCodes={true}
-                defaultCountry={"ru"}
-                variant="outlined"
-                type="tel"
-                onChange={handleChangeTelephone}
-                className={classes.telephone}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                value={login}
-                onChange={handleChangeLogin}
-                required
-                fullWidth
-                id="login"
-                label="Введите логин"
-                name="login"
-                autoComplete="login"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                defaultValue={password}
-                onChange={handleChangePassword}
-                required
-                fullWidth
-                name="password"
-                label="Введите пароль"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              {/* <FormControlLabel
-                control={
-                  <Checkbox value="allowExtraEmails" color="primary" />
-                }
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              /> */}
-            </Grid>
+          <Grid item xs={12}>
+            <TextField
+              value={lastName}
+              autoComplete="fname"
+              name="firstName"
+              required
+              fullWidth
+              id="firstName"
+              label="Фамилия"
+              autoFocus
+              onChange={handleChangeLastName}
+            />
           </Grid>
-        </Container>
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-          onClick={handleTransfer}
-        >
-          Редактировать
-        </Button>
-      </Container>
+          <Grid item xs={12} sx={{ textAlign: "center" }}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend" alignItems="center">
+                Выберите роль
+              </FormLabel>
+
+              <RadioGroup
+                row
+                aria-label="gender"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  control={<Radio />}
+                  value="Пользователь"
+                  label="Пользователь"
+                  onClick={handleDeleteDescrip}
+                  labelPlacement="top"
+                />
+                <PersonIcon color="green" />
+
+                <FormControlLabel
+                  value={workingUser}
+                  control={<Radio />}
+                  label="Рабочий"
+                  onClick={handleCreateDescrip}
+                  labelPlacement="top"
+                />
+                <HandymanIcon color="green" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          {telep}
+          <Grid item xs={12}>
+            <TextField
+              value={email}
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={handleChangeEmail}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <MuiPhoneNumber
+              value={telephone}
+              preferredCountries={["ru"]}
+              disableAreaCodes={true}
+              defaultCountry={"ru"}
+              variant="outlined"
+              type="tel"
+              onChange={handleChangeTelephone}
+              className={classes.telephone}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              value={login}
+              onChange={handleChangeLogin}
+              required
+              fullWidth
+              id="login"
+              label="Введите логин"
+              name="login"
+              autoComplete="login"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              defaultValue={password}
+              onChange={handleChangePassword}
+              required
+              fullWidth
+              name="password"
+              label="Введите пароль"
+              type="password"
+              id="password"
+              autoComplete="new-password"
+            />
+          </Grid>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={handleTransfer}
+          >
+            Редактировать
+          </Button>
+        </Grid>
+      </Grid>
     </>
-    // <Grid>
-    //   <Box className={classes.profile}>
-    //     <Stack direction="row" spacing={2} sx={{ width: 80, height: 80 }}>
-    //       <Avatar
-    //         sx={{ width: 180, height: 180 }}
-    //         src={`http://localhost:4000/${user.pathImages}`}
-    //       />
-    //       <LocalSeeIcon />
-    //     </Stack>
-    //     <input
-    //       accept="image/*"
-    //       id="contained-button-file"
-    //       type="file"
-    //       onChange={handleAddAvatar}
-    //     />
-
-    //     <Card
-    //       sx={{ maxWidth: 1000, maxHight: 1000 }}
-    //       className={classes.profileCard}
-    //     >
-    //       <CardActionArea>
-    //         <CardContent>
-    //           <Grid item xs={12}>
-    //             <TextField
-    //               value={name}
-    //               autoComplete="fname"
-    //               name="firstName"
-    //               required
-    //               fullWidth
-    //               id="firstName"
-    //               label="Имя"
-    //               autoFocus
-    //               onChange={handleChangeName}
-    //             />
-    //           </Grid>
-    //           <Grid item xs={12}>
-    //             <TextField
-    //               value={lastName}
-    //               autoComplete="fname"
-    //               name="firstName"
-    //               required
-    //               fullWidth
-    //               id="firstName"
-    //               label="Фамилия"
-    //               autoFocus
-    //               onChange={handleChangeLastName}
-    //             />
-    //           </Grid>
-    //           <Grid item xs={12}>
-    //             <TextField
-    //               value={email}
-    //               required
-    //               fullWidth
-    //               id="email"
-    //               label="Email Address"
-    //               name="email"
-    //               autoComplete="email"
-    //               onChange={handleChangeEmail}
-    //             />
-    //           </Grid>
-    //           {/* <Grid item xs={12}>
-    //             <TextField
-    //               value={descriptionService}
-    //               required
-    //               fullWidth
-    //               id="descriptionService"
-    //               name="descriptionService"
-    //               autoComplete="descriptionService"
-    //             />
-    //           </Grid> */}
-
-    //           <Grid item xs={12}>
-    //             <MuiPhoneNumber
-    //               value={telephone}
-    //               preferredCountries={["ru"]}
-    //               disableAreaCodes={true}
-    //               defaultCountry={"ru"}
-    //               variant="outlined"
-    //               type="tel"
-    //               onChange={handleChangeTelephone}
-    //               className={classes.telephone}
-    //             />
-    //           </Grid>
-
-    //           <Grid item xs={12}>
-    //             <TextField
-    //               value={login}
-    //               onChange={handleChangeLogin}
-    //               required
-    //               fullWidth
-    //               id="login"
-    //               label="Введите логин"
-    //               name="login"
-    //               autoComplete="login"
-    //             />
-    //           </Grid>
-    //           <Grid item xs={12}>
-    //             <TextField
-    //               value={password}
-    //               required
-    //               fullWidth
-    //               name="password"
-    //               label="Введите пароль"
-    //               type="password"
-    //               id="password"
-    //               autoComplete="new-password"
-    //               onChange={handleChangePassword}
-    //             />
-    //           </Grid>
-    //         </CardContent>
-    //       </CardActionArea>
-    //       <CardActions>
-    //         <Button
-    //           fullWidth
-    //           variant="contained"
-    //           sx={{ mt: 3, mb: 2 }}
-    //           onClick={handleTransfer}
-    //         >
-    //           Редактировать
-    //         </Button>
-    //       </CardActions>
-    //     </Card>
-    //   </Box>
-    // </Grid>
   );
 }
 
