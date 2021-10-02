@@ -85,7 +85,7 @@ function EditProfilePage() {
   const user = useSelector((state) => state.users.currentUser);
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [workingUser, setWorkingUser] = useState("Рабочий");
+  const [workingUser, setWorkingUser] = useState("");
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -153,6 +153,11 @@ function EditProfilePage() {
     await dispatch(changeAvatar(e));
   };
 
+  const handleDeleteDescrip = () => {
+    setTelep("");
+    setWorkingUser("");
+  };
+
   const handleCreateDescrip = () => {
     return setTelep(
       <Grid item xs={12} sm={12}>
@@ -184,9 +189,6 @@ function EditProfilePage() {
         descriptionService
       )
     );
-  };
-  const handleDeleteDescrip = () => {
-    setTelep("");
   };
 
   return (
