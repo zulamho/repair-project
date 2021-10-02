@@ -1,10 +1,11 @@
 import { Grid, Card, CardMedia } from "@material-ui/core";
-import { React } from "react";
-import { NavLink } from "react-router-dom";
+import { React, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Pagination, PaginationItem, Typography } from "@mui/material";
+import { fetchService } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -88,6 +89,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 function ServiceCard() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const service = useSelector((state) => state.service.service);
 

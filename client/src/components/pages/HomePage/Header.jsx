@@ -19,6 +19,7 @@ import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -73,6 +74,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 function Header() {
+  const token = useSelector((state) => state.application.token);
   const [state, setState] = React.useState({
     right: false,
   });
