@@ -7,6 +7,8 @@ import Services from "./pages/ProfilePage/Services";
 import Profile from "./pages/ProfilePage";
 import Product from "./pages/ProductPage";
 import EditProfilePage from "./pages/ProfilePage/EditProfilePage";
+import ProductUserById from "./pages/ProductPage/ProductUserById";
+import EditService from "./pages/ProfilePage/EditService";
 
 function App() {
   return (
@@ -15,7 +17,6 @@ function App() {
         <Route path="/signin">
           <SigninPage />
         </Route>
-
         <Route path="/signUp">
           <SignUpPage />
         </Route>
@@ -31,8 +32,14 @@ function App() {
         <Route path="/service/:id" exact>
           <Product />
         </Route>
+        <Route path="/service/user/:id" exact>
+          <ProductUserById />
+        </Route>
         <Route path="/editProfilePage" exact>
           <EditProfilePage />
+        </Route>
+        <Route path="/edit/:id" exact>
+          <EditService />
         </Route>
       </Switch>
     </BrowserRouter>
