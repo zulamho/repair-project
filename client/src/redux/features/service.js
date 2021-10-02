@@ -104,7 +104,14 @@ export const fetchService = () => {
   };
 };
 
-export const addProduct = (name, price, image, description, number) => {
+export const addProduct = (
+  name,
+  price,
+  square,
+  address,
+  image,
+  description
+) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/post/pending" });
 
@@ -120,7 +127,8 @@ export const addProduct = (name, price, image, description, number) => {
         name,
         price,
         image: state.service.image,
-        number,
+        address,
+        square,
         description,
       }),
     });
@@ -204,15 +212,25 @@ export const addApplication = (id) => {
   };
 };
 
-export const editService = (id, name, category, image, description) => {
+export const editService = (
+  id,
+  name,
+  price,
+  address,
+  square,
+  image,
+  description
+) => {
   return (dispatch, getState) => {
     const state = getState();
     fetch(`http://localhost:4000/service/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
         name,
+        price,
         image: state.service.image,
-        category,
+        address,
+        square,
         description,
       }),
 

@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@material-ui/core";
-import { CardMedia } from "@mui/material";
-import { useEffect } from "react";
+import { Button, CardMedia } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchService } from "../../../redux/features/service";
@@ -34,19 +34,6 @@ function ProductById() {
     <Grid>
       {service.map((item) => {
         if (item._id === id) {
-          // {function namer(items) {
-          //   return item.application.find((item) => {
-          //     console.log(item.accepted);
-          //     console.log(item);
-
-          //     if (item.accepted == "false") {
-          //       return setClick("Заявка отправлена");
-          //     } else {
-          //       return setClick("Заявка принята");
-          //     }
-          //   });
-
-          // }}
           return (
             <Grid>
               <Grid>
@@ -60,11 +47,6 @@ function ProductById() {
                   <Typography gutterBottom variant="h5" component="h2">
                     {item.name}
                   </Typography>
-                  {/* <Button>
-                    {click}
-                   
-                  </Button>
-                  */}
                 </Grid>
                 <Application />
               </Grid>
