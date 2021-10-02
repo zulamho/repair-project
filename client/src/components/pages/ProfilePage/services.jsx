@@ -45,7 +45,7 @@ function Services() {
   };
 
   const handleAddSquare = (e) => {
-    setPrice(e.target.value);
+    setSquare(e.target.value);
   };
 
   const handleAddDescription = (e) => {

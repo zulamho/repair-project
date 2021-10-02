@@ -20,9 +20,11 @@ import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
+import { useSelector } from "react-redux";
 import { useDispatch, useEffect } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -77,6 +79,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 function Header() {
+  const token = useSelector((state) => state.application.token);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.currentUser);
 

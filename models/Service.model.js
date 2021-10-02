@@ -14,10 +14,7 @@ const serviceSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    address: {
-      type: String,
-      required: true,
-    },
+    address: String,
     application: [
       mongoose.Schema({
         userId: {

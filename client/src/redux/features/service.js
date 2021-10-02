@@ -17,15 +17,17 @@ export default function service(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        service: action.payload,
-        error: action.error,
+        service: action.payload.service,
+        pages: action.payload.pages,
       };
+
     case "service/fetch-service/rejected":
       return {
         ...state,
         loading: false,
         service: action.error,
       };
+
     case "service/post/pending":
       return {
         ...state,
@@ -74,31 +76,25 @@ export default function service(state = initialState, action) {
   }
 }
 
-export const fetchService = () => {
+export const fetchService = (page = 1) => {
   return async (dispatch, getState) => {
     const state = getState();
     dispatch({ type: "service/fetch-service/pending" });
-    try {
-      const response = await fetch("http://localhost:4000/service", {
-        headers: {
-          Authorization: `Bearer ${state.application.token}`,
-        },
-      });
+    const response = await fetch(`http://localhost:4000/service?page=${page}`);
 
-      const json = await response.json();
+    const json = await response.json();
 
-      if (json.error) {
-        dispatch({
-          type: "service/fetch-service/rejected",
-          error: "При запросе на сервер произошла ошибка",
-        });
-      } else {
-        dispatch({ type: "service/fetch-service/fulfilled", payload: json });
-      }
-    } catch (e) {
+    const { service, pages } = json;
+
+    if (json.error) {
       dispatch({
         type: "service/fetch-service/rejected",
-        error: e.toString(),
+        error: "При запросе на сервер произошла ошибка",
+      });
+    } else {
+      dispatch({
+        type: "service/fetch-service/fulfilled",
+        payload: { service, pages },
       });
     }
   };
