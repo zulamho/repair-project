@@ -2,6 +2,7 @@ import { Card, CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 import logo from "../../logo.png";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -19,6 +20,9 @@ import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
+import { useDispatch, useEffect } from "react-redux";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -73,6 +77,14 @@ const useStyles = makeStyles((theme) =>
 );
 
 function Header() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users.currentUser);
+
+  const exitUser = () => {
+    localStorage.clear();
+    dispatch({ type: "application/profile/exit" });
+  };
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -96,6 +108,22 @@ function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+        <Box marginLeft="48px">
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ width: 60, height: 69, marginTop: "5px" }}
+          >
+            <Avatar
+              sx={{ width: 60, height: 60, border: 2 }}
+              src={`http://localhost:4000/${user.pathImages}`}
+            />
+            <Typography sx={{ height: 72 }}>
+              {user.name} {user.lastName}
+            </Typography>
+          </Stack>
+        </Box>
+        <hr />
         {[
           <NavLink to="/signin" className={classes.link}>
             <ListItemIcon>
@@ -121,7 +149,7 @@ function Header() {
               <ListItemText primary=" Добавить объявление" />
             </ListItemIcon>
           </NavLink>,
-          <NavLink to="/profilePage" className={classes.link}>
+          <NavLink to="/" className={classes.link} onClick={exitUser}>
             <ListItemIcon>
               <ExitToAppIcon />
               <ListItemText primary="Выйти" />
@@ -148,7 +176,7 @@ function Header() {
           </NavLink>
         </Grid>
         <Grid className={classes.navbar}>
-          <NavLink to="/signin" className={classes.link}>
+          <NavLink to="/" className={classes.link}>
             Главная
           </NavLink>
           <NavLink to="/signUp" className={classes.links}>

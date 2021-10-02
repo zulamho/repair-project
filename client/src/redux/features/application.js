@@ -48,6 +48,14 @@ export default function application(state = initialState, action) {
         signingIn: false,
         error: action.error,
       };
+    case "application/profile/exit":
+      return {
+        ...state,
+        signingIn: false,
+        token: null,
+        signingUp: false,
+        error: null,
+      };
     case "user/avatar/fulfilled":
       return {
         ...state,

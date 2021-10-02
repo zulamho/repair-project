@@ -92,7 +92,6 @@ function ProfilePage() {
             </Typography>
             <hr />
             <Typography variant="body2" color="text.secondary">
-              {" "}
               {user.descriptionService}
             </Typography>
             <hr />
