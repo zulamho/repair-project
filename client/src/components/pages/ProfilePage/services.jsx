@@ -8,12 +8,7 @@ import {
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import {
-  addApplication,
-  addImage,
-  addProduct,
-} from "../../../redux/features/service";
+import { addImage, addProduct } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,15 +24,11 @@ function Services() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const { id } = useParams();
-
   const token = useSelector((state) => state.application.token);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-
-  const [accepted, setAccepted] = useState("");
 
   const handleAddName = (e) => {
     setName(e.target.value);
@@ -51,23 +42,13 @@ function Services() {
     setDescription(e.target.value);
   };
 
-  const handleAddApplication = () => {
-    setAccepted("true");
-  };
-
   const handleAddImage = async (e) => {
     await dispatch(addImage(e));
   };
   const handleAddProduct = () => {
     dispatch(addProduct(name, price, description));
   };
-  const handleAddApplications = () => {
-    dispatch(addApplication(id, accepted));
-  };
 
-  // useEffect(() => {
-  //   dispatch(loadCategories());
-  // }, [dispatch]);
   return (
     <Grid>
       <Grid className={classes.content}>
@@ -129,15 +110,6 @@ function Services() {
             Добавить товар
           </Button>
         </Grid>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleAddApplications}
-          className={classes.btninput}
-          onChange={handleAddApplication}
-        >
-          Оклик
-        </Button>
       </Grid>
     </Grid>
   );

@@ -54,7 +54,7 @@ function UserService() {
             <Grid className={classes.main}>
               <Grid className={classes.product}>
                 <Card>
-                  <NavLink to={`/service/${item._id}`}>
+                  <NavLink to={`/service/user/${item._id}`}>
                     <CardMedia
                       className={classes.img}
                       image={`http://localhost:4000/${item.pathImages}`}
@@ -62,8 +62,6 @@ function UserService() {
                   </NavLink>
                   {item.name}
                   <Grid>
-                    <NavLink to={`/service/${item._id}`}></NavLink>
-
                     <Button
                       variant="contained"
                       color="primary"
@@ -85,6 +83,3 @@ function UserService() {
 }
 
 export default UserService;
-
-
-

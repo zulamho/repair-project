@@ -1,5 +1,5 @@
 const Service = require("../models/service.model");
-const User = require("../models/User.model")
+const User = require("../models/User.model");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 
@@ -110,18 +110,23 @@ module.exports.serviceController = {
       const { id } = req.params;
       const user = await User.findById(req.user.id);
 
-      const service = await Service.findById( req.params.id );
+      const service = await Service.findById(req.params.id);
 
-      const exists = service.application.find(app => app.userId.toString() === req.user.id)
-    
-      if(exists) {
-      
+      const exists = service.application.find(
+        (app) => app.userId.toString() === req.user.id
+      );
+
+      if (exists) {
       } else {
         const service = await Service.findByIdAndUpdate(
-        req.params.id,
-        { $addToSet: { application: { userId: req.user.id, accepted: false} } },
-        { new: true }
-      );
+          req.params.id,
+          {
+            $addToSet: {
+              application: { userId: req.user.id, accepted: false },
+            },
+          },
+          { new: true }
+        );
       }
       res.status(200).json();
     } catch (e) {
@@ -129,4 +134,24 @@ module.exports.serviceController = {
       res.status(401).json("Ошибка при отправки заявки");
     }
   },
+
+  getUserServiceOne: async (req, res) => {
+    try {
+      // const user = await User.findById(req.user.id);
+      const service = await Service.findById(req.params.id);
+
+      res.json(service);
+    } catch (e) {
+      res.json("Ошибка");
+    }
+  },
+
+  // getServiceOne: async (req, res) => {
+  //   try {
+  //     const service = await Service.findById(req.params.id);
+  //     res.json(service);
+  //   } catch (e) {
+  //     res.json("Ошибка");
+  //   }
+  // },
 };
