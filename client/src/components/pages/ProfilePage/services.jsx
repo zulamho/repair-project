@@ -28,6 +28,8 @@ function Services() {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [address, setAddress] = useState("");
+  const [square, setSquare] = useState("");
   const [description, setDescription] = useState("");
 
   const handleAddName = (e) => {
@@ -35,6 +37,14 @@ function Services() {
   };
 
   const handleAddPrice = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleAddAddress = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const handleAddSquare = (e) => {
     setPrice(e.target.value);
   };
 
@@ -77,6 +87,28 @@ function Services() {
                 rows={1}
                 value={price}
                 onChange={handleAddPrice}
+                variant="outlined"
+              />
+              <TextField
+                className={classes.priceinp}
+                mr={2}
+                id="outlined-multiline-static"
+                label="Введите адрес"
+                multiline
+                rows={1}
+                value={address}
+                onChange={handleAddAddress}
+                variant="outlined"
+              />
+              <TextField
+                className={classes.priceinp}
+                mr={2}
+                id="outlined-multiline-static"
+                label="Введите площадь"
+                multiline
+                rows={1}
+                value={square}
+                onChange={handleAddSquare}
                 variant="outlined"
               />
 

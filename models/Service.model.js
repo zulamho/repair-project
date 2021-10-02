@@ -7,36 +7,32 @@ const serviceSchema = mongoose.Schema(
       required: true,
     },
     price: Number,
-    number: Number,
+    square: Number,
     pathImages: [String],
     description: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+    address: {
+      type: String,
+      required: true,
     },
-    application:[
+    application: [
       mongoose.Schema({
         userId: {
           type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        unique: true
+          ref: "User",
+          unique: true,
         },
-        accepted: Boolean
-      },)
-      
+        accepted: Boolean,
+      }),
     ],
-    
   },
-  
 
   { timestamps: true }
 );
 
 const Service = mongoose.model("Service", serviceSchema);
-
 
 module.exports = Service;

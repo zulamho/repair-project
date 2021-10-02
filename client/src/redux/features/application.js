@@ -87,7 +87,7 @@ export const createUser = (
         ConfirmPassword,
         telephone,
         image: application.avatar.image,
-        descriptionService
+        descriptionService,
       }),
       headers: {
         "Content-type": "application/json",
@@ -104,8 +104,6 @@ export const createUser = (
   };
 };
 
-
-
 export const changeUser = (
   name,
   lastName,
@@ -119,7 +117,7 @@ export const changeUser = (
 ) => {
   return async (dispatch, getState) => {
     dispatch({ type: "application/signup/pending" });
-    const {application} = getState();
+    const { application } = getState();
     const state = getState();
 
     const response = await fetch("http://localhost:4000/user", {
@@ -138,9 +136,8 @@ export const changeUser = (
         ConfirmPassword,
         telephone,
         pathImages: application.avatar.image,
-        descriptionService
+        descriptionService,
       }),
-     
     });
 
     const json = await response.json();
@@ -201,13 +198,13 @@ export const addAvatar = (e) => {
 };
 
 export const changeAvatar = (e) => {
-  return async (dispatch,getState) => {
+  return async (dispatch, getState) => {
     dispatch({ type: "user/avatar/pending" });
 
     const { files } = e.target;
     const data = new FormData();
     data.append("image", files[0]);
-    const state = getState()
+    const state = getState();
 
     const response = await fetch("http://localhost:4000/user/upload", {
       method: "POST",

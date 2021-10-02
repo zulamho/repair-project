@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports.serviceController = {
   addService: async (req, res) => {
-    const { name, price, category, image, description, number } = req.body;
+    const { name, price, image, description, square } = req.body;
     try {
       const service = await Service.create({
         user: req.user.id,
@@ -135,18 +135,7 @@ module.exports.serviceController = {
     }
   },
 
-  getUserServiceOne: async (req, res) => {
-    try {
-      // const user = await User.findById(req.user.id);
-      const service = await Service.findById(req.params.id);
-
-      res.json(service);
-    } catch (e) {
-      res.json("Ошибка");
-    }
-  },
-
-  // getServiceOne: async (req, res) => {
+  // getUserServiceOne: async (req, res) => {
   //   try {
   //     const service = await Service.findById(req.params.id);
   //     res.json(service);
