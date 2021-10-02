@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) =>
       height: "300px",
       marginBottom: "20px",
     },
+    header: {
+      background: "#ffb800",
+    },
     img: {
       marginLeft: "50px",
       marginBottom: "25px",
