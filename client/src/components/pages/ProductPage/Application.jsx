@@ -6,8 +6,6 @@ import { addApplication } from "../../../redux/features/service";
 function Application() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
-
   const token = useSelector((state) => state.application.token);
 
   const handleAddApplications = () => {
@@ -16,7 +14,7 @@ function Application() {
 
   return (
     <Button variant="contained" color="primary" onClick={handleAddApplications}>
-      Оклик
+      Отклик
     </Button>
   );
 }

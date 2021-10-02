@@ -3,6 +3,7 @@ const initialState = {
   service: [],
   error: null,
   filter: "",
+  userservice: [],
 };
 
 export default function service(state = initialState, action) {
@@ -30,18 +31,13 @@ export default function service(state = initialState, action) {
         ...state,
         loading: true,
       };
-    case "service/post/fulfilled":  
+    case "service/post/fulfilled":
       return {
         ...state,
         loading: false,
         service: action.payload,
       };
-      // case "application/post/fulfilled":  
-      // return {
-      //   ...state,
-      //   loading: false,
-      //   service: action.payload,
-      // };
+
     case "service/image/pending":
       return {
         ...state,
@@ -59,6 +55,13 @@ export default function service(state = initialState, action) {
         filter: action.payload,
       };
     case "service/delete":
+      return {
+        ...state,
+        service: state.service.filter(
+          (service) => service.id !== action.payload
+        ),
+      };
+    case "service/edit":
       return {
         ...state,
         service: state.service.filter(
@@ -182,19 +185,44 @@ export const addApplication = (id) => {
 
     const state = getState();
 
-    const response = await fetch(`http://localhost:4000/service/adduser/${id}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${state.application.token}`,
-        "Content-type": "application/json",
-      },
-      
-    });
+    const response = await fetch(
+      `http://localhost:4000/service/adduser/${id}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${state.application.token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
-  
+
     dispatch({
       type: "service/post/fulfilled",
       payload: json,
     });
+  };
+};
+
+export const editService = (id, name, category, image, description) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    fetch(`http://localhost:4000/service/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name,
+        image: state.service.image,
+        category,
+        description,
+      }),
+
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      dispatch({ type: "service/edit", payload: id });
+    });
+    window.location.reload();
   };
 };
