@@ -21,7 +21,12 @@ function ProductById() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { id } = useParams();
-  console.log(id);
+
+  const [click, setClick] = useState(" Отклик");
+
+  const handleAddApplications = () => {
+    setClick("Заявка отправлена");
+  };
 
   const service = useSelector((state) => {
     return state.service.service;
@@ -35,6 +40,19 @@ function ProductById() {
     <Grid>
       {service.map((item) => {
         if (item._id === id) {
+          // {function namer(items) {
+          //   return item.application.find((item) => {
+          //     console.log(item.accepted);
+          //     console.log(item);
+
+          //     if (item.accepted == "false") {
+          //       return setClick("Заявка отправлена");
+          //     } else {
+          //       return setClick("Заявка принята");
+          //     }
+          //   });
+
+          // }}
           return (
             <Grid>
               <Grid>
@@ -48,6 +66,11 @@ function ProductById() {
                   <Typography gutterBottom variant="h5" component="h2">
                     {item.name}
                   </Typography>
+                  {/* <Button>
+                    {click}
+                   
+                  </Button>
+                  */}
                 </Grid>
                 <Application />
               </Grid>
@@ -55,6 +78,7 @@ function ProductById() {
           );
         }
       })}
+      <Button></Button>
     </Grid>
   );
 }

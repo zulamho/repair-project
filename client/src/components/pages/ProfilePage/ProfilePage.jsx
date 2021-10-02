@@ -71,38 +71,36 @@ function ProfilePage() {
             sx={{ maxWidth: 1000, maxHight: 1000 }}
             className={classes.profileCard}
           >
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Имя: {user.name} {user.lastname}
-              </Typography>
-              <hr />
-              <Typography gutterBottom variant="h5" component="div">
-                Логин: {user.login}
-              </Typography>
-              <hr />
-              <Typography gutterBottom variant="h5" component="div">
-                Электронная почта: {user.email}
-              </Typography>
-              <hr />
-              <Typography gutterBottom variant="h5" component="div">
-                Статус: <HandymanIcon color="green" /> {user.workingUser}
-              </Typography>
-              <hr />
-              <Typography gutterBottom variant="h5" component="div">
-                Телефон: <LocalPhoneIcon color="green" /> {user.telephone}
-              </Typography>
-              <hr />
-              <Typography variant="body2" color="text.secondary">
-                {" "}
-                {user.descriptionService}
-              </Typography>
-              <hr />
-              <Link to="/editProfilePage">
-                <Button size="small" color="primary">
-                  <EditIcon /> Редактировать
-                </Button>
-              </Link>
-            </CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Имя: {user.name} {user.lastname}
+            </Typography>
+            <hr />
+            <Typography gutterBottom variant="h5" component="div">
+              Логин: {user.login}
+            </Typography>
+            <hr />
+            <Typography gutterBottom variant="h5" component="div">
+              Электронная почта: {user.email}
+            </Typography>
+            <hr />
+            <Typography gutterBottom variant="h5" component="div">
+              Статус: <HandymanIcon color="green" /> {user.workingUser}
+            </Typography>
+            <hr />
+            <Typography gutterBottom variant="h5" component="div">
+              Телефон: <LocalPhoneIcon color="green" /> {user.telephone}
+            </Typography>
+            <hr />
+            <Typography variant="body2" color="text.secondary">
+              {" "}
+              {user.descriptionService}
+            </Typography>
+            <hr />
+            <Link to="/editProfilePage">
+              <Button size="small" color="primary">
+                <EditIcon /> Редактировать
+              </Button>
+            </Link>
           </Card>
         </Box>
       </Container>
