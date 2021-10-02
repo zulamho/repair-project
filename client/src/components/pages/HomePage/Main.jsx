@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) =>
       color: "white",
       border: "1px solid white",
       "&:hover": {
-        border: "1px solid #FA4A0C",
+        border: "1px solid #ffb800",
       },
       textAlign: "center",
       borderRadius: "10px",
@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) =>
     pages: {
       display: "flex",
       justifyContent: "center",
+      marginBottom: "30px",
     },
     page: {
       "&:hover": {

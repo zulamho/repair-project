@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchService } from "../../../redux/features/service";
 import Main from "./Main";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function Home() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function Home() {
     <>
       <Header />
       <Main />
+      <Footer />
     </>
   );
 }
