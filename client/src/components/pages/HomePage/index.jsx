@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchService } from "../../../redux/features/service";
 import Main from "./Main";
 import Header from "./Header";
+import { loadUserById } from "../../../redux/features/users";
 
 function Home() {
   const dispatch = useDispatch();
@@ -10,6 +11,10 @@ function Home() {
   const error = useSelector((state) => state.service.error);
   useEffect(() => {
     dispatch(fetchService());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(loadUserById());
   }, [dispatch]);
 
   if (loading) {
