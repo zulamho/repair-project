@@ -22,12 +22,6 @@ function ProductById() {
   const classes = useStyles();
   const { id } = useParams();
 
-  const [click, setClick] = useState(" Отклик");
-
-  const handleAddApplications = () => {
-    setClick("Заявка отправлена");
-  };
-
   const service = useSelector((state) => {
     return state.service.service;
   });
@@ -78,7 +72,6 @@ function ProductById() {
           );
         }
       })}
-      <Button></Button>
     </Grid>
   );
 }
