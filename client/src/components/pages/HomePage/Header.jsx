@@ -23,6 +23,7 @@ import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
 import { useDispatch, useEffect } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,6 +32,9 @@ const useStyles = makeStyles((theme) =>
       maxWidth: "300px",
       height: "300px",
       marginBottom: "20px",
+    },
+    header: {
+      background: "#ffb800",
     },
     img: {
       marginLeft: "50px",
@@ -46,10 +50,7 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "space-between",
       alignItems: "center",
     },
-    navbar: {
-      width: "450px",
-      paddingLeft: "30px",
-    },
+    navbar: {},
     link: {
       textDecoration: "none",
       fontFamily: "Montserrat",
@@ -58,10 +59,11 @@ const useStyles = makeStyles((theme) =>
       "&:hover": {
         color: "#FA4A0C",
       },
+      margin: "auto",
     },
     links: {
       fontSize: "18px",
-      marginLeft: "40px",
+
       textDecoration: "none",
       fontFamily: "Montserrat",
       color: "#252B42",
@@ -77,6 +79,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 function Header() {
+  const token = useSelector((state) => state.application.token);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.currentUser);
 
@@ -176,17 +179,45 @@ function Header() {
           </NavLink>
         </Grid>
         <Grid className={classes.navbar}>
-          <NavLink to="/" className={classes.link}>
-            Главная
-          </NavLink>
-          <NavLink to="/signUp" className={classes.links}>
-            Виды услуг
-          </NavLink>
-          <NavLink to="/profilePage" className={classes.links}>
-            О нас
-          </NavLink>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              "& > *": {
+                m: 1,
+              },
+            }}
+          >
+            <ButtonGroup
+              variant="outlined"
+              aria-label="outlined button group"
+              color="secondary"
+            >
+              <Button marginLeft="10px">
+                <NavLink to="/" className={classes.link}>
+                  Главная
+                </NavLink>
+              </Button>
+              <Button>
+                <NavLink to="/signUp" className={classes.links}>
+                  Виды услуг
+                </NavLink>
+              </Button>
+              <Button>
+                <NavLink to="/profilePage" className={classes.links}>
+                  Контакты
+                </NavLink>
+              </Button>
+              <Button>
+                <NavLink to="/profilePage" className={classes.links}>
+                  О нас
+                </NavLink>
+              </Button>
+            </ButtonGroup>
+          </Box>
         </Grid>
-        <Grid className={classes.navbar}>
+        <Grid>
           <div>
             {["right"].map((anchor) => (
               <React.Fragment key={anchor}>

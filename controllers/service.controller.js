@@ -1,20 +1,20 @@
-const Service = require("../models/service.model");
+const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 
 module.exports.serviceController = {
   addService: async (req, res) => {
-    const { name, price, image, description, square } = req.body;
+    const { name, price, image, description, square, address } = req.body;
     try {
       const service = await Service.create({
         user: req.user.id,
         pathImages: image,
         name,
         price,
-        category,
+        address,
         description,
-        number,
+        square,
       });
       res.json(service);
     } catch (e) {
@@ -24,8 +24,17 @@ module.exports.serviceController = {
 
   getServices: async (req, res) => {
     try {
+      const { page = 1, limit = 9 } = req.query;
       const services = await Service.find();
-      res.json(services);
+      const pages = Math.ceil(services.length / 9);
+
+      const service = await Service.find()
+        .limit(limit * 1)
+        .skip((page - 1) * limit);
+
+      res
+        .status(200)
+        .json({ service, pages, success: "Услуги успешно загружены" });
     } catch (e) {
       res.json("Ошибка");
     }

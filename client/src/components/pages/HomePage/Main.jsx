@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { fetchService, setFilterText } from "../../../redux/features/service";
 import ServiceCard from "./ServiceCard";
@@ -21,6 +21,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { Pagination, PaginationItem } from "@mui/material";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "100% 700px",
       height: "612px",
       marginBottom: "30px",
-      padding: "0px 75px",
     },
     multilineColor: {
       color: "white",
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) =>
       color: "white",
       border: "1px solid white",
       "&:hover": {
-        border: "1px solid #FA4A0C",
+        border: "1px solid #ffb800",
       },
       textAlign: "center",
       borderRadius: "10px",
@@ -76,6 +76,16 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "10px",
       color: "white",
     },
+    pages: {
+      display: "flex",
+      justifyContent: "center",
+      marginBottom: "30px",
+    },
+    page: {
+      "&:hover": {
+        color: "#ffb800",
+      },
+    },
   })
 );
 
@@ -83,6 +93,11 @@ function Main() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const filter = useSelector((state) => state.service.filter);
+  const { pages } = useSelector((state) => state.service);
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const page = query.get("page") ? Number(query.get("page")) : 1;
 
   const service = useSelector((state) => {
     const { service } = state;
@@ -127,6 +142,21 @@ function Main() {
         </Grid>
       </Grid>
       <ServiceCard />
+      <Grid className={classes.pages}>
+        <Pagination
+          page={page}
+          count={pages}
+          shape="rounded"
+          renderItem={(item) => (
+            <PaginationItem
+              component={NavLink}
+              className={classes.page}
+              to={`${item.page === 1 ? "" : `?page=${item.page}`}`}
+              {...item}
+            />
+          )}
+        />
+      </Grid>
     </>
   );
 }
