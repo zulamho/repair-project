@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchService } from "../../../redux/features/service";
 import Main from "./Main";
 import Header from "./Header";
-<<<<<<< HEAD
 import Footer from "./Footer";
-=======
 import { loadUserById } from "../../../redux/features/users";
->>>>>>> main
 
 function Home() {
   const dispatch = useDispatch();

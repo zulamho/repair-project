@@ -72,6 +72,12 @@ function ProductUserById() {
                 </Grid>
 
                 <Grid>
+                  {" "}
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {item.application}
+                  </Typography>
+                </Grid>
+                <Grid>
                   <Link to={`/edit/${item._id}`}>Изменить</Link>
                   <Button
                     variant="contained"
