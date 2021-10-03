@@ -10,52 +10,7 @@ import { useParams } from "react-router-dom";
 import { editService } from "../../../redux/features/service";
 import ProductUserById from "../ProductPage/ProductUserById";
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    "label + &": {
-      marginTop: theme.spacing(3),
-    },
-  },
-  input: {
-    borderRadius: 4,
-    position: "relative",
-    backgroundColor: theme.palette.background.paper,
-    border: "1px solid #ced4da",
-    fontSize: 16,
-    padding: "10px 26px 10px 12px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
-    "&:focus": {
-      borderRadius: 4,
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)",
-    },
-  },
-}))(InputBase);
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    card: {
-      backgroundColor: "gainsboro",
-      padding: "0",
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-  })
-);
+const useStyles = makeStyles((theme) => createStyles({}));
 
 function EditService() {
   const { id } = useParams();
@@ -68,7 +23,7 @@ function EditService() {
     setName(e.target.value);
   };
   const handleAddDescription = (e) => {
-    setName(e.target.value);
+    setDescription(e.target.value);
   };
 
   const handleAddImage = async (e) => {
@@ -97,14 +52,10 @@ function EditService() {
         label="Описание услуги"
         multiline
         rows={3}
-        value={name}
+        value={description}
         onChange={handleAddDescription}
         variant="outlined"
       />
-
-      <Button onClick={handleEditService} variant="contained" color="primary">
-        Добавить
-      </Button>
       <div>
         <Button onChange={handleAddImage} variant="contained">
           <input
@@ -116,6 +67,9 @@ function EditService() {
           />
         </Button>
       </div>
+      <Button onClick={handleEditService} variant="contained" color="primary">
+        Добавить
+      </Button>
     </Container>
   );
 }

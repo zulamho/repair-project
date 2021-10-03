@@ -56,7 +56,7 @@ function Services() {
     await dispatch(addImage(e));
   };
   const handleAddProduct = () => {
-    dispatch(addProduct(name, price, description));
+    dispatch(addProduct(name, price, address, description, square));
   };
 
   return (

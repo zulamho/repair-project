@@ -2,19 +2,16 @@ const mongoose = require("mongoose");
 
 const serviceSchema = mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
+    name: String,
     price: Number,
     square: Number,
-    pathImages: [String],
+    pathImages: String,
     description: String,
+    address: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    address: String,
     application: [
       mongoose.Schema({
         userId: {

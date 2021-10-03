@@ -105,8 +105,8 @@ export const addProduct = (
   price,
   square,
   address,
-  image,
-  description
+  description,
+  image
 ) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/post/pending" });

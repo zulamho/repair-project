@@ -1,26 +1,35 @@
-const Service = require("../models/service.model");
+const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 
 module.exports.serviceController = {
   addService: async (req, res) => {
-    const { name, price, image, description, square, address } = req.body;
     try {
+      const { name, price, description, square, address, image } = req.body;
       const service = await Service.create({
         user: req.user.id,
-        pathImages: image,
         name,
         price,
         address,
         description,
         square,
+        pathImages: image,
       });
       res.json(service);
     } catch (e) {
-      res.status(401).json("Ошибка при добавлении");
+      res.status(401).json(e);
     }
   },
+
+  // getServices: async (req, res) => {
+  //   try {
+  //     const service = await Service.find();
+  //     res.json(service);
+  //   } catch (e) {
+  //     res.json("Ошибка");
+  //   }
+  // },
 
   getServices: async (req, res) => {
     try {
@@ -137,19 +146,10 @@ module.exports.serviceController = {
           { new: true }
         );
       }
-      res.status(200).json();
+      res.status(200).json("успешно");
     } catch (e) {
       console.log(e);
-      res.status(401).json("Ошибка при отправки заявки");
+      res.status(401).json("Ошибка при отправки заявк");
     }
   },
-
-  // getUserServiceOne: async (req, res) => {
-  //   try {
-  //     const service = await Service.findById(req.params.id);
-  //     res.json(service);
-  //   } catch (e) {
-  //     res.json("Ошибка");
-  //   }
-  // },
 };
