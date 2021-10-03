@@ -28,7 +28,7 @@ module.exports.serviceController = {
       const services = await Service.find();
       const pages = Math.ceil(services.length / 9);
 
-      const service = await Service.find()
+      const service = await Service.find().populate("application.userId")
         .limit(limit * 1)
         .skip((page - 1) * limit);
 
@@ -54,6 +54,23 @@ module.exports.serviceController = {
       const service = await Service.findByIdAndUpdate(req.params.id, req.body);
       res.json("Успешно изменено");
     } catch (e) {
+      res.json("error");
+    }
+  },
+
+  toggleTicket: async (req, res) => {
+    try {
+      const service = await Service.findOneAndUpdate({
+        _id: req.params.ticketId,
+        "application.$.userId": req.params.id
+      }, {
+        $set: {
+          "application.$.accepted": req.params.type === "approve"
+        }
+      }, { new: true }).populate("application.userId");
+      res.send([service])
+    } catch (e) {
+      console.log(e)
       res.json("error");
     }
   },
@@ -138,6 +155,24 @@ module.exports.serviceController = {
         );
       }
       res.status(200).json();
+    } catch (e) {
+      console.log(e);
+      res.status(401).json("Ошибка при отправки заявки");
+    }
+  },
+
+  getApplicationUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await User.findById(req.user.id);
+
+      const service = await Service.findById(req.params.id);
+
+      const exists = service.application.find(
+        (app) => app.userId.toString() === req.user.id
+      );
+
+      res.status(200).send(exists)
     } catch (e) {
       console.log(e);
       res.status(401).json("Ошибка при отправки заявки");

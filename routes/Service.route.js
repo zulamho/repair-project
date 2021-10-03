@@ -11,6 +11,16 @@ router.post(
   authMiddleware,
   serviceController.addApplicationUser
 );
+router.post(
+  "/service/toggle-ticket/:id/:ticketId/:type",
+  authMiddleware,
+  serviceController.toggleTicket
+);
+router.get(
+  "/service/getuser/:id",
+  authMiddleware,
+  serviceController.getApplicationUser
+);
 router.patch("/service/:id", serviceController.editService);
 router.delete("/service/:id", authMiddleware, serviceController.deleteService);
 router.get("/service/:id", serviceController.getServiceOne);
