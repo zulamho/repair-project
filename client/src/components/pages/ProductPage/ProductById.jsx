@@ -111,83 +111,88 @@ function ProductUserById() {
   };
 
   return (
-    <Card spacing={5} className={classes.root} className={classes.content}>
-      {service.map((item) => {
-        if (item._id === id) {
-          return (
-            <Grid className={classes.main}>
-              <Grid className={classes.product}>
-                <Card className={classes.card}>
-                  <Box className={classes.name}>{item.name}</Box>
-                  <CardMedia
-                    className={classes.img}
-                    image={`http://localhost:4000/${item.pathImages}`}
-                  />
-                  <Grid className={classes.infoblock}>
-                    <Box className={classes.infocard}>
-                      <CardMedia
-                        className={classes.imgcard}
-                        image={
-                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
-                        }
-                      />
-                      <p className={classes.text}>{item.name}</p>
-                    </Box>
-                    <Box className={classes.infocard}>
-                      <CardMedia
-                        className={classes.imgcard}
-                        image={
-                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                        }
-                      />
-                      <p className={classes.text}>Стоимость {item.price}</p>
-                    </Box>
-                    <Box className={classes.infocard}>
-                      <CardMedia
-                        className={classes.imgcard}
-                        image={
-                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
-                        }
-                      />
-                      <p className={classes.text}> {item.address}</p>
-                    </Box>
-                    <Box className={classes.infocard}>
-                      <CardMedia
-                        className={classes.imgcard}
-                        image={
-                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                        }
-                      />
-                      <p className={classes.text}>Площадь {item.square} м²</p>
-                    </Box>
-                  </Grid>
-                  <Box className={classes.infocard}>
+    <>
+      <Card spacing={5} className={classes.root} className={classes.content}>
+        {service.map((item) => {
+          if (item._id === id) {
+            console.log(item.application.id);
+
+            return (
+              <Grid className={classes.main}>
+                <Grid className={classes.product}>
+                  <Card className={classes.card}>
+                    <Box className={classes.name}>{item.name}</Box>
                     <CardMedia
-                      className={classes.imgcard}
-                      image={
-                        "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                      }
+                      className={classes.img}
+                      image={`http://localhost:4000/${item.pathImages}`}
                     />
-                    <p className={classes.text}>
-                      {" "}
-                      Описание:{item.description}{" "}
-                    </p>
-                  </Box>
-                  <Box className={classes.link}>
-                    <NavLink
-                      className={classes.links}
-                      to={`/service/${item._id}`}
-                    >
-                      Отклик
-                    </NavLink>
-                  </Box>
-                </Card>
+                    <Grid className={classes.infoblock}>
+                      <Box className={classes.infocard}>
+                        <CardMedia
+                          className={classes.imgcard}
+                          image={
+                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
+                          }
+                        />
+                        <p className={classes.text}>{item.name}</p>
+                      </Box>
+                      <Box className={classes.infocard}>
+                        <CardMedia
+                          className={classes.imgcard}
+                          image={
+                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
+                          }
+                        />
+                        <p className={classes.text}>Стоимость {item.price}</p>
+                      </Box>
+                      <Box className={classes.infocard}>
+                        <CardMedia
+                          className={classes.imgcard}
+                          image={
+                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
+                          }
+                        />
+                        <p className={classes.text}> {item.address}</p>
+                      </Box>
+                      <Box className={classes.infocard}>
+                        <CardMedia
+                          className={classes.imgcard}
+                          image={
+                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
+                          }
+                        />
+                        <p className={classes.text}>Площадь {item.square} м²</p>
+                      </Box>
+                    </Grid>
+                    <Box className={classes.infocard}>
+                      <CardMedia
+                        className={classes.imgcard}
+                        image={
+                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
+                        }
+                      />
+                      <p className={classes.text}>
+                        {" "}
+                        Описание:{item.description}{" "}
+                      </p>
+                    </Box>
+                    <Box className={classes.link}>
+                      <NavLink
+                        className={classes.links}
+                        to={`/service/${item._id}`}
+                      >
+                        Отклик
+                      </NavLink>
+                      <Application />
+                    </Box>
+                  </Card>
+                </Grid>
               </Grid>
-            </Grid>
-          );
-        }
-      })}
-    </Card>
+            );
+          }
+        })}
+      </Card>
+    </>
   );
 }
 
