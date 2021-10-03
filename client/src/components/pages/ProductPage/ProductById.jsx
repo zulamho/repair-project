@@ -110,6 +110,7 @@ function ProductUserById() {
     dispatch(removeService(id));
   };
 
+  const button = () => {};
   return (
     <>
       <Card spacing={5} className={classes.root} className={classes.content}>
@@ -143,7 +144,7 @@ function ProductUserById() {
                             "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                           }
                         />
-                        <p className={classes.text}>Стоимость {item.price}</p>
+                        <p className={classes.text}>Стоимость:{item.price}</p>
                       </Box>
                       <Box className={classes.infocard}>
                         <CardMedia
@@ -152,7 +153,7 @@ function ProductUserById() {
                             "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
                           }
                         />
-                        <p className={classes.text}> {item.address}</p>
+                        <p className={classes.text}>Адрес:{item.address}</p>
                       </Box>
                       <Box className={classes.infocard}>
                         <CardMedia
@@ -161,7 +162,7 @@ function ProductUserById() {
                             "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                           }
                         />
-                        <p className={classes.text}>Площадь {item.square} м²</p>
+                        <p className={classes.text}>Площадь:{item.square} м²</p>
                       </Box>
                     </Grid>
                     <Box className={classes.infocard}>
@@ -172,8 +173,7 @@ function ProductUserById() {
                         }
                       />
                       <p className={classes.text}>
-                        {" "}
-                        Описание:{item.description}{" "}
+                        Описание:{item.description}
                       </p>
                     </Box>
                     <Box className={classes.link}>
@@ -185,6 +185,7 @@ function ProductUserById() {
                       </NavLink>
                       <Application />
                     </Box>
+                    ;
                   </Card>
                 </Grid>
               </Grid>
