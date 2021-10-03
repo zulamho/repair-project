@@ -4,7 +4,6 @@ import { fetchService } from "../../../redux/features/service";
 import Main from "./Main";
 import Header from "./Header";
 import Footer from "./Footer";
-
 import { loadUserById } from "../../../redux/features/users";
 
 function Home() {

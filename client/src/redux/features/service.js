@@ -103,8 +103,8 @@ export const fetchService = (page = 1) => {
 export const addProduct = (
   name,
   price,
-  square,
   address,
+  square,
   description,
   image
 ) => {
@@ -237,6 +237,5 @@ export const editService = (
     }).then(() => {
       dispatch({ type: "service/edit", payload: id });
     });
-    window.location.reload();
   };
 };

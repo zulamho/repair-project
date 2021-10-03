@@ -5,31 +5,22 @@ const jwt = require("jsonwebtoken");
 
 module.exports.serviceController = {
   addService: async (req, res) => {
+    const { name, price, address, square, description, image } = req.body;
     try {
-      const { name, price, description, square, address, image } = req.body;
       const service = await Service.create({
         user: req.user.id,
         name,
         price,
         address,
-        description,
         square,
+        description,
         pathImages: image,
       });
       res.json(service);
     } catch (e) {
-      res.status(401).json(e);
+      res.status(401).json("Ошибка при добавлении");
     }
   },
-
-  // getServices: async (req, res) => {
-  //   try {
-  //     const service = await Service.find();
-  //     res.json(service);
-  //   } catch (e) {
-  //     res.json("Ошибка");
-  //   }
-  // },
 
   getServices: async (req, res) => {
     try {
@@ -146,10 +137,19 @@ module.exports.serviceController = {
           { new: true }
         );
       }
-      res.status(200).json("успешно");
+      res.status(200).json();
     } catch (e) {
       console.log(e);
-      res.status(401).json("Ошибка при отправки заявк");
+      res.status(401).json("Ошибка при отправки заявки");
     }
   },
+
+  // getUserServiceOne: async (req, res) => {
+  //   try {
+  //     const service = await Service.findById(req.params.id);
+  //     res.json(service);
+  //   } catch (e) {
+  //     res.json("Ошибка");
+  //   }
+  // },
 };
