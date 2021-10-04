@@ -29,6 +29,7 @@ function Application() {
   const handleAddApplications = () => {
     dispatch(addApplication(id));
     setClick("Заявка отправлена");
+    setDisabBtn();
   };
 
   return (
@@ -36,7 +37,15 @@ function Application() {
       variant="contained"
       color="primary"
       onClick={handleAddApplications}
-      disabled={click === true ? "true" : "false"}
+      disabled={
+        click === null
+          ? ""
+          : click === false
+          ? "true"
+          : click === true
+          ? "true"
+          : ""
+      }
     >
       {click === null
         ? "Отклик"
