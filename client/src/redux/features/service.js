@@ -4,6 +4,7 @@ const initialState = {
   error: null,
   filter: "",
   userservice: [],
+  accepted: null,
 };
 
 export default function service(state = initialState, action) {
@@ -29,15 +30,25 @@ export default function service(state = initialState, action) {
       };
 
     case "service/post/pending":
+    case "service/get/pending":
+    case "service/toggle-ticket/pending":
       return {
         ...state,
         loading: true,
       };
     case "service/post/fulfilled":
+    case "service/toggle-ticket/fulfilled":
       return {
         ...state,
         loading: false,
         service: action.payload,
+      };
+
+    case "service/get/fulfilled":
+      return {
+        ...state,
+        loading: false,
+        accepted: action.payload.accepted,
       };
 
     case "service/image/pending":
@@ -122,10 +133,10 @@ export const addProduct = (
       body: JSON.stringify({
         name,
         price,
-        image: state.service.image,
         address,
         square,
         description,
+        image: state.service.image,
       }),
     });
 
@@ -203,6 +214,56 @@ export const addApplication = (id) => {
 
     dispatch({
       type: "service/post/fulfilled",
+      payload: json,
+    });
+  };
+};
+
+export const getApplication = (id) => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "service/get/pending" });
+
+    const state = getState();
+
+    const response = await fetch(
+      `http://localhost:4000/service/getuser/${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${state.application.token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
+    const json = await response.json();
+
+    dispatch({
+      type: "service/get/fulfilled",
+      payload: json,
+    });
+  };
+};
+
+export const toggleTicket = (id, ticketId, type) => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "service/toggle-ticket/pending" });
+
+    const state = getState();
+
+    const response = await fetch(
+      `http://localhost:4000/service/toggle-ticket/${id}/${ticketId}/${type}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${state.application.token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
+    const json = await response.json();
+
+    dispatch({
+      type: "service/toggle-ticket/fulfilled",
       payload: json,
     });
   };

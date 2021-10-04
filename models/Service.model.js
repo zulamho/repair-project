@@ -4,10 +4,10 @@ const serviceSchema = mongoose.Schema(
   {
     name: String,
     price: Number,
-    square: Number,
-    pathImages: String,
-    description: String,
     address: String,
+    square: Number,
+    description: String,
+    pathImages: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

@@ -23,6 +23,18 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { Pagination, PaginationItem } from "@mui/material";
 
+function parseQuery(queryString) {
+  var query = {};
+  var pairs = (
+    queryString[0] === "?" ? queryString.substr(1) : queryString
+  ).split("&");
+  for (var i = 0; i < pairs.length; i++) {
+    var pair = pairs[i].split("=");
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
+  }
+  return query;
+}
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     mainer: {
@@ -96,8 +108,8 @@ function Main() {
   const { pages } = useSelector((state) => state.service);
 
   const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = query.get("page") ? Number(query.get("page")) : 1;
+  const query = parseQuery(window.location.search);
+  const page = query.page ? Number(query.page) : 1;
 
   const service = useSelector((state) => {
     const { service } = state;
@@ -149,9 +161,9 @@ function Main() {
           shape="rounded"
           renderItem={(item) => (
             <PaginationItem
-              component={NavLink}
+              component="a"
               className={classes.page}
-              to={`${item.page === 1 ? "" : `?page=${item.page}`}`}
+              href={`/?page=${item.page}`}
               {...item}
             />
           )}

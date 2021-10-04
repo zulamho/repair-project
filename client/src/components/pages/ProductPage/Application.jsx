@@ -1,18 +1,29 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { addApplication } from "../../../redux/features/service";
+import {
+  addApplication,
+  getApplication,
+} from "../../../redux/features/service";
 
 function Application() {
   const dispatch = useDispatch();
-  const application = useSelector((state) => state.service.service);
+  const application = useSelector((state) => state.service);
 
   const { id } = useParams();
 
-  const [click, setClick] = useState(" Отклик");
+  const [click, setClick] = useState(application.accepted);
 
   const token = useSelector((state) => state.application.token);
+
+  useEffect(() => {
+    dispatch(getApplication(id));
+  }, []);
+
+  useEffect(() => {
+    setClick(application.accepted);
+  }, [application.accepted]);
 
   const handleAddApplications = () => {
     dispatch(addApplication(id));
@@ -22,7 +33,11 @@ function Application() {
 
   return (
     <Button variant="contained" color="primary" onClick={handleAddApplications}>
-      {click}
+      {click === null
+        ? "Отклик"
+        : click === false
+        ? "Заявка отправлена"
+        : "Заявка принята"}
     </Button>
   );
 }

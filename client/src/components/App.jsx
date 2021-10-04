@@ -23,7 +23,7 @@ function App() {
         <Route path="/service" exact>
           <Services />
         </Route>
-        <Route path="/profilePage">
+        <Route path="/profilePage" exact>
           <Profile />
         </Route>
         <Route path="/" exact>
