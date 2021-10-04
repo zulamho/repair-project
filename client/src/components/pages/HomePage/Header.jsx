@@ -226,7 +226,6 @@ function Header() {
                     onClick={toggleDrawer(anchor, true)}
                   />
                 </ListItemIcon>
-
                 <Drawer
                   anchor={anchor}
                   open={state[anchor]}

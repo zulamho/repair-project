@@ -57,20 +57,19 @@ function ProfilePage() {
     <>
       <Container>
         <Box className={classes.profile}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ width: 415, height: 410, marginTop: "5px" }}
-          >
-            <Avatar
-              sx={{ width: 415, height: 410, border: 2 }}
-              src={`http://localhost:4000/${user.pathImages}`}
-            />
-          </Stack>
-          <Card
-            sx={{ maxWidth: 1000, maxHight: 1000 }}
-            className={classes.profileCard}
-          >
+          <CardMedia
+            sx={{
+              width: 315,
+              height: 310,
+              border: 1,
+              borderColor: "gainsboro",
+              borderRadius: 5,
+              marginLeft: 5,
+              marginTop: 3,
+            }}
+            image={`http://localhost:4000/${user.pathImages}`}
+          />
+          <Card className={classes.profileCard}>
             <Typography gutterBottom variant="h5" component="div">
               Имя: {user.name} {user.lastname}
             </Typography>
