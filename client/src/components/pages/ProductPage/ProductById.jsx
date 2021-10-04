@@ -8,12 +8,17 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Link, NavLink } from "react-router-dom";
 import Application from "./Application";
 import { Box } from "@mui/system";
+import WysiwygIcon from "@mui/icons-material/Wysiwyg";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     img: {
-      width: "100%",
+      width: "800px",
+      margin: "auto",
       height: "500px",
+      boxShadow: "0 0 20px 4px black",
     },
     imgcard: {
       width: "25px",
@@ -21,10 +26,12 @@ const useStyles = makeStyles((theme) =>
       marginRight: "30px",
     },
     product: {
-      width: "370px",
+      width: "1100px",
       height: "560px",
       marginBottom: "30px",
-      boxShadow: "0 0 20px rgb(0 0 0 / 15%)",
+      marginTop: "30px",
+
+      marginLeft: "125px",
     },
     content: {
       display: "flex",
@@ -35,10 +42,7 @@ const useStyles = makeStyles((theme) =>
       overflow: "inherit",
       borderRadius: "0px",
     },
-    main: {
-      marginBottom: "20px",
-      maxWidth: "calc(33.333% - 20px)",
-    },
+
     root: {
       display: "flex",
       justifyContent: "space-around",
@@ -89,6 +93,7 @@ const useStyles = makeStyles((theme) =>
     card: {
       borderRadius: "inherit",
       width: "1100px",
+      boxShadow: "0 0 20px 4px #ffb800",
     },
   })
 );
@@ -110,6 +115,7 @@ function ProductUserById() {
     dispatch(removeService(id));
   };
 
+  const button = () => {};
   return (
     <>
       <Card spacing={5} className={classes.root} className={classes.content}>
@@ -118,52 +124,30 @@ function ProductUserById() {
             console.log(item.application.id);
 
             return (
-              <Grid className={classes.main}>
-                <Grid className={classes.product}>
-                  <Card className={classes.card}>
-                    <Box className={classes.name}>{item.name}</Box>
-                    <CardMedia
-                      className={classes.img}
-                      image={`http://localhost:4000/${item.pathImages}`}
-                    />
-                    <Grid className={classes.infoblock}>
-                      <Box className={classes.infocard}>
-                        <CardMedia
-                          className={classes.imgcard}
-                          image={
-                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
-                          }
-                        />
-                        <p className={classes.text}>{item.name}</p>
-                      </Box>
-                      <Box className={classes.infocard}>
-                        <CardMedia
-                          className={classes.imgcard}
-                          image={
-                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                          }
-                        />
-                        <p className={classes.text}>Стоимость {item.price}</p>
-                      </Box>
-                      <Box className={classes.infocard}>
-                        <CardMedia
-                          className={classes.imgcard}
-                          image={
-                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
-                          }
-                        />
-                        <p className={classes.text}> {item.address}</p>
-                      </Box>
-                      <Box className={classes.infocard}>
-                        <CardMedia
-                          className={classes.imgcard}
-                          image={
-                            "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                          }
-                        />
-                        <p className={classes.text}>Площадь {item.square} м²</p>
-                      </Box>
-                    </Grid>
+              <Grid className={classes.product}>
+                <Card className={classes.card}>
+                  <Box className={classes.name}>{item.name}</Box>
+                  <Button>
+                    <ArrowBackIosNewIcon />
+                  </Button>
+                  <CardMedia
+                    className={classes.img}
+                    image={`http://localhost:4000/${item.pathImages}`}
+                  />
+
+                  <Button>
+                    <ArrowForwardIosIcon />
+                  </Button>
+                  <Grid className={classes.infoblock}>
+                    <Box className={classes.infocard}>
+                      <CardMedia
+                        className={classes.imgcard}
+                        image={
+                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
+                        }
+                      />
+                      <p className={classes.text}>{item.name}</p>
+                    </Box>
                     <Box className={classes.infocard}>
                       <CardMedia
                         className={classes.imgcard}
@@ -171,22 +155,35 @@ function ProductUserById() {
                           "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                         }
                       />
-                      <p className={classes.text}>
-                        {" "}
-                        Описание:{item.description}{" "}
-                      </p>
+                      <p className={classes.text}>Стоимость:{item.price}</p>
                     </Box>
-                    <Box className={classes.link}>
-                      <NavLink
-                        className={classes.links}
-                        to={`/service/${item._id}`}
-                      >
-                        Отклик
-                      </NavLink>
-                      <Application />
+                    <Box className={classes.infocard}>
+                      <CardMedia
+                        className={classes.imgcard}
+                        image={
+                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
+                        }
+                      />
+                      <p className={classes.text}>Адрес:{item.address}</p>
                     </Box>
-                  </Card>
-                </Grid>
+                    <Box className={classes.infocard}>
+                      <CardMedia
+                        className={classes.imgcard}
+                        image={
+                          "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
+                        }
+                      />
+                      <p className={classes.text}>Площадь:{item.square} м²</p>
+                    </Box>
+                  </Grid>
+                  <Box className={classes.infocard}>
+                    <WysiwygIcon className={classes.imgcard} />
+                    <p className={classes.text}>Описание:{item.description}</p>
+                  </Box>
+                  <Box className={classes.link}>
+                    <Application />
+                  </Box>
+                </Card>
               </Grid>
             );
           }

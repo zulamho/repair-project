@@ -66,7 +66,7 @@ function UserService() {
 
   return (
     <Grid className={classes.content}>
-      <Typography variant="h2">Мои объявления</Typography>
+      <Typography variant="h3">Мои объявления</Typography>
 
       <Grid className={classes.content}>
         {service?.map((item) => {
