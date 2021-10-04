@@ -7,7 +7,6 @@
     "client": "cd ./client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -24,9 +23,12 @@
   },
   "devDependencies": {
     "concurrently": "^6.2.1",
-    "kill-port": "^1.6.1",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
     "nodemon": "^2.0.12",
-    "prettier": "^2.4.0"
+    "prettier": "^2.4.1"
   },
   "description": ""
 }

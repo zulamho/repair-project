@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) =>
     },
     text: {
       fontFamily: "Montserrat,sans-serif",
-      fontSize: "16px",
+      fontSize: "25px",
       fontWeight: "400",
     },
     card: {
@@ -113,7 +113,9 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
                       }
                     />
-                    <p className={classes.text}>{item.name}</p>
+                    <Typography classes={{ root: classes.text }}>
+                      {item.name}
+                    </Typography>
                   </Box>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -122,7 +124,9 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                       }
                     />
-                    <p className={classes.text}>Стоимость {item.price}</p>
+                    <Typography classes={{ root: classes.text }}>
+                      Стоимость {item.price} руб.
+                    </Typography>
                   </Box>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -131,7 +135,10 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
                       }
                     />
-                    <p className={classes.text}> {item.address}</p>
+                    <Typography classes={{ root: classes.text }}>
+                      {" "}
+                      {item.address}
+                    </Typography>
                   </Box>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -140,7 +147,9 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                       }
                     />
-                    <p className={classes.text}>Площадь {item.square} м²</p>
+                    <Typography classes={{ root: classes.text }}>
+                      Площадь {item.square} м²
+                    </Typography>
                   </Box>
                 </Grid>
                 <Box className={classes.link}>

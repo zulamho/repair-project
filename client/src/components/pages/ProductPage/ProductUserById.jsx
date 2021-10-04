@@ -12,12 +12,16 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Link, NavLink } from "react-router-dom";
 import Application from "./Application";
 import { Box } from "@mui/system";
+import Header from "../HomePage/Header";
+import Footer from "../HomePage/Footer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     img: {
-      width: "100%",
-      height: "250px",
+      width: "800px",
+      margin: "auto",
+      height: "500px",
+      boxShadow: "0 0 20px 4px black",
     },
     imgcard: {
       width: "25px",
@@ -25,24 +29,22 @@ const useStyles = makeStyles((theme) =>
       marginRight: "30px",
     },
     product: {
-      width: "370px",
+      width: "1100px",
       height: "560px",
+      margin: "auto",
       marginBottom: "30px",
-      boxShadow: "0 0 20px rgb(0 0 0 / 15%)",
+      marginTop: "30px",
     },
     content: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-between",
+      justifyContent: "space-evenly",
       padding: "0px 90px",
       boxShadow: "none",
       overflow: "inherit",
       borderRadius: "0px",
     },
-    main: {
-      marginBottom: "20px",
-      maxWidth: "calc(33.333% - 20px)",
-    },
+
     root: {
       display: "flex",
       justifyContent: "space-around",
@@ -79,9 +81,11 @@ const useStyles = makeStyles((theme) =>
       paddingBottom: "15px",
       display: "flex",
       alignItems: "center",
+      margin: "0px 20px 0px 30px",
     },
     infoblock: {
       padding: "28px 33px 25px 45px",
+      display: "flex",
     },
     text: {
       fontFamily: "Montserrat,sans-serif",
@@ -90,6 +94,56 @@ const useStyles = makeStyles((theme) =>
     },
     card: {
       borderRadius: "inherit",
+      width: "1100px",
+      height: "690px",
+      boxShadow: "0 0 20px 4px #ffb800",
+    },
+    user: {
+      width: "500px",
+      margin: "auto",
+      marginTop: "50px",
+      marginBottom: "20px",
+      display: "flex",
+    },
+    imgs: {
+      width: "100px",
+      height: "100px",
+    },
+    btns: {
+      height: "30px",
+      marginLeft: "60px",
+      marginTop: "35px",
+    },
+    inf: {
+      marginLeft: "20px",
+    },
+    edit: {
+      width: "300px",
+      margin: "auto",
+      marginTop: "70px",
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
+    but: {
+      width: "100px",
+      height: "40px",
+      background: "#ffb800",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    buts: {
+      textDecoration: "none",
+      fontWeight: "700",
+      fontSize: "16px",
+      fontFamily: "Montserrat,sans-serif",
+      color: "black",
+      "&:hover": {
+        color: "white",
+      },
+      footer: {
+        marginTop: "50px",
+      },
     },
   })
 );
@@ -115,6 +169,7 @@ function ProductUserById() {
 
   return (
     <>
+      <Header />
       <Card spacing={5} className={classes.root} className={classes.content}>
         {service.map((item) => {
           if (item._id === id) {
@@ -144,7 +199,7 @@ function ProductUserById() {
                             "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                           }
                         />
-                        <p className={classes.text}>Стоимость {item.price}</p>
+                        <p className={classes.text}>Стоимость: {item.price}</p>
                       </Box>
                       <Box className={classes.infocard}>
                         <CardMedia
@@ -153,7 +208,7 @@ function ProductUserById() {
                             "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
                           }
                         />
-                        <p className={classes.text}> {item.address}</p>
+                        <p className={classes.text}>{item.address}</p>
                       </Box>
                       <Box className={classes.infocard}>
                         <CardMedia
@@ -162,24 +217,23 @@ function ProductUserById() {
                             "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                           }
                         />
-                        <p className={classes.text}>Площадь {item.square} м²</p>
+                        <p className={classes.text}>
+                          Площадь: {item.square} м²
+                        </p>
                       </Box>
                     </Grid>
-                    <Box className={classes.link}>
-                      <NavLink
-                        className={classes.links}
-                        to={`/service/${item._id}`}
-                      >
-                        Подробнее
-                      </NavLink>
-                    </Box>
                   </Card>
                 </Grid>
-                <Grid>
-                  <Link to={`/edit/${item._id}`}>Изменить</Link>
+                <Grid className={classes.edit}>
+                  <Box className={classes.but}>
+                    <Link className={classes.buts} to={`/edit/${item._id}`}>
+                      Изменить
+                    </Link>
+                  </Box>
                   <Button
                     variant="contained"
                     color="primary"
+                    className={classes.but}
                     onClick={() => {
                       handleDelete(item._id);
                     }}
@@ -196,27 +250,42 @@ function ProductUserById() {
         {oneService &&
           oneService.application.map((item) => (
             <Box>
-              <Typography>
-                {item.userId.lastName} {item.userId.name}
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  dispatch(
-                    toggleTicket(
-                      item.userId._id,
-                      id,
-                      item.accepted ? "remove" : "approve"
-                    )
-                  );
-                }}
-              >
-                {item.accepted ? "Убрать заявку" : "Принять заявку"}
-              </Button>
+              <Card className={classes.user}>
+                <CardMedia
+                  className={classes.imgs}
+                  image={`http://localhost:4000/${item.userId.pathImages}`}
+                />
+                <Grid className={classes.inf}>
+                  <Typography>{item.userId.lastName}</Typography>
+                  <Typography>{item.userId.name}</Typography>
+                  <Typography>{item.userId.telephone}</Typography>
+                  <Typography>{item.userId.email}</Typography>
+                </Grid>
+                <Grid className={classes.btns}>
+                  <Button
+                    className={classes.btns}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      dispatch(
+                        toggleTicket(
+                          item.userId._id,
+                          id,
+                          item.accepted ? "remove" : "approve"
+                        )
+                      );
+                    }}
+                  >
+                    {item.accepted ? "Убрать заявку" : "Принять заявку"}
+                  </Button>
+                </Grid>
+              </Card>
             </Box>
           ))}
       </Card>
+      <Grid className={classes.footer}>
+        <Footer />
+      </Grid>
     </>
   );
 }

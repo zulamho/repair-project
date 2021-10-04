@@ -27,7 +27,6 @@ router.get("/service/:id", serviceController.getServiceOne);
 router.post("/service/upload", serviceController.addImage);
 router.get("/service/category/:id", serviceController.getServicesCategory);
 router.get("/admin", authMiddleware, serviceController.getUserService);
-
 // router.get("/service/user/:id", serviceController.getUserServiceOne);
 
 module.exports = router;
