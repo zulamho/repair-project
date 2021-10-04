@@ -115,10 +115,11 @@ export const fetchService = (page = 1) => {
 export const addProduct = (
   name,
   price,
-  square,
   address,
+  square,
+  description,
   image,
-  description
+ 
 ) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/post/pending" });
@@ -134,10 +135,10 @@ export const addProduct = (
       body: JSON.stringify({
         name,
         price,
-        image: state.service.image,
         address,
-        square,
+        image: state.service.image,
         description,
+        square,
       }),
     });
 
@@ -173,6 +174,7 @@ export const addImage = (e) => {
 };
 
 export const setFilterText = (text) => {
+  console.log(text)
   return {
     type: "service/filter/fulfilled",
     payload: text,

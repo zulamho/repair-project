@@ -92,7 +92,6 @@ export const loadUserById = () => {
       },
     });
     const json = await res.json();
-    console.log(json);
     dispatch({ type: "usersById/load/fulfilled", payload: json });
   };
 };

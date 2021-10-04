@@ -9,6 +9,7 @@ import {
 
 function Application() {
   const dispatch = useDispatch();
+  const [disabBtn, setDisabBtn] = useState("");
   const application = useSelector((state) => state.service);
 
   const { id } = useParams();
@@ -27,17 +28,32 @@ function Application() {
 
   const handleAddApplications = () => {
     dispatch(addApplication(id));
-
     setClick("Заявка отправлена");
+    setDisabBtn();
   };
 
   return (
-    <Button variant="contained" color="primary" onClick={handleAddApplications}>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleAddApplications}
+      disabled={
+        click === null
+          ? ""
+          : click === false
+          ? "true"
+          : click === true
+          ? "true"
+          : ""
+      }
+    >
       {click === null
         ? "Отклик"
         : click === false
         ? "Заявка отправлена"
-        : "Заявка принята"}
+        : click === true
+        ? "Заявка принята"
+        : "Заявка отправлена"}
     </Button>
   );
 }
