@@ -112,6 +112,7 @@ function Header() {
     >
       <List>
         <Box marginLeft="48px">
+          Repair Services
           <Stack
             direction="row"
             spacing={2}
@@ -121,6 +122,7 @@ function Header() {
               sx={{ width: 60, height: 60, border: 2 }}
               src={`http://localhost:4000/${user.pathImages}`}
             />
+
             <Typography sx={{ height: 72 }}>
               {user.name} {user.lastName}
             </Typography>
@@ -146,7 +148,7 @@ function Header() {
               <ListItemText primary=" Личный аккаунт" />
             </ListItemIcon>
           </NavLink>,
-          <NavLink to="/profilePage" className={classes.link}>
+          <NavLink to="/service" className={classes.link}>
             <ListItemIcon>
               <AddCommentOutlinedIcon />
               <ListItemText primary=" Добавить объявление" />
