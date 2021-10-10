@@ -14,14 +14,15 @@
 - Удаление поста
 - Возможность отклика на пост
 
-Для наглядной информации выложу  процесс работы некоторых функции.
+Для наглядной информации выложу  процесс работы некоторых функций.
 
+Принятие отклика(заявки):
 ![gif](https://github.com/zulamho/mediaProject/blob/main/application.gif)
 
-проф
+Изменение личных данных:
 ![gif](https://github.com/zulamho/mediaProject/blob/main/ProfilePage.gif)
 
-удал
+Удаление поста:
 ![gif](https://github.com/zulamho/mediaProject/blob/main/deletePost.gif)
 
 При разработке проекта использовал:
