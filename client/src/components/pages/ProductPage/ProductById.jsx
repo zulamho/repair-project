@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) =>
       boxShadow: "none",
       overflow: "inherit",
       borderRadius: "0px",
+      height: "900px"
     },
 
     root: {
@@ -94,6 +95,8 @@ const useStyles = makeStyles((theme) =>
       borderRadius: "inherit",
       width: "1100px",
       boxShadow: "0 0 20px 4px #ffb800",
+      height: "810px"
+     
     },
   })
 );
@@ -180,10 +183,11 @@ function ProductUserById() {
                     <WysiwygIcon className={classes.imgcard} />
                     <p className={classes.text}>Описание:{item.description}</p>
                   </Box>
-                  <Box className={classes.link}>
+                
+                </Card>
+                <Box className={classes.link}>
                     <Application />
                   </Box>
-                </Card>
               </Grid>
             );
           }

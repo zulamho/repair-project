@@ -10,7 +10,7 @@ function Profile() {
     <Grid>
       <Header />
       <ProfilePage />
-      <Services />
+      
       <UserService />
       <Footer />
     </Grid>
