@@ -24,6 +24,7 @@ import { useDispatch, useEffect } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -40,8 +41,8 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "50px",
       marginBottom: "25px",
       marginTop: "25px",
-      width: "50px",
-      height: "40px",
+      width: "80px",
+      height: "80px",
     },
     content: {
       display: "flex",
@@ -75,6 +76,12 @@ const useStyles = makeStyles((theme) =>
         display: "flex",
       },
     },
+    logoAuthorization:{
+      fontSize: "2.5rem",
+      color: "black",
+      marginBottom: "17px",
+  }
+    
   })
 );
 
@@ -224,6 +231,7 @@ function Header() {
             {["right"].map((anchor) => (
               <React.Fragment key={anchor}>
                 <ListItemIcon>
+                {/* <AccountCircleIcon className={classes.logoAuthorization}/> */}
                   <AccountCircleOutlinedIcon
                     onClick={toggleDrawer(anchor, true)}
                   />
