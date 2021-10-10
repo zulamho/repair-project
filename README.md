@@ -19,16 +19,15 @@
 Принятие отклика(заявки):
 
 ![gif](https://github.com/zulamho/mediaProject/blob/main/application.gif)
-<hr/>
+<br/>
 
 Изменение личных данных:
 
 ![gif](https://github.com/zulamho/mediaProject/blob/main/ProfilePage.gif)
-<hr/>
+<br/>
 Удаление поста:
-
 ![gif](https://github.com/zulamho/mediaProject/blob/main/deletePost.gif)
-<hr/>
+<br/>
 
 При разработке проекта использовал:
 
