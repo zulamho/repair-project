@@ -112,7 +112,7 @@ function Header() {
     >
       <List>
         <Box marginLeft="48px">
-          Repair Services
+        
           <Stack
             direction="row"
             spacing={2}
