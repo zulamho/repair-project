@@ -17,13 +17,17 @@
 Для наглядной информации выложу  процесс работы некоторых функций.
 
 Принятие отклика(заявки):
+
 ![gif](https://github.com/zulamho/mediaProject/blob/main/application.gif)
+<br/>
 
 Изменение личных данных:
-![gif](https://github.com/zulamho/mediaProject/blob/main/ProfilePage.gif)
 
+![gif](https://github.com/zulamho/mediaProject/blob/main/ProfilePage.gif)
+<br/>
 Удаление поста:
 ![gif](https://github.com/zulamho/mediaProject/blob/main/deletePost.gif)
+<br/>
 
 При разработке проекта использовал:
 
