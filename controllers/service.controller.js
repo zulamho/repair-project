@@ -28,7 +28,8 @@ module.exports.serviceController = {
       const services = await Service.find();
       const pages = Math.ceil(services.length / 9);
 
-      const service = await Service.find().populate("application.userId")
+      const service = await Service.find()
+        .populate("application.userId")
         .limit(limit * 1)
         .skip((page - 1) * limit);
 
@@ -60,17 +61,21 @@ module.exports.serviceController = {
 
   toggleTicket: async (req, res) => {
     try {
-      const service = await Service.findOneAndUpdate({
-        _id: req.params.ticketId,
-        "application.$.userId": req.params.id
-      }, {
-        $set: {
-          "application.$.accepted": req.params.type === "approve"
-        }
-      }, { new: true }).populate("application.userId");
-      res.send([service])
+      const service = await Service.findOneAndUpdate(
+        {
+          _id: req.params.ticketId,
+          "application.$.userId": req.params.id,
+        },
+        {
+          $set: {
+            "application.$.accepted": req.params.type === "approve",
+          },
+        },
+        { new: true }
+      ).populate("application.userId");
+      res.send([service]);
     } catch (e) {
-      console.log(e)
+      console.log(e);
       res.json("error");
     }
   },
@@ -172,7 +177,7 @@ module.exports.serviceController = {
         (app) => app.userId.toString() === req.user.id
       );
 
-      res.status(200).send(exists)
+      res.status(200).send(exists);
     } catch (e) {
       console.log(e);
       res.status(401).json("Ошибка при отправки заявки");

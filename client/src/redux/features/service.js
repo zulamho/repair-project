@@ -32,8 +32,7 @@ export default function service(state = initialState, action) {
     case "service/post/pending":
     case "service/get/pending":
     case "service/toggle-ticket/pending":
-      
-    return {
+      return {
         ...state,
         loading: true,
       };
@@ -247,7 +246,6 @@ export const getApplication = (id) => {
   };
 };
 
-
 export const toggleTicket = (id, ticketId, type) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/toggle-ticket/pending" });
@@ -302,6 +300,5 @@ export const editService = (
     }).then(() => {
       dispatch({ type: "service/edit", payload: id });
     });
-    window.location.reload();
   };
 };
