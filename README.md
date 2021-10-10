@@ -70,12 +70,3 @@ npm run dev
 
   </p>
 
-
-заявк
-![gif](https://github.com/zulamho/mediaProject/blob/main/application.gif)
-
-проф
-![gif](https://github.com/zulamho/mediaProject/blob/main/ProfilePage.gif)
-
-удал
-![gif](https://github.com/zulamho/mediaProject/blob/main/deletePost.gif)
