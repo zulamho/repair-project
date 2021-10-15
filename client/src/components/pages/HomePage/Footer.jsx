@@ -3,10 +3,9 @@ import {
   makeStyles,
   createStyles,
   Typography,
-  CardMedia,
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-import logo from "../../logo.png";
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
