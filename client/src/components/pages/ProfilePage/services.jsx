@@ -4,18 +4,14 @@ import {
   Grid,
   makeStyles,
   TextField,
-  IconButton,
   CardMedia,
   Card,
 } from "@material-ui/core";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addImage, addProduct } from "../../../redux/features/service";
-import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
