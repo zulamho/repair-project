@@ -9,6 +9,10 @@ const app = express();
 
 app.use(fileUpload());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, "client" , "build")))
+app.get("*",  (req , res) =>{
+  res.sendFile(path.resolve(__dirname, "client" , "build" , "index.html"))
+});
 app.use(cors());
 app.use("/image", express.static(path.resolve(__dirname, "image")));
 app.use("/avatar", express.static(path.resolve(__dirname, "avatar")));
@@ -17,7 +21,7 @@ app.use(require("./routes/index"));
 
 console.log("Подключение к базе данных");
 mongoose
-  .connect("mongodb+srv://admin06:admin06@cluster0.zvgtk.mongodb.net/repair", {
+  .connect(process.env.MONGO_SERVER, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
