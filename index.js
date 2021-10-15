@@ -26,7 +26,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(4000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Сервер успешно запущен!");
     });
     console.log("Сервер успешно запущен!");
