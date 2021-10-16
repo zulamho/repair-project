@@ -8,6 +8,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "start": "node index.js"
+    
   },
   "keywords": [],
   "author": "",
