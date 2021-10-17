@@ -200,7 +200,6 @@ export const addApplication = (id) => {
     dispatch({ type: "service/post/pending" });
 
     const state = getState();
-
     const response = await fetch(`/service/adduser/${id}`, {
       method: "POST",
       headers: {
@@ -208,6 +207,7 @@ export const addApplication = (id) => {
         "Content-type": "application/json",
       },
     });
+
     const json = await response.json();
 
     dispatch({
@@ -222,7 +222,6 @@ export const getApplication = (id) => {
     dispatch({ type: "service/get/pending" });
 
     const state = getState();
-
     const response = await fetch(`/service/getuser/${id}`, {
       method: "GET",
       headers: {
@@ -230,6 +229,7 @@ export const getApplication = (id) => {
         "Content-type": "application/json",
       },
     });
+
     const json = await response.json();
 
     dispatch({
