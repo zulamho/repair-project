@@ -1,11 +1,10 @@
-import { Grid, Typography, Card } from "@material-ui/core";
+import { Grid, Card } from "@material-ui/core";
 import { Button, CardMedia } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { fetchService, removeService } from "../../../redux/features/service";
+import { fetchService } from "../../../redux/features/service";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Link, NavLink } from "react-router-dom";
 import Application from "./Application";
 import { Box } from "@mui/system";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
@@ -41,13 +40,9 @@ const useStyles = makeStyles((theme) =>
       boxShadow: "none",
       overflow: "inherit",
       borderRadius: "0px",
+      height: "900px",
     },
 
-    root: {
-      display: "flex",
-      justifyContent: "space-around",
-      flexWrap: "wrap",
-    },
     name: {
       height: "50px",
       display: "flex",
@@ -94,6 +89,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: "inherit",
       width: "1100px",
       boxShadow: "0 0 20px 4px #ffb800",
+      height: "810px",
     },
   })
 );
@@ -111,18 +107,11 @@ function ProductUserById() {
     dispatch(fetchService());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(removeService(id));
-  };
-
-  const button = () => {};
   return (
     <>
-      <Card spacing={5} className={classes.root} className={classes.content}>
+      <Card spacing={5} className={classes.content}>
         {service.map((item) => {
           if (item._id === id) {
-            console.log(item.application.id);
-
             return (
               <Grid className={classes.product}>
                 <Card className={classes.card}>
@@ -180,10 +169,10 @@ function ProductUserById() {
                     <WysiwygIcon className={classes.imgcard} />
                     <p className={classes.text}>Описание:{item.description}</p>
                   </Box>
-                  <Box className={classes.link}>
-                    <Application />
-                  </Box>
                 </Card>
+                <Box className={classes.link}>
+                  <Application />
+                </Box>
               </Grid>
             );
           }

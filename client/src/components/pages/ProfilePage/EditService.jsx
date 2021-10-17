@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Button, Container, Grid, TextField } from "@material-ui/core";
 import { addImage } from "../../../redux/features/service";
-import { withStyles } from "@material-ui/core/styles";
-import InputBase from "@material-ui/core/InputBase";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
 import { editService } from "../../../redux/features/service";
