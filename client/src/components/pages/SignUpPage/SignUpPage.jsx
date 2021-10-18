@@ -13,7 +13,6 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -61,18 +60,14 @@ function SignUpPage() {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [ConfirmPassword, setConfirmPassword] = useState("");
   const [telephone, setTelephone] = useState("");
   const [descriptionService, setDescriptionService] = useState("");
 
   const [telep, setTelep] = useState("");
 
-  console.log(telephone);
-
-  const signingUp = useSelector((state) => state.application.signingUp);
-  const error = useSelector((state) => state.application.error);
+  // const signingUp = useSelector((state) => state.application.signingUp);
+  // const error = useSelector((state) => state.application.error);
   const avatar = useSelector((state) => state.application.avatar);
-  console.log(avatar.image);
 
   // const handleChangeImage = (e) => {
   //   setImage(e.target.value);
@@ -84,9 +79,9 @@ function SignUpPage() {
   const handleChangeLastName = (e) => {
     setLastName(e.target.value);
   };
-  const handleChangeWorkingUser = (e) => {
-    setWorkingUser(e.target.value);
-  };
+  // const handleChangeWorkingUser = (e) => {
+  //   setWorkingUser(e.target.value);
+  // };
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -99,9 +94,6 @@ function SignUpPage() {
     setPassword(e.target.value);
   };
 
-  const handleChangeConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-  };
   const handleChangeTelephone = (value) => {
     setTelephone(value);
   };
@@ -110,9 +102,9 @@ function SignUpPage() {
     setDescriptionService(e.target.value);
   };
 
-  const handleDeleteDescriptionService = (e) => {
-    setDescriptionService(e.target.value);
-  };
+  // const handleDeleteDescriptionService = (e) => {
+  //   setDescriptionService(e.target.value);
+  // };
 
   const handleDeleteDescrip = () => {
     setTelep("");
@@ -147,7 +139,6 @@ function SignUpPage() {
         email,
         login,
         password,
-        ConfirmPassword,
         telephone,
         descriptionService
       )

@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { loadUserService } from "../../../redux/features/users";
-import { removeService } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -55,10 +54,6 @@ function UserService() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const service = useSelector((state) => state.users.userService);
-
-  const handleDelete = (id) => {
-    dispatch(removeService(id));
-  };
 
   useEffect(() => {
     dispatch(loadUserService());

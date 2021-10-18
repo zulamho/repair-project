@@ -1,11 +1,5 @@
-import {
-  Grid,
-  makeStyles,
-  createStyles,
-  Typography,
-} from "@material-ui/core";
+import { Grid, makeStyles, createStyles, Typography } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-
 
 const useStyles = makeStyles((theme) =>
   createStyles({

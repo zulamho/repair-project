@@ -1,6 +1,6 @@
-import { Card, CardMedia, Grid, Typography } from "@mui/material";
+import { CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import logo from "../../logo.png";
@@ -12,15 +12,12 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddCommentOutlinedIcon from "@mui/icons-material/AddCommentOutlined";
-import { useDispatch, useEffect } from "react-redux";
+import { useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -28,12 +25,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    content: {
-      width: "300px",
-      maxWidth: "300px",
-      height: "300px",
-      marginBottom: "20px",
-    },
     header: {
       background: "#ffb800",
     },
@@ -45,6 +36,7 @@ const useStyles = makeStyles((theme) =>
       height: "80px",
     },
     content: {
+      marginBottom: "20px",
       display: "flex",
       height: "90px",
       width: "100%",
@@ -76,17 +68,16 @@ const useStyles = makeStyles((theme) =>
         display: "flex",
       },
     },
-    logoAuthorization:{
+    logoAuthorization: {
       fontSize: "2.5rem",
       color: "black",
       marginBottom: "17px",
-  }
-    
+    },
+
   })
 );
 
 function Header() {
-  const token = useSelector((state) => state.application.token);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.currentUser);
 
@@ -231,7 +222,7 @@ function Header() {
             {["right"].map((anchor) => (
               <React.Fragment key={anchor}>
                 <ListItemIcon>
-                {/* <AccountCircleIcon className={classes.logoAuthorization}/> */}
+                  {/* <AccountCircleIcon className={classes.logoAuthorization}/> */}
                   <AccountCircleOutlinedIcon
                     onClick={toggleDrawer(anchor, true)}
                   />

@@ -96,8 +96,6 @@ export const loadUserById = () => {
   };
 };
 
-
-
 export const addAvatar = (e) => {
   return async (dispatch, getState) => {
     dispatch({ type: "avatar/upload/pending" });

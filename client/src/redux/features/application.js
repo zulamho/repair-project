@@ -212,7 +212,7 @@ export const changeAvatar = (e) => {
     const { files } = e.target;
     const data = new FormData();
     data.append("image", files[0]);
-    const state = getState();
+    // const state = getState();
 
     const response = await fetch("/user/upload", {
       method: "POST",
@@ -231,7 +231,7 @@ export const changeAvatar = (e) => {
 
 export const fetchUsers = () => {
   return async (dispatch, getState) => {
-    const state = getState();
+    // const state = getState();
     try {
       const response = await fetch("/users", {});
 

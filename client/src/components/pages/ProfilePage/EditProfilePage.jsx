@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUsers, loadUserById } from "../../../redux/features/users";
-import {
-  Button,
-  Grid,
-  IconButton,
-} from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -36,7 +32,6 @@ const useStyles = makeStyles((theme) =>
     },
     contain: {
       width: "1200px",
-      height: "600px",
       display: "flex",
       backgroundColor: "#f8f7f7",
       marginTop: "30px",
@@ -70,13 +65,10 @@ function EditProfilePage() {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [ConfirmPassword, setConfirmPassword] = useState("");
   const [telephone, setTelephone] = useState("");
   const [descriptionService, setDescriptionService] = useState("");
 
   const [telep, setTelep] = useState("");
-
-  const avatar = useSelector((state) => state.application.avatar);
 
   useEffect(() => {
     dispatch(loadUsers());
@@ -116,9 +108,6 @@ function EditProfilePage() {
     setPassword(e.target.value);
   };
 
-  const handleChangeConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-  };
   const handleChangeTelephone = (value) => {
     setTelephone(value);
   };
@@ -127,9 +116,9 @@ function EditProfilePage() {
     setDescriptionService(e.target.value);
   };
 
-  const handleDeleteDescriptionService = (e) => {
-    setDescriptionService(e.target.value);
-  };
+  // const handleDeleteDescriptionService = (e) => {
+  //   setDescriptionService(e.target.value);
+  // };
   const handleAddAvatar = async (e) => {
     await dispatch(changeAvatar(e));
   };
@@ -165,7 +154,6 @@ function EditProfilePage() {
         email,
         login,
         password,
-        ConfirmPassword,
         telephone,
         descriptionService
       )

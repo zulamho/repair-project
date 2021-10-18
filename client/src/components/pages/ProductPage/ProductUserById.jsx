@@ -1,6 +1,6 @@
 import { Grid, Typography, Card } from "@material-ui/core";
 import { Button, CardMedia } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import {
@@ -9,11 +9,10 @@ import {
   toggleTicket,
 } from "../../../redux/features/service";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Link, NavLink } from "react-router-dom";
-import Application from "./Application";
-import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
 import Header from "../HomePage/Header";
 import Footer from "../HomePage/Footer";
+import { Box } from "@mui/system";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -43,12 +42,6 @@ const useStyles = makeStyles((theme) =>
       boxShadow: "none",
       overflow: "inherit",
       borderRadius: "0px",
-    },
-
-    root: {
-      display: "flex",
-      justifyContent: "space-around",
-      flexWrap: "wrap",
     },
     name: {
       height: "50px",
@@ -170,7 +163,7 @@ function ProductUserById() {
   return (
     <>
       <Header />
-      <Card spacing={5} className={classes.root} className={classes.content}>
+      <Card spacing={5} className={classes.content}>
         {service.map((item) => {
           if (item._id === id) {
             return (
