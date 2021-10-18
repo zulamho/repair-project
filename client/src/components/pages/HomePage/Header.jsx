@@ -24,16 +24,10 @@ import { useDispatch, useEffect } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    content: {
-      width: "300px",
-      maxWidth: "300px",
-      height: "300px",
-      marginBottom: "20px",
-    },
     header: {
       background: "#ffb800",
     },
@@ -76,15 +70,11 @@ const useStyles = makeStyles((theme) =>
         display: "flex",
       },
     },
-<<<<<<< HEAD
-=======
     logoAuthorization: {
       fontSize: "2.5rem",
       color: "black",
       marginBottom: "17px",
     },
-
->>>>>>> main
   })
 );
 
@@ -122,7 +112,6 @@ function Header() {
     >
       <List>
         <Box marginLeft="48px">
-        
           <Stack
             direction="row"
             spacing={2}
