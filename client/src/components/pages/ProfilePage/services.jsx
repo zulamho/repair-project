@@ -9,18 +9,13 @@ import {
 } from "@material-ui/core";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addImage, addProduct } from "../../../redux/features/service";
 import Footer from "../HomePage/Footer";
 import Header from "../HomePage/Header";
 //
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-    },
     margin: {
       display: "flex",
       flexDirection: "column",
@@ -63,11 +58,6 @@ const useStyles = makeStyles((theme) =>
       marginTop: "30px",
     },
 
-    root: {
-      display: "flex",
-      justifyContent: "space-around",
-      flexWrap: "wrap",
-    },
     name: {
       height: "50px",
       display: "flex",
