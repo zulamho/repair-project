@@ -28,10 +28,6 @@ const useStyles = makeStyles((theme) =>
     largeIcon: {
       fontSize: "10em",
     },
-    content: {
-      boxShadow: "0 0 20px 4px #ffb800",
-      marginBottom: "30px",
-    },
     img: {
       width: "300px",
       margin: "auto",
@@ -44,6 +40,7 @@ const useStyles = makeStyles((theme) =>
       marginRight: "30px",
     },
     content: {
+      marginBottom: "30px",
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "space-between",
