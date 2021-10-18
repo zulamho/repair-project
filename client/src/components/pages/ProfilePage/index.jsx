@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import Footer from "../HomePage/Footer";
 import Header from "../HomePage/Header";
 import ProfilePage from "./ProfilePage";
-import Services from "./Services";
 import UserService from "./UserService";
 
 function Profile() {
@@ -10,7 +9,6 @@ function Profile() {
     <Grid>
       <Header />
       <ProfilePage />
-      
       <UserService />
       <Footer />
     </Grid>

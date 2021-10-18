@@ -1,39 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUsers, loadUserById } from "../../../redux/features/users";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  ClickAwayListener,
-  Grid,
-  IconButton,
-} from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import BuildIcon from "@mui/icons-material/Build";
-import BuildCircleIcon from "@mui/icons-material/BuildCircle";
-import LocalSeeIcon from "@mui/icons-material/LocalSee";
 import HandymanIcon from "@mui/icons-material/Handyman";
-import EditIcon from "@mui/icons-material/Edit";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import Header from "../HomePage/Header";
 import TextField from "@mui/material/TextField";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { changeUser, changeAvatar } from "../../../redux/features/application";
-import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
@@ -55,7 +32,6 @@ const useStyles = makeStyles((theme) =>
     },
     contain: {
       width: "1200px",
-      height: "600px",
       display: "flex",
       backgroundColor: "#f8f7f7",
       marginTop: "30px",
@@ -89,13 +65,10 @@ function EditProfilePage() {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [ConfirmPassword, setConfirmPassword] = useState("");
   const [telephone, setTelephone] = useState("");
   const [descriptionService, setDescriptionService] = useState("");
 
   const [telep, setTelep] = useState("");
-
-  const avatar = useSelector((state) => state.application.avatar);
 
   useEffect(() => {
     dispatch(loadUsers());
@@ -135,9 +108,6 @@ function EditProfilePage() {
     setPassword(e.target.value);
   };
 
-  const handleChangeConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-  };
   const handleChangeTelephone = (value) => {
     setTelephone(value);
   };
@@ -146,9 +116,9 @@ function EditProfilePage() {
     setDescriptionService(e.target.value);
   };
 
-  const handleDeleteDescriptionService = (e) => {
-    setDescriptionService(e.target.value);
-  };
+  // const handleDeleteDescriptionService = (e) => {
+  //   setDescriptionService(e.target.value);
+  // };
   const handleAddAvatar = async (e) => {
     await dispatch(changeAvatar(e));
   };
@@ -184,7 +154,6 @@ function EditProfilePage() {
         email,
         login,
         password,
-        ConfirmPassword,
         telephone,
         descriptionService
       )

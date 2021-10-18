@@ -4,19 +4,16 @@ import {
   Grid,
   makeStyles,
   TextField,
-  IconButton,
   CardMedia,
   Card,
 } from "@material-ui/core";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addImage, addProduct } from "../../../redux/features/service";
-import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
+import Footer from "../HomePage/Footer";
+import Header from "../HomePage/Header";
+//
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -51,13 +48,6 @@ const useStyles = makeStyles((theme) =>
       height: "25px",
       marginRight: "30px",
     },
-    product: {
-      width: "1300px",
-      marginBottom: "30px",
-      marginTop: "30px",
-      marginLeft: "125px",
-      height: " 700px",
-    },
     content: {
       display: "flex",
       flexWrap: "wrap",
@@ -66,7 +56,11 @@ const useStyles = makeStyles((theme) =>
       boxShadow: "none",
       overflow: "inherit",
       borderRadius: "0px",
-      height: "600px",
+    },
+    product: {
+      width: "1300px",
+      marginBottom: "30px",
+      marginTop: "30px",
     },
 
     root: {
@@ -121,7 +115,6 @@ const useStyles = makeStyles((theme) =>
       borderRadius: "inherit",
       width: "1200px",
       boxShadow: "0 0 20px 4px #ffb800",
-      height: "750px",
     },
     description: {
       marginTop: "55px",
@@ -135,12 +128,10 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
-////
+
 function Services() {
   const dispatch = useDispatch();
   const classes = useStyles();
-
-  const token = useSelector((state) => state.application.token);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -176,129 +167,133 @@ function Services() {
   };
 
   return (
-    <Grid className={classes.content}>
-      <Grid className={classes.product}>
-        <Card className={classes.card}>
-          <Box className={classes.link}>Дoбавить новое объявление</Box>
+    <>
+      <Header />
+      <Grid className={classes.content}>
+        <Grid className={classes.product}>
+          <Card className={classes.card}>
+            <Box className={classes.link}>Дoбавить новое объявление</Box>
 
-          <CardMedia className={classes.img} />
-          <Grid className={classes.root}>
-            <input
-              accept="image/*"
-              className={classes.inputs}
-              id="icon-button-file"
-              type="file"
-              onChange={handleAddImage}
+            <CardMedia className={classes.img} />
+            <Grid className={classes.root}>
+              <input
+                accept="image/*"
+                className={classes.inputs}
+                id="icon-button-file"
+                type="file"
+                onChange={handleAddImage}
+              />
+            </Grid>
+
+            <Grid className={classes.infoblock}>
+              <Box className={classes.infocard}>
+                <CardMedia
+                  className={classes.imgcard}
+                  image={
+                    "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
+                  }
+                />
+                Наименование:{" "}
+                <TextField
+                  className={classes.input}
+                  mr={2}
+                  id="outlined-multiline-static"
+                  label="Название услуги"
+                  multiline
+                  rows={1}
+                  value={name}
+                  onChange={handleAddName}
+                  variant="outlined"
+                />
+              </Box>
+              <Box className={classes.infocard}>
+                <CardMedia
+                  className={classes.imgcard}
+                  image={
+                    "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
+                  }
+                />
+                Стоимость:
+                <TextField
+                  className={classes.input}
+                  mr={2}
+                  id="outlined-multiline-static"
+                  label="Введите смету"
+                  multiline
+                  rows={1}
+                  value={price}
+                  onChange={handleAddPrice}
+                  variant="outlined"
+                />
+              </Box>
+              <Box className={classes.infocard}>
+                <CardMedia
+                  className={classes.imgcard}
+                  image={
+                    "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
+                  }
+                />
+                Адрес:{" "}
+                <TextField
+                  className={classes.input}
+                  mr={2}
+                  id="outlined-multiline-static"
+                  label="Введите адрес"
+                  multiline
+                  rows={1}
+                  value={address}
+                  onChange={handleAddAddress}
+                  variant="outlined"
+                />
+              </Box>
+              <Box className={classes.infocard}>
+                <CardMedia
+                  className={classes.imgcard}
+                  image={
+                    "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
+                  }
+                />
+                Площадь:{" "}
+                <TextField
+                  className={classes.input}
+                  mr={2}
+                  id="outlined-multiline-static"
+                  label="Введите площадь"
+                  multiline
+                  rows={1}
+                  value={square}
+                  onChange={handleAddSquare}
+                  variant="outlined"
+                />
+                м²
+              </Box>
+            </Grid>
+
+            <TextField
+              className={classes.description}
+              id="filled-multiline-static"
+              label="Описание"
+              multiline
+              rows={4}
+              defaultValue={description}
+              onChange={handleAddDescription}
+              variant="filled"
             />
-          </Grid>
-
-          <Grid className={classes.infoblock}>
-            <Box className={classes.infocard}>
-              <CardMedia
-                className={classes.imgcard}
-                image={
-                  "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
-                }
-              />
-              Наименование:{" "}
-              <TextField
-                className={classes.input}
-                mr={2}
-                id="outlined-multiline-static"
-                label="Название услуги"
-                multiline
-                rows={1}
-                value={name}
-                onChange={handleAddName}
-                variant="outlined"
-              />
+            <Box className={classes.link}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleAddProduct}
+                className={classes.btninput}
+              >
+                Добавить объявление
+              </Button>
             </Box>
-            <Box className={classes.infocard}>
-              <CardMedia
-                className={classes.imgcard}
-                image={
-                  "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                }
-              />
-              Стоимость:
-              <TextField
-                className={classes.input}
-                mr={2}
-                id="outlined-multiline-static"
-                label="Введите смету"
-                multiline
-                rows={1}
-                value={price}
-                onChange={handleAddPrice}
-                variant="outlined"
-              />
-            </Box>
-            <Box className={classes.infocard}>
-              <CardMedia
-                className={classes.imgcard}
-                image={
-                  "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
-                }
-              />
-              Адрес:{" "}
-              <TextField
-                className={classes.input}
-                mr={2}
-                id="outlined-multiline-static"
-                label="Введите адрес"
-                multiline
-                rows={1}
-                value={address}
-                onChange={handleAddAddress}
-                variant="outlined"
-              />
-            </Box>
-            <Box className={classes.infocard}>
-              <CardMedia
-                className={classes.imgcard}
-                image={
-                  "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
-                }
-              />
-              Площадь:{" "}
-              <TextField
-                className={classes.input}
-                mr={2}
-                id="outlined-multiline-static"
-                label="Введите площадь"
-                multiline
-                rows={1}
-                value={square}
-                onChange={handleAddSquare}
-                variant="outlined"
-              />
-              м²
-            </Box>
-          </Grid>
-
-          <TextField
-            className={classes.description}
-            id="filled-multiline-static"
-            label="Описание"
-            multiline
-            rows={4}
-            defaultValue={description}
-            onChange={handleAddDescription}
-            variant="filled"
-          />
-          <Box className={classes.link}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleAddProduct}
-              className={classes.btninput}
-            >
-              Добавить объявление
-            </Button>
-          </Box>
-        </Card>
+          </Card>
+        </Grid>
       </Grid>
-    </Grid>
+      <Footer />
+    </>
   );
 }
 

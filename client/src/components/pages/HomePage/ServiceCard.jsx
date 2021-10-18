@@ -1,11 +1,10 @@
 import { Grid, Card, CardMedia } from "@material-ui/core";
-import { React, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { React } from "react";
+import { NavLink } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Box } from "@mui/system";
-import { Pagination, PaginationItem, Typography } from "@mui/material";
-import { fetchService } from "../../../redux/features/service";
+import { Typography } from "@mui/material";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -37,11 +36,7 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "20px",
       maxWidth: "calc(33.333% - 20px)",
     },
-    root: {
-      display: "flex",
-      justifyContent: "space-around",
-      flexWrap: "wrap",
-    },
+
     name: {
       height: "50px",
       display: "flex",
@@ -89,12 +84,22 @@ const useStyles = makeStyles((theme) =>
 );
 
 function ServiceCard() {
-  const dispatch = useDispatch();
   const classes = useStyles();
-  const service = useSelector((state) => state.service.service);
+
+  const service = useSelector((state) => {
+    const { service } = state;
+
+    if (service.filter === "") {
+      return service.service;
+    }
+
+    return service.service.filter((item) => {
+      return item.name.toLowerCase().includes(service.filter.toLowerCase());
+    });
+  });
 
   return (
-    <Card spacing={5} className={classes.root} className={classes.content}>
+    <Card spacing={5} className={classes.content}>
       {service?.map((item) => {
         return (
           <Grid className={classes.main}>
