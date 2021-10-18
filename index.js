@@ -15,6 +15,7 @@ app.use("/image", express.static(path.resolve(__dirname, "image")));
 app.use("/avatar", express.static(path.resolve(__dirname, "avatar")));
 
 app.use(require("./routes/index"));
+//
 
 app.use(express.static(path.resolve(__dirname, "client", "build")));
 app.get("*", (req, res) => {
