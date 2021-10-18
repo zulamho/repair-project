@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) =>
       height: "80px",
     },
     content: {
-      marginBottom: "20px",
       display: "flex",
       height: "90px",
       width: "100%",
