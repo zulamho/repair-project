@@ -21,7 +21,7 @@ function parseQuery(queryString) {
 const useStyles = makeStyles((theme) =>
   createStyles({
     mainer: {
-      backgroundImage: `url("https://raw.githubusercontent.com/thebestdevelopering/repairProject/main/client/public/bg-applicant-supernova-1__min_.jpg")`,
+      backgroundImage: `url("https://raw.githubusercontent.com/thebestdevelopering/repairProject/main/image/bg-applicant-supernova-1__min_.jpg")`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "100% 700px",
       height: "612px",

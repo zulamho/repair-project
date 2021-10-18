@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) =>
       height: "80px",
     },
     content: {
+      marginBottom: "20px",
       display: "flex",
       height: "90px",
       width: "100%",
@@ -72,6 +73,7 @@ const useStyles = makeStyles((theme) =>
       color: "black",
       marginBottom: "17px",
     },
+
   })
 );
 
@@ -108,6 +110,7 @@ function Header() {
     >
       <List>
         <Box marginLeft="48px">
+        
           <Stack
             direction="row"
             spacing={2}
