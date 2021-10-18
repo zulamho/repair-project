@@ -75,7 +75,7 @@ export const loadUsers = () => {
   return async (dispatch) => {
     dispatch({ type: "users/load/pending" });
 
-    const res = await fetch("/users");
+    const res = await fetch("http://localhost:4000/users");
     const json = await res.json();
 
     dispatch({ type: "users/load/fulfilled", payload: json });
@@ -86,13 +86,33 @@ export const loadUserById = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "usersById/load/pending" });
     const state = getState();
-    const res = await fetch(`/user`, {
+    const res = await fetch(`http://localhost:4000/user`, {
       headers: {
         Authorization: `Bearer ${state.application.token}`,
       },
     });
     const json = await res.json();
     dispatch({ type: "usersById/load/fulfilled", payload: json });
+  };
+};
+
+export const loadUserNotes = () => {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: "noteByUser/load/pending",
+    });
+    const state = getState();
+    const response = await fetch("/notes/admin/", {
+      headers: {
+        Authorization: `Bearer ${state.application.token}`,
+      },
+    });
+    const json = await response.json();
+
+    dispatch({
+      type: "noteByUser/load/fulfilled",
+      payload: json,
+    });
   };
 };
 
@@ -128,7 +148,7 @@ export const loadUserService = () => {
       type: "serviceByUser/load/pending",
     });
     const state = getState();
-    const response = await fetch("/admin", {
+    const response = await fetch("http://localhost:4000/admin", {
       headers: {
         Authorization: `Bearer ${state.application.token}`,
       },

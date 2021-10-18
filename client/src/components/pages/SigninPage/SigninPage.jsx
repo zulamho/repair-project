@@ -83,6 +83,7 @@ function SigninPage() {
               fullWidth
               name="password"
               label="Введите пароль!"
+              type="password"
               id="password"
               autoComplete="current-password"
               error={error}

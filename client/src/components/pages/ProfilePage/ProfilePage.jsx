@@ -1,16 +1,25 @@
-import { React, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUsers, loadUserById } from "../../../redux/features/users";
 import Card from "@mui/material/Card";
 import { Link } from "react-router-dom";
+import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import BuildIcon from "@mui/icons-material/Build";
+import BuildCircleIcon from "@mui/icons-material/BuildCircle";
+import LocalSeeIcon from "@mui/icons-material/LocalSee";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import EditIcon from "@mui/icons-material/Edit";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import Header from "../HomePage/Header";
+import EditProfilePage from "./EditProfilePage";
+import Profile from "./Profile";
 import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) =>
@@ -33,6 +42,9 @@ function ProfilePage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users.currentUser);
   const classes = useStyles();
+  const [telep, setTelep] = useState("");
+  const [telep1, setTelep1] = useState("");
+  console.log(user.name);
 
   useEffect(() => {
     dispatch(loadUsers());
@@ -45,19 +57,20 @@ function ProfilePage() {
     <>
       <Container>
         <Box className={classes.profile}>
-          <CardMedia
-            sx={{
-              width: 315,
-              height: 310,
-              border: 1,
-              borderColor: "gainsboro",
-              borderRadius: 5,
-              marginLeft: 5,
-              marginTop: 3,
-            }}
-            image={`http://localhost:4000/${user.pathImages}`}
-          />
-          <Card className={classes.profileCard}>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ width: 415, height: 410, marginTop: "5px" }}
+          >
+            <Avatar
+              sx={{ width: 415, height: 410, border: 2 }}
+              src={`http://localhost:4000/${user.pathImages}`}
+            />
+          </Stack>
+          <Card
+            sx={{ maxWidth: 1000, maxHight: 1000 }}
+            className={classes.profileCard}
+          >
             <Typography gutterBottom variant="h5" component="div">
               Имя: {user.name} {user.lastname}
             </Typography>

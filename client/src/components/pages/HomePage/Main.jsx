@@ -1,9 +1,26 @@
-import { Grid, Typography, Box, InputBase } from "@material-ui/core";
-import { React } from "react";
+import {
+  Grid,
+  Card,
+  CardMedia,
+  TextField,
+  Typography,
+  Box,
+  InputBase,
+} from "@material-ui/core";
+import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { setFilterText } from "../../../redux/features/service";
+import { fetchService, setFilterText } from "../../../redux/features/service";
 import ServiceCard from "./ServiceCard";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import { Pagination, PaginationItem } from "@mui/material";
 
 function parseQuery(queryString) {
@@ -21,7 +38,7 @@ function parseQuery(queryString) {
 const useStyles = makeStyles((theme) =>
   createStyles({
     mainer: {
-      backgroundImage: `url("https://raw.githubusercontent.com/thebestdevelopering/repairProject/main/client/public/bg-applicant-supernova-1__min_.jpg")`,
+      backgroundImage: `url("https://raw.githubusercontent.com/thebestdevelopering/repairProject/main/image/bg-applicant-supernova-1__min_.jpg")`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "100% 700px",
       height: "612px",
@@ -90,8 +107,22 @@ function Main() {
   const filter = useSelector((state) => state.service.filter);
   const { pages } = useSelector((state) => state.service);
 
+  const location = useLocation();
   const query = parseQuery(window.location.search);
   const page = query.page ? Number(query.page) : 1;
+
+  const service = useSelector((state) => {
+    const { service } = state;
+
+    if (service.filter === "") {
+      return service.service;
+    }
+
+    return service.service.filter((item) => {
+      console.log(service);
+      return item.name.toLowerCase().includes(service.filter.toLowerCase());
+    });
+  });
 
   return (
     <>

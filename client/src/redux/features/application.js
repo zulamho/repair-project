@@ -83,7 +83,7 @@ export const createUser = (
 
     const { application } = getState();
 
-    const response = await fetch("/user", {
+    const response = await fetch("http://localhost:4000/user", {
       method: "POST",
       body: JSON.stringify({
         name,
@@ -128,7 +128,7 @@ export const changeUser = (
     const { application } = getState();
     const state = getState();
 
-    const response = await fetch("/user", {
+    const response = await fetch("http://localhost:4000/user", {
       headers: {
         Authorization: `Bearer ${state.application.token}`,
         "Content-type": "application/json",
@@ -162,7 +162,7 @@ export const auth = (login, password) => {
   return async (dispatch) => {
     dispatch({ type: "application/signin/pending" });
 
-    const response = await fetch("/login", {
+    const response = await fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({ login, password }),
       headers: {
@@ -190,7 +190,7 @@ export const addAvatar = (e) => {
     const data = new FormData();
     data.append("image", files[0]);
 
-    const response = await fetch("/user/upload", {
+    const response = await fetch("http://localhost:4000/user/upload", {
       method: "POST",
 
       body: data,
@@ -212,9 +212,9 @@ export const changeAvatar = (e) => {
     const { files } = e.target;
     const data = new FormData();
     data.append("image", files[0]);
-    // const state = getState();
+    const state = getState();
 
-    const response = await fetch("/user/upload", {
+    const response = await fetch("http://localhost:4000/user/upload", {
       method: "POST",
 
       body: data,
@@ -231,9 +231,9 @@ export const changeAvatar = (e) => {
 
 export const fetchUsers = () => {
   return async (dispatch, getState) => {
-    // const state = getState();
+    const state = getState();
     try {
-      const response = await fetch("/users", {});
+      const response = await fetch("http://localhost:4000/users", {});
 
       const json = await response.json();
 

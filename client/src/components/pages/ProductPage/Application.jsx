@@ -16,9 +16,11 @@ function Application() {
 
   const [click, setClick] = useState(application.accepted);
 
+  const token = useSelector((state) => state.application.token);
+
   useEffect(() => {
     dispatch(getApplication(id));
-  }, [dispatch, id]);
+  }, []);
 
   useEffect(() => {
     setClick(application.accepted);

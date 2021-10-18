@@ -1,10 +1,11 @@
 import { Grid, Card, CardMedia } from "@material-ui/core";
-import { React } from "react";
-import { NavLink } from "react-router-dom";
+import { React, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Pagination, PaginationItem, Typography } from "@mui/material";
+import { fetchService } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -36,7 +37,11 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "20px",
       maxWidth: "calc(33.333% - 20px)",
     },
-
+    root: {
+      display: "flex",
+      justifyContent: "space-around",
+      flexWrap: "wrap",
+    },
     name: {
       height: "50px",
       display: "flex",
@@ -74,7 +79,7 @@ const useStyles = makeStyles((theme) =>
     },
     text: {
       fontFamily: "Montserrat,sans-serif",
-      fontSize: "25px",
+      fontSize: "16px",
       fontWeight: "400",
     },
     card: {
@@ -84,22 +89,12 @@ const useStyles = makeStyles((theme) =>
 );
 
 function ServiceCard() {
+  const dispatch = useDispatch();
   const classes = useStyles();
-
-  const service = useSelector((state) => {
-    const { service } = state;
-
-    if (service.filter === "") {
-      return service.service;
-    }
-
-    return service.service.filter((item) => {
-      return item.name.toLowerCase().includes(service.filter.toLowerCase());
-    });
-  });
+  const service = useSelector((state) => state.service.service);
 
   return (
-    <Card spacing={5} className={classes.content}>
+    <Card spacing={5} className={classes.root} className={classes.content}>
       {service?.map((item) => {
         return (
           <Grid className={classes.main}>
@@ -118,9 +113,7 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/2.svg"
                       }
                     />
-                    <Typography classes={{ root: classes.text }}>
-                      {item.name}
-                    </Typography>
+                    <p className={classes.text}>{item.name}</p>
                   </Box>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -129,9 +122,7 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                       }
                     />
-                    <Typography classes={{ root: classes.text }}>
-                      Стоимость {item.price} руб.
-                    </Typography>
+                    <p className={classes.text}>Стоимость {item.price}</p>
                   </Box>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -140,10 +131,7 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/3.svg"
                       }
                     />
-                    <Typography classes={{ root: classes.text }}>
-                      {" "}
-                      {item.address}
-                    </Typography>
+                    <p className={classes.text}> {item.address}</p>
                   </Box>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -152,9 +140,7 @@ function ServiceCard() {
                         "https://raw.githubusercontent.com/thebestdevelopering/repairProject/af5aec265d414e8925f091f1efb25aca511f0f3f/client/public/4.svg"
                       }
                     />
-                    <Typography classes={{ root: classes.text }}>
-                      Площадь {item.square} м²
-                    </Typography>
+                    <p className={classes.text}>Площадь {item.square} м²</p>
                   </Box>
                 </Grid>
                 <Box className={classes.link}>

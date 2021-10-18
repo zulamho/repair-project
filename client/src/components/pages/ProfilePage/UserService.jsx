@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { loadUserService } from "../../../redux/features/users";
+import { removeService } from "../../../redux/features/service";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -15,37 +16,17 @@ const useStyles = makeStyles((theme) =>
     product: {
       width: "300px",
       maxWidth: "300px",
+      height: "300px",
+      marginBottom: "20px",
     },
     content: {
-      margin: "auto",
-      width: "1199px",
+      width: "100%",
       display: "flex",
       justifyContent: "space-between",
       flexWrap: "wrap",
     },
     main: {
       marginBottom: "20px",
-      boxShadow: "0 0 20px rgb(0 0 0 / 15%)",
-    },
-    card: {
-      borderRadius: "inherit",
-    },
-    link: {
-      textDecoration: "none",
-      color: "black",
-      fontWeight: "600",
-      fontFamily: "Montserrat",
-    },
-    btn: {
-      textAlign: "center",
-      marginBottom: "20px",
-      marginTop: "20px",
-    },
-    name: {
-      marginTop: "30px",
-      textAlign: "center",
-      fontSize: "18px",
-      fontWeight: "500",
     },
   })
 );
@@ -55,37 +36,40 @@ function UserService() {
   const classes = useStyles();
   const service = useSelector((state) => state.users.userService);
 
+  const handleDelete = (id) => {
+    dispatch(removeService(id));
+  };
+
   useEffect(() => {
     dispatch(loadUserService());
   }, [dispatch]);
 
   return (
-    <Grid className={classes.content}>
-      <Typography variant="h3">Мои объявления</Typography>
+    <Grid>
+      <Typography variant="h2">Ваши объявления</Typography>
 
       <Grid className={classes.content}>
         {service?.map((item) => {
           return (
             <Grid className={classes.main}>
               <Grid className={classes.product}>
-                <Card className={classes.card}>
+                <Card>
                   <NavLink to={`/service/user/${item._id}`}>
                     <CardMedia
                       className={classes.img}
                       image={`http://localhost:4000/${item.pathImages}`}
                     />
                   </NavLink>
-                  <Typography classes={{ root: classes.name }}>
-                    {item.name}
-                  </Typography>
-                  <Grid className={classes.btn}>
-                    <Button variant="contained" color="primary">
-                      <NavLink
-                        className={classes.link}
-                        to={`/service/user/${item._id}`}
-                      >
-                        Подробнее
-                      </NavLink>
+                  {item.name}
+                  <Grid>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        handleDelete(item._id);
+                      }}
+                    >
+                      Удалить
                     </Button>
                   </Grid>
                 </Card>

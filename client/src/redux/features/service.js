@@ -32,7 +32,8 @@ export default function service(state = initialState, action) {
     case "service/post/pending":
     case "service/get/pending":
     case "service/toggle-ticket/pending":
-      return {
+      
+    return {
         ...state,
         loading: true,
       };
@@ -89,9 +90,9 @@ export default function service(state = initialState, action) {
 
 export const fetchService = (page = 1) => {
   return async (dispatch, getState) => {
-    // const state = getState();
+    const state = getState();
     dispatch({ type: "service/fetch-service/pending" });
-    const response = await fetch(`/service?page=${page}`);
+    const response = await fetch(`http://localhost:4000/service?page=${page}`);
 
     const json = await response.json();
 
@@ -117,14 +118,15 @@ export const addProduct = (
   address,
   square,
   description,
-  image
+  image,
+ 
 ) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/post/pending" });
 
     const state = getState();
 
-    const response = await fetch("/service", {
+    const response = await fetch("http://localhost:4000/service", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${state.application.token}`,
@@ -157,7 +159,7 @@ export const addImage = (e) => {
     const data = new FormData();
     data.append("image", files[0]);
 
-    const response = await fetch("/service/upload", {
+    const response = await fetch("http://localhost:4000/service/upload", {
       method: "POST",
       body: data,
     });
@@ -172,7 +174,7 @@ export const addImage = (e) => {
 };
 
 export const setFilterText = (text) => {
-  console.log(text);
+  console.log(text)
   return {
     type: "service/filter/fulfilled",
     payload: text,
@@ -182,7 +184,7 @@ export const setFilterText = (text) => {
 export const removeService = (id) => {
   return (dispatch, getState) => {
     const state = getState();
-    fetch(`/service/${id}`, {
+    fetch(`http://localhost:4000/service/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${state.application.token}`,
@@ -201,13 +203,16 @@ export const addApplication = (id) => {
 
     const state = getState();
 
-    const response = await fetch(`/service/adduser/${id}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${state.application.token}`,
-        "Content-type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `http://localhost:4000/service/adduser/${id}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${state.application.token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     dispatch({
@@ -223,13 +228,16 @@ export const getApplication = (id) => {
 
     const state = getState();
 
-    const response = await fetch(`/service/getuser/${id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${state.application.token}`,
-        "Content-type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `http://localhost:4000/service/getuser/${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${state.application.token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     dispatch({
@@ -239,6 +247,7 @@ export const getApplication = (id) => {
   };
 };
 
+
 export const toggleTicket = (id, ticketId, type) => {
   return async (dispatch, getState) => {
     dispatch({ type: "service/toggle-ticket/pending" });
@@ -246,7 +255,7 @@ export const toggleTicket = (id, ticketId, type) => {
     const state = getState();
 
     const response = await fetch(
-      `/service/toggle-ticket/${id}/${ticketId}/${type}`,
+      `http://localhost:4000/service/toggle-ticket/${id}/${ticketId}/${type}`,
       {
         method: "POST",
         headers: {
@@ -275,7 +284,7 @@ export const editService = (
 ) => {
   return (dispatch, getState) => {
     const state = getState();
-    fetch(`/service/${id}`, {
+    fetch(`http://localhost:4000/service/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
         name,
@@ -293,5 +302,6 @@ export const editService = (
     }).then(() => {
       dispatch({ type: "service/edit", payload: id });
     });
+    window.location.reload();
   };
 };
