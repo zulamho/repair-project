@@ -130,7 +130,7 @@ function ServiceCard() {
                       }
                     />
                     <Typography classes={{ root: classes.text }}>
-                      Стоимость {item.price} руб.
+                      Стоимость: {item.price} руб.
                     </Typography>
                   </Box>
                   <Box className={classes.infocard}>
