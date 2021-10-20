@@ -40,8 +40,10 @@ const useStyles = makeStyles((theme) =>
     img: {
       width: "300px",
       margin: "auto",
+      marginTop: "30px",
       height: "300px",
-      boxShadow: "0 0 20px 4px black",
+      boxShadow: "0 0 2px 1px black",
+      borderRadius: "150px",
     },
     imgcard: {
       width: "25px",
@@ -62,7 +64,6 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "30px",
       marginTop: "30px",
     },
-
     root: {
       display: "flex",
       justifyContent: "space-around",
@@ -79,7 +80,6 @@ const useStyles = makeStyles((theme) =>
     },
     link: {
       height: "50px",
-      margin: "5px 0 30px 0",
       background: "#ffb800",
       display: "flex",
       justifyContent: "center",
@@ -94,6 +94,14 @@ const useStyles = makeStyles((theme) =>
       "&:hover": {
         color: "white",
       },
+    },
+    linkes: {
+      height: "50px",
+      background: "#ffb800",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: "30px",
     },
     infocard: {
       height: "30px",
@@ -119,12 +127,14 @@ const useStyles = makeStyles((theme) =>
     description: {
       marginTop: "55px",
       marginLeft: "73px",
-      width: "1045px",
-
-      boxShadow: "0 0 20px 4px black",
+      width: "1055px",
+      boxShadow: "0 0 2px 0.5px black",
       input: {
         boxShadow: "0 0 20px 4px #green",
       },
+    },
+    inputs: {
+      marginTop: "10px",
     },
   })
 );
@@ -258,14 +268,13 @@ function Services() {
                   className={classes.input}
                   mr={2}
                   id="outlined-multiline-static"
-                  label="Введите площадь"
+                  label="Введите площадь: м²"
                   multiline
                   rows={1}
                   value={square}
                   onChange={handleAddSquare}
                   variant="outlined"
                 />
-                м²
               </Box>
             </Grid>
 
@@ -279,7 +288,7 @@ function Services() {
               onChange={handleAddDescription}
               variant="filled"
             />
-            <Box className={classes.link}>
+            <Box className={classes.linkes}>
               <Button
                 variant="contained"
                 color="primary"
