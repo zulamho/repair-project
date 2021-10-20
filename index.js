@@ -14,12 +14,17 @@ app.use(cors());
 app.use("/image", express.static(path.resolve(__dirname, "image")));
 app.use("/avatar", express.static(path.resolve(__dirname, "avatar")));
 
-
 app.use(require("./routes/index"));
+//
 
-app.use(express.static(path.resolve(__dirname, "client" , "build")))
-app.get("*",  (req , res) =>{
-  res.sendFile(path.resolve(__dirname, "client" , "build" , "index.html"))
+app.use(express.static(path.resolve(__dirname, "client", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
+app.use(express.static(path.resolve(__dirname, "client", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 console.log("Подключение к базе данных");
