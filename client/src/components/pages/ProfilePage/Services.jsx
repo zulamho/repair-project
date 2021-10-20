@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) =>
       borderRadius: "0px",
     },
     product: {
-      width: "1300px",
       marginBottom: "30px",
       marginTop: "30px",
     },
