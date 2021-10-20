@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) =>
     profile: {
       display: "flex",
       backgroundColor: "#e4eac3",
-      borderRadius: "237px",
       width: "1380px",
       marginLeft: "-75px",
     },
@@ -79,7 +78,7 @@ function ProfilePage() {
             </Typography>
             <hr />
             <Typography variant="body2" color="text.secondary">
-              {user.descriptionService}
+              Описание услуги: {user.descriptionService}
             </Typography>
             <hr />
             <Link to="/editProfilePage">
