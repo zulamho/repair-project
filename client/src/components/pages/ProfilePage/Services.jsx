@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addImage, addProduct } from "../../../redux/features/service";
 import Footer from "../HomePage/Footer";
 import Header from "../HomePage/Header";
-
+//
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) =>
     largeIcon: {
       fontSize: "10em",
     },
+    content: {
+      boxShadow: "0 0 20px 4px #ffb800",
+      marginBottom: "30px",
+    },
     img: {
       width: "300px",
       margin: "auto",
@@ -45,7 +49,6 @@ const useStyles = makeStyles((theme) =>
       marginRight: "30px",
     },
     content: {
-      marginBottom: "30px",
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "space-between",
@@ -60,6 +63,11 @@ const useStyles = makeStyles((theme) =>
       marginTop: "30px",
     },
 
+    root: {
+      display: "flex",
+      justifyContent: "space-around",
+      flexWrap: "wrap",
+    },
     name: {
       height: "50px",
       display: "flex",

@@ -7,7 +7,6 @@ import {
   getApplication,
 } from "../../../redux/features/service";
 
-//
 function Application() {
   const dispatch = useDispatch();
   const [disabBtn, setDisabBtn] = useState("");
@@ -17,11 +16,9 @@ function Application() {
 
   const [click, setClick] = useState(application.accepted);
 
-  const token = useSelector((state) => state.application.token);
-
   useEffect(() => {
     dispatch(getApplication(id));
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     setClick(application.accepted);
