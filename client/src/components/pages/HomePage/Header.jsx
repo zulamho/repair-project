@@ -206,7 +206,7 @@ function Header() {
                 </NavLink>
               </Button>
               <Button>
-                <NavLink to="/profilePage" className={classes.links}>
+                <NavLink to="/aboutUs" className={classes.links}>
                   О нас
                 </NavLink>
               </Button>

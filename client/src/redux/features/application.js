@@ -74,7 +74,6 @@ export const createUser = (
   email,
   login,
   password,
-  ConfirmPassword,
   telephone,
   descriptionService
 ) => {
@@ -92,10 +91,10 @@ export const createUser = (
         email,
         login,
         password,
-        ConfirmPassword,
         telephone,
-        image: application.avatar.image,
         descriptionService,
+        image: application.avatar.image,
+       
       }),
       headers: {
         "Content-type": "application/json",
@@ -119,7 +118,6 @@ export const changeUser = (
   email,
   login,
   password,
-  ConfirmPassword,
   telephone,
   descriptionService
 ) => {
@@ -141,10 +139,10 @@ export const changeUser = (
         email,
         login,
         password,
-        ConfirmPassword,
         telephone,
-        pathImages: application.avatar.image,
         descriptionService,
+        pathImages: application.avatar.image,
+       
       }),
     });
 

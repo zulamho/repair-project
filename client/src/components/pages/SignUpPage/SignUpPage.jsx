@@ -79,9 +79,9 @@ function SignUpPage() {
   const handleChangeLastName = (e) => {
     setLastName(e.target.value);
   };
-  // const handleChangeWorkingUser = (e) => {
-  //   setWorkingUser(e.target.value);
-  // };
+  const handleChangeWorkingUser = (e) => {
+    setWorkingUser(e.target.value);
+  };
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -102,12 +102,12 @@ function SignUpPage() {
     setDescriptionService(e.target.value);
   };
 
-  // const handleDeleteDescriptionService = (e) => {
-  //   setDescriptionService(e.target.value);
-  // };
+  const handleDeleteDescriptionService = (e) => {
+    setDescriptionService(e.target.value);
+  };
 
   const handleDeleteDescrip = () => {
-    setTelep("");
+    setDescriptionService(" ");
   };
   const handleAddAvatar = async (e) => {
     await dispatch(addAvatar(e));

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     profile: {
       display: "flex",
-      backgroundColor: "#e4eac3",
+      backgroundColor: "#f8f7f7",
       width: "1380px",
       marginLeft: "-75px",
     },
@@ -51,14 +51,12 @@ function ProfilePage() {
               border: 1,
               borderColor: "gainsboro",
               borderRadius: 5,
-              marginLeft: 5,
-              marginTop: 3,
             }}
             image={`http://localhost:4000/${user.pathImages}`}
           />
           <Card className={classes.profileCard}>
             <Typography gutterBottom variant="h5" component="div">
-              Имя: {user.name} {user.lastname}
+              Имя: {user.name} {user.lastName}
             </Typography>
             <hr />
             <Typography gutterBottom variant="h5" component="div">
