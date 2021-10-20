@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -69,11 +69,9 @@ const useStyles = makeStyles((theme) =>
       },
     },
     logoAuthorization: {
-      fontSize: "2.5rem",
+      fontSize: "2.5rem;",
       color: "black",
-      marginBottom: "17px",
     },
-
   })
 );
 
@@ -110,7 +108,6 @@ function Header() {
     >
       <List>
         <Box marginLeft="48px">
-        
           <Stack
             direction="row"
             spacing={2}
@@ -224,6 +221,7 @@ function Header() {
                 <ListItemIcon>
                   {/* <AccountCircleIcon className={classes.logoAuthorization}/> */}
                   <AccountCircleOutlinedIcon
+                    className={classes.logoAuthorization}
                     onClick={toggleDrawer(anchor, true)}
                   />
                 </ListItemIcon>
