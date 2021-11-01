@@ -10,8 +10,7 @@ import ProductUserById from "./pages/ProductPage/ProductUserById";
 import EditService from "./pages/ProfilePage/EditService";
 import Services from "./pages/ProfilePage/Services";
 import AboutUs from "./pages/HomePage/AboutUs";
-//ssdsf
-//dddwasd
+
 function App() {
   return (
     <BrowserRouter>

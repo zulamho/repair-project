@@ -246,13 +246,13 @@ function ProductUserById() {
               <Card className={classes.user}>
                 <CardMedia
                   className={classes.imgs}
-                  image={`http://localhost:4000/${item.userId.pathImages}`}
+                  image={`http://localhost:4000/${item?.userId?.pathImages}`}
                 />
                 <Grid className={classes.inf}>
-                  <Typography>{item.userId.lastName}</Typography>
-                  <Typography>{item.userId.name}</Typography>
-                  <Typography>{item.userId.telephone}</Typography>
-                  <Typography>{item.userId.email}</Typography>
+                  <Typography>{item?.userId?.lastName}</Typography>
+                  <Typography>{item?.userId?.name}</Typography>
+                  <Typography>{item?.userId?.telephone}</Typography>
+                  <Typography>{item?.userId?.email}</Typography>
                 </Grid>
                 <Grid className={classes.btns}>
                   <Button

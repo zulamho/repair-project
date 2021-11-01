@@ -106,10 +106,7 @@ function ServiceCard() {
             <Grid className={classes.product}>
               <Card className={classes.card}>
                 <Box className={classes.name}>{item.name}</Box>
-                <CardMedia
-                  className={classes.img}
-                  image={`http://localhost:4000/${item.pathImages}`}
-                />
+                <CardMedia className={classes.img} image={item.pathImages} />
                 <Grid className={classes.infoblock}>
                   <Box className={classes.infocard}>
                     <CardMedia
@@ -130,7 +127,7 @@ function ServiceCard() {
                       }
                     />
                     <Typography classes={{ root: classes.text }}>
-                      Стоимость {item.price} руб.
+                      Стоимость: {item.price} руб.
                     </Typography>
                   </Box>
                   <Box className={classes.infocard}>
